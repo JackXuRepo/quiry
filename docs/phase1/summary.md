@@ -6,7 +6,7 @@ The objective of this project is to create a search engine for the UTSC communit
 Target users are in three categories: instructors, students, and guests.
 
 Our student persona is John Smith, a 20 year old university student studying management. His method of studying for tests is by completing past exams to get an understanding of the type of questions he might encounter.
-#TODO: add description of other personas here
+Our professor persona is Professor Charles Xavier. Dr. Xavier is a tenured Psychology professor currently teaching two psychology courses in all University of Toronto Campuses. On his spare time, he conducts research and writes a book on Artificial Intelligence and the Human Mind.
 #TODO: add description of user scenarios here
 
 The key principle driving our development is relevancy of the results. We strive to implement provide users with more relevant results even if it incurs an expense or inefficiency in the search algorithm. Such algorithm may determine the order results are presented, not only based on the documents themselves (such as the number of occurrences of a key word), but also with context of who is performing the search and what this user may be interested in (such as courses this user is currently taking/teaching).
