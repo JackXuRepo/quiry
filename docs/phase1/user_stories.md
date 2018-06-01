@@ -4,7 +4,7 @@ User Story #1:
 As a student, I always want to find more past exams to work on, so I can get familiar to the exam structure, and get a feel of the type of questions that are going to be on my exam.
 
 User Story #2:
-As a research professor, I want to upload my academic paper to the internet, to share my results of my reseach to everyone.
+As a research professor, I want to upload my academic paper to the internet, to share the results of my reseach to everyone.
 
 User Story #3:
 As a 4.0 student, I want to share my past exam to the students who will be taking this course.
@@ -26,3 +26,18 @@ As a professor who studied Mathematics for more than 40 years, I have trouble re
 
 User Story #9:
 As a TA, I really like to discuss academic material with other students, and notify them of their mistakes. So I think is good to have a comment section.
+
+User Story #10:
+I am currently applying to Post-Graduation studies in Psychology. I want to share the contributions I made towards academic papers to the university I applied to.
+
+User Story #11:
+I am a UTSC student and I have trouble remembering passwords. I prefer to save my passwords, so that I can easily log in to websites without much effort.
+
+User Story #12:
+I am a student that cares about quality, I want to filter papers by a rating system from 1 to 10.
+
+User Story #13:
+I am a professor teaching a course in Physics, I want an option to upload files that only students in my class can see.
+
+User Story #14:
+I am a student with a computer with only 500 MB of storage. I tend to download documents only when I need them. I always preview the content of a document before downloading them if possible.
