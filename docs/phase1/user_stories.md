@@ -41,3 +41,24 @@ I am a professor teaching a course in Physics, I want an option to upload files 
 
 User Story #14:
 I am a student with a computer with only 500 MB of storage. I tend to download documents only when I need them. I always preview the content of a document before downloading them if possible.
+
+User Story #15:
+I am a Math student and I often make mistakes on my assignments. When I submit assignments, I often need to resubmit them. A delete functionality will be helpful in my case.
+
+User Story #16:
+I am not a University of Toronto student, I am not familiar with how the university works. I like to browse through course materials without worrying about course codes or any terms specific to this university.
+
+User Story #17:
+I am a student taking 7 courses and doing part-time this semester. I want to browse through course material, but I don't have the time to get to the Xth page to find the item I need. I like an intuive way to filter and sort materials.
+
+User Story #18:
+I am a History professor, I have never used a computer before. I prefer to look through documentation when I deal with technology.
+
+User Story #19:
+I am a student that enjoys learning about everything. I want to randomly look through papers and explore new things that might catch my interest.
+
+User Story #20:
+I am a foreign student and I don't know the language, I rely on icons and symbols to get much of my meaning.
+
+
+
