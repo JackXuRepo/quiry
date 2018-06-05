@@ -3,7 +3,7 @@
 
 #TODO: add group photo here
 
-Our group was created via a [post](https://piazza.com/class/jh9m0ftgr8l6x0?cid=13) on Piazza, from six individuals who did not know each other beforehand. There were six different deliverables for this phase of the project. We assigned a few people to complete most of each deliverable.
+Our group was created via a [post](https://piazza.com/class/jh9m0ftgr8l6x0?cid=13) on Piazza, from five individuals who did not know each other beforehand. There were six different deliverables for this phase of the project. We assigned a few people to complete most of each deliverable.
 
 1. [summary.md](./summary.md) : Wayne
 2. [competition.md](./competition.md) : Mak, Wayne, Jack
