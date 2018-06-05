@@ -7,7 +7,7 @@ Target users are in three categories: instructors, students, and guests.
 We created a persona for each category with different goals and backgrounds. We expect different behavior from these users while using our product; it may be for research, study, or hobby.
 
 * Our instructor persona is Professor Charles Xavier. Dr. Xavier is a tenured Psychology professor currently teaching two psychology courses in all University of Toronto Campuses. On his spare time, he conducts research and writes a book on Artificial Intelligence and the Human Mind.
-* Our student persona is Jane Smith, a 22-year-old university student studying Management. Her method of studying for tests is by completing past exams to get an understanding of the type of questions he might encounter.
+* Our student persona is Jane Smith, a 22-year-old university student studying Management. Her method of studying for tests is by completing past exams to get an understanding of the type of questions she might encounter.
 * Our guest persona is Hakim Boyd, a high school senior and a prospective university student. He is excited about the transition to college, interested in learning about courses and student life at University of Toronto. He enjoys Biology and Chemistry and wants to go into the medical field in the future.
 
 We also split our user stories into four categories, based on functionality.
