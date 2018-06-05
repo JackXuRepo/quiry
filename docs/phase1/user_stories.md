@@ -10,7 +10,7 @@ _#2 - Priority HIGH - Difficulty MED_
 As someone who studied Economics and graduated from UTSC, sometimes, I have questions about macroeconomics when I deal with my customers, and it helps me a lot when I look back at my notes.
 
 _#3 - Priority HIGH - Difficulty MED)_  
-As a 4th Year student in UTSC, I am getting ready to write my graduation paper. It's a good idea to check on academic papers that are posted by my professor, so I can learn what he/she is expecting from the paper.
+As a 4th-year student at UTSC, I am getting ready to write my graduation paper. It's a good idea to check on academic papers that are posted by my professor, so I can learn what he/she is expecting from the paper.
 
 _#4 - Priority MED - Difficulty MED_  
 I am a student taking 6 courses and doing part-time this semester. I want to browse through course material, but I don't have time to read every word. I would like an intuitive way to filter and sort materials.
