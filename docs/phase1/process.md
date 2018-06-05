@@ -9,7 +9,7 @@ Our group was created via a [post](https://piazza.com/class/jh9m0ftgr8l6x0?cid=1
 2. [competition.md](./competition.md) : Mak, Wayne, Jack
 3. [personas.pdf](./personas.pdf) : Jack (Instructor), Mak (Student), Wayne (Guest)
 4. [user_stories.md](./user_stories.md) : Kin, Jack
-5. [UI/UX Mockups](UI-UX-Storyboard.pdf) Yash (Login, Register, Account), Mak (Upload), Jack (Storyboard, Home, Results), Kin (Storyboard)
+5. [UI/UX Mockups](./UI-UX-Storyboard.pdf) Yash (Login, Register, Account), Mak (Upload), Jack (Storyboard, Home, Results), Kin (Storyboard)
 6. [process.md](./process.md) : Wayne
 
 Everyone was able to make suggestions or changes to the documents as they are being completed. Decisions were made collectively, where the majority (at least 3 people) must approve the final version for submission.
