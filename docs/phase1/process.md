@@ -1,15 +1,15 @@
 # Process
 --------------------
 
-#TODO: add group photo here
+![Group Picture](./group_picture.jpeg)
 
 Our group was created via a [post](https://piazza.com/class/jh9m0ftgr8l6x0?cid=13) on Piazza, from five individuals who did not know each other beforehand. There were six different deliverables for this phase of the project. We assigned a few people to complete most of each deliverable.
 
 1. [summary.md](./summary.md) : Wayne
 2. [competition.md](./competition.md) : Mak, Wayne, Jack
-3. Personas : Jack (Instructor), Mak (Student), Wayne (Guest)
+3. [personas.pdf](./personas.pdf) : Jack (Instructor), Mak (Student), Wayne (Guest)
 4. [user_stories.md](./user_stories.md) : Kin, Jack
-5. UI/UX : Yash(Login, Register, Account), Mak(Upload), Jack(Storyboard, Home, Results), Kin(Storyboard)
+5. UI/UX : Yash (Login, Register, Account), Mak (Upload), Jack (Storyboard, Home, Results), Kin (Storyboard)
 6. [process.md](./process.md) : Wayne
 
 Everyone was able to make suggestions or changes to the documents as they are being completed. Decisions were made collectively, where the majority (at least 3 people) must approve the final version for submission.
