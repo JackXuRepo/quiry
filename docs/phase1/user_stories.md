@@ -18,16 +18,16 @@ During a fall semester, Jane is taking 6 courses and doing part-time work. Time 
 ## Upload
 
 _#5 - Priority HIGH - Difficulty MED_  
-As a research professor, I want to upload my academic paper to the internet, to share the results of my research to everyone.
+As a professor, Charles Xavier wants to upload his academic paper to the internet, to share the results of his research to everyone.
 
 _#6 - Priority HIGH - Difficulty MED_  
-As a 4.0 student, I want to share my past exam to the students who will be taking this course.
+As a generous person, Jane wants to share her past exam to the students who will be taking this course.
 
 _#7 - Priority HIGH - Difficulty MED_  
-I am currently applying to postgraduate studies in Psychology. I want to share the contributions I made towards academic papers to the university I applied to.
+Jane is applying to postgraduate studies. She wants to share the contributions she made towards academic papers to the university she applied to.
 
 _#8 - Priority MED - Difficulty MED_  
-I am a professor teaching a course in Physics, I want an option to upload files that only students in my class can see.
+As a professor that wants to share his confidential research, Charles wants an option to upload files that only students in his class can see.
 
 ## UI/UX
 
