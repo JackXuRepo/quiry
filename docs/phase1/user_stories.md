@@ -4,16 +4,16 @@
 ## Search
 
 _#1 - Priority HIGH - Difficulty MED_  
-As a student, I always want to find more past exams to work on, so I can familiarize myself with the exam structure, and get a feel for the type of questions that are going to be on my exam.
+As a student, Jane always want to find more past exams to work on, so she can familiarize herself with the exam structure, and get a feel for the type of questions that are going to be on the exam.
 
 _#2 - Priority HIGH - Difficulty MED_  
-As someone who studied Economics and graduated from UTSC, sometimes, I have questions about macroeconomics when I deal with my customers, and it helps me a lot when I look back at my notes.
+As someone who studies Economics, sometimes Jane has questions about macroeconomics when she deals with customers at her part-time work. It helps to take quick look back at her notes.
 
 _#3 - Priority HIGH - Difficulty MED)_  
-As a 4th-year student at UTSC, I am getting ready to write my graduation paper. It's a good idea to check on academic papers that are posted by my professor, so I can learn what he/she is expecting from the paper.
+Jane is getting ready to write her graduation paper. It's a good idea to check on academic papers that are posted by her professor, so she can learn what she is expecting from the paper.
 
 _#4 - Priority MED - Difficulty MED_  
-I am a student taking 6 courses and doing part-time this semester. I want to browse through course material, but I don't have time to read every word. I would like an intuitive way to filter and sort materials.
+During a fall semester, Jane is taking 6 courses and doing part-time work. Time is of the essence and Jane cannot read every word. She would like an intuitive way to filter and sort materials.
 
 ## Upload
 
