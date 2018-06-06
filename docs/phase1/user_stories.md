@@ -32,30 +32,27 @@ As a professor that wants to share his confidential research, Charles wants an o
 ## UI/UX
 
 _#9 - Priority MED - Difficulty LOW_  
-As a guest to this software, Hakim does not understand how to navigate his way around the program. He needs a written documentation on how to use this new technology.
+As a guest to this software, Hakim does not understand how to navigate his way around the program. He relies on icons and symbols to get much of the meaning. He needs a written documentation on how to use this new technology.
 
 _#10 - Priority MED - Difficulty LOW_  
 As a student who wants a simple to use UI, Jane is expecting to find something on a website that has clean and clear graphic design. 
 
-_#11 - Priority MED - Difficulty LOW_  
-As a guest, Hakim finds it hard to understand the documentation on the UI. He relies on icons and symbols to get much of the meaning.
-
 ## Additional Functionality
 
-_#12 - Priority LOW - Difficulty HIGH_  
-As an professor who wants to find efficient ways to improve teaching across multiple campuses, Charles really likes to discuss academic material with other students, and notify them of their mistakes by leaving comments on the documents.
+_#11 - Priority LOW - Difficulty HIGH_  
+As a professor who wants to find efficient ways to improve teaching across multiple campuses, Charles really likes to discuss academic material with other students, and notify them of their mistakes by leaving comments on the documents.
 
-_#13 - Priority LOW - Difficulty HIGH_  
-As a student, Jane has filled all her space and has 500 MB of storage left. She always previews the content of a document and download it only when she absolutely needs to.
+_#12 - Priority LOW - Difficulty HIGH_  
+As a student, Jane has filled all her space on her computer and has 500 MB of storage left. She always previews the content of a document and download it only when she absolutely needs to.
+
+_#13 - Priority LOW - Difficulty MED_  
+Charles is getting old has a hard time remembering small things. He hopes he can easily log in to websites without having to remember his password every time.
 
 _#14 - Priority LOW - Difficulty MED_  
-As a professor, Charles has a hard time remembering small things. He hopes he can easily log in to websites without having to remember his password every time.
-
-_#15 - Priority LOW - Difficulty MED_  
 As a student who looks for the best quality notes and papers, Jane looks for papers with the highest ratings first.
 
-_#16 - Priority LOW - Difficulty MED_  
+_#15 - Priority LOW - Difficulty MED_  
 As a guest who wants to study medicine in the future, Hakim is interested in browsing freely through papers and exploring course content that might catch his interest.
 
-_#17 - Priority LOW - Difficulty LOW_  
+_#16 - Priority LOW - Difficulty LOW_  
 As a busy student, Jane may make mistakes on her assignments. When she submits assignments, she hopes she can delete it and resubmit them.
