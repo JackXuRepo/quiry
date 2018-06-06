@@ -32,13 +32,13 @@ As a professor that wants to share his confidential research, Charles wants an o
 ## UI/UX
 
 _#9 - Priority MED - Difficulty LOW_  
-I am a History professor, I have never used a computer before. I need written documentation on how to use this new technology.
+As a guest to this software, Hakim does not understand how to navigate his way around the program. He needs a written documentation on how to use this new technology.
 
 _#10 - Priority MED - Difficulty LOW_  
-As a design student, I hate poor design. I am expecting to find something on a website that has a clean and clear graphic design. 
+As a student who wants a simple to use UI, Jane is expecting to find something on a website that has clean and clear graphic design. 
 
 _#11 - Priority MED - Difficulty LOW_  
-I am a foreign student and I don't know the language. I rely on icons and symbols to get much of the meaning.
+As a guest, Hakim finds it hard to understand the documentation on the UI. He relies on icons and symbols to get much of the meaning.
 
 ## Additional Functionality
 
