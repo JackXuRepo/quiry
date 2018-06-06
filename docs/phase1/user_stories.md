@@ -43,19 +43,19 @@ As a guest, Hakim finds it hard to understand the documentation on the UI. He re
 ## Additional Functionality
 
 _#12 - Priority LOW - Difficulty HIGH_  
-As a TA, I really like to discuss academic material with other students, and notify them of their mistakes by leaving comments on the documents.
+As an professor who wants to find efficient ways to improve teaching across multiple campuses, Charles really likes to discuss academic material with other students, and notify them of their mistakes by leaving comments on the documents.
 
 _#13 - Priority LOW - Difficulty HIGH_  
-I am a poor student with a computer that has only 500 MB of storage. I always preview the content of a document and download only when I absolutely need to.
+As a student, Jane has filled all her space and has 500 MB of storage left. She always previews the content of a document and download it only when she absolutely needs to.
 
 _#14 - Priority LOW - Difficulty MED_  
-As a professor who studied Mathematics for more than 40 years, I have trouble remembering things clearly. I hope I can easily log in to websites without having to remember my password every time.
+As a professor, Charles has a hard time remembering small things. He hopes he can easily log in to websites without having to remember his password every time.
 
 _#15 - Priority LOW - Difficulty MED_  
-I am a student that cares about quality, I look for papers with the highest ratings first.
+As a student who looks for the best quality notes and papers, Jane looks for papers with the highest ratings first.
 
 _#16 - Priority LOW - Difficulty MED_  
-As a senior high school student, I applied to UTSC, and I am really interested in browsing freely through papers and explore course content that might catch my interest.
+As a guest who wants to study medicine in the future, Hakim is interested in browsing freely through papers and exploring course content that might catch his interest.
 
 _#17 - Priority LOW - Difficulty LOW_  
-I am a Math student and I often make mistakes on my assignments. When I submit assignments, I often need to delete it and resubmit them.
+As a busy student, Jane may make mistakes on her assignments. When she submits assignments, she hopes she can delete it and resubmit them.
