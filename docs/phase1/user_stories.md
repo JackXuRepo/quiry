@@ -9,7 +9,7 @@ As a student, Jane always want to find more past exams to work on, so she can fa
 _#2 - Priority HIGH - Difficulty MED_  
 As someone who studies Economics, sometimes Jane has questions about macroeconomics when she deals with customers at her part-time work. It helps to take quick look back at her notes.
 
-_#3 - Priority HIGH - Difficulty MED)_  
+_#3 - Priority HIGH - Difficulty MED_  
 Jane is getting ready to write her graduation paper. It's a good idea to check on academic papers that are posted by her professor, so she can learn what she is expecting from the paper.
 
 _#4 - Priority MED - Difficulty MED_  
