@@ -23,11 +23,16 @@ As a professor, Charles Xavier wants to upload his academic paper to the interne
 _#6 - Priority HIGH - Difficulty MED_  
 As a generous person, Jane wants to share her past exam to the students who will be taking this course.
 
-_#7 - Priority HIGH - Difficulty MED_  
-Jane is applying to postgraduate studies. She wants to share the contributions she made towards academic papers to the university she applied to.
-
 _#8 - Priority MED - Difficulty MED_  
 As a professor that wants to share his confidential research, Charles wants an option to upload files that only students in his class can see.
+
+## Account
+
+_#7 - Priority HIGH - Difficulty MED_  
+Jane is applying to postgraduate studies. She finds it useful and convenient to have all her papers associated to her thorough an account, so that the institutions she applied to can easily find them.
+
+_#17 - Priority MED - Difficulty MED_  
+Jane is concerned about cybersecurity following news on recent attempts to hack bank accounts. She wants to change her password once every 3 months to be safe.
 
 ## UI/UX
 
