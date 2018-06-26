@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+	<div ng-app="quiryApp" ng-controller="loginController">
+	<head>
+		<title>Login</title>
+		<h1>Login</h1>
+	</head>
+	<body>
+
+	<div>
+	<span>Username:</span>
+	<input type="text" ng-model="username" />
+        <br/>
+        <span>Password:</span>
+	<input type="text" ng-model="password"/>
+        <br/>
+	<span>{{ message }}</span>
+	</div>
+	<button ng-click="loginUser()">Login</button>
+	<br/>
+	</div>
+
+	</body>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+	<script src="../Controller/login.js"></script>
+</html>
