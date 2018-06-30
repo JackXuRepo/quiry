@@ -17,13 +17,16 @@
 // whatever is on the second parameter, those would be the list of dependency
 // module names (ie services, other API names) we will inject for our front-end
 // For now we only have ngRoute which handles routing of urls
-var quiryApp = angular.module("quiryApp", ["ngRoute"]);
+(function(){
+    angular.module("quiryApp", ["ngRoute"]);
+})();
 
 // Whenever u see "$something", those are AngularJS services 
 // Any service that is provided by the angularJS framework
 // has the prefix "$".
 // We are using the default router the is provided by Angular
-quiryApp.config(function($routeProvider) {
+angular.module("quiryApp")
+    .config(function($routeProvider) {
 	// This binds each unique url request to a view (HTML) and a
 	// Controller module (ie: .js) that handles the actions from
 	// view. (Controller classes will then handle the request
