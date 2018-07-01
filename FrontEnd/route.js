@@ -33,7 +33,7 @@ angular.module("quiryApp")
 	// by calling Services injected into it)
     $routeProvider
     .when("/", {
-        templateUrl : "home.html",
+        templateUrl : "index.html",
         controller : "homeController"
     })
     .when("/login", {
