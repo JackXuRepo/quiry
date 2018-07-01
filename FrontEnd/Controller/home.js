@@ -4,8 +4,13 @@
 (function(){
 	angular.module("quiryApp")
 		.controller('homeController', HomeController);
+		$scope.searchText;
 
 		function HomeController($scope){
+			
+			$scope.search = function(){
+				// Need to call back-end
+			}
 
 		}
 })();
