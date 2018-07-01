@@ -1,4 +1,4 @@
-package file_storage;
+package TEAM11_21_22_filestorage;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -9,17 +9,19 @@ public class FileStorage {
 	
 	public static String addFile(String author_email, File f){
 		String id = FileIDSystem.generate();
-		storage.add(new FileInfo(id, author_email, "","","",0,"",f));
+		storage.add(new FileInfo(id, author_email, f.getName(),"","",0,"",f));
 		return id;
 	}
 
-	public static void deleteFile(String id){
+	public static boolean deleteFile(String id){
 		for (int i = 0; i < storage.size(); i++) {
 			if (storage.get(i).getId() == id) {
 				FileIDSystem.deleteID(id);
 				storage.remove(i);
+				return true;
 			}
 		}
+		return false;
 	}
 	
 	public static FileInfo getFileInfo(String id){
@@ -31,19 +33,32 @@ public class FileStorage {
 		return null;
 	}
 	
-	public void setFileInfo(String id, String author_email, String title,
-			String description, String course, int access_lv, String file_type) {
-		FileInfo temp = getFileInfo(id);
-		temp.setAuthor_email(author_email);
-		temp.setTitle(title);
-		temp.setDescription(description);
-		temp.setCourse(course);
-		temp.setAccess_lv(access_lv);
-		temp.setFile_type(file_type);
+	public static List<String> getFileID(String author_email) {
+		List<String> temp = new ArrayList<>();
+		for (int i = 0; i < storage.size(); i++) {
+			if (storage.get(i).getAuthor_email() == author_email) {
+				temp.add(storage.get(i).getId());
+			}
+		}
+		return temp;
 	}
 	
-	public void changeFile(String id, File f) {
-		FileInfo temp = getFileInfo(id);
-		temp.setF(f);
+	public static String getFileName(String id) {
+		String result = "";
+		for (int i = 0; i < storage.size(); i++) {
+			if (storage.get(i).getId() == id) {
+				result = storage.get(i).getTitle();
+			}
+		}
+		return result;
+	}
+	
+	public static String getListOfFile(String author_email) {
+		List<String> temp = getFileID(author_email);
+		String result = "";
+		for (int i = 0; i < temp.size(); i++) {
+			result += getFileName(temp.get(i)) + "(" + temp.get(i) + ") ";
+		}
+		return result;
 	}
 }
