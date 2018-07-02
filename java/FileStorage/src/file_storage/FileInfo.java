@@ -2,7 +2,7 @@ package file_storage;
 
 import java.io.File;
 
-class FileInfo {
+public class FileInfo {
 	
 	private String id;
 	private String author_email;
