@@ -14,6 +14,7 @@ The main technical problem right now is the integration of individual components
 
 These tasks are still in progress, more tasks will be added when appropriate:
 
+* [TEAM11-19] - Index functionality is closely related to Search and still needs to be tested together.
 * [TEAM11-20] - Basic parsing functionality has been completed and tested. However, the PDF parsing seems to require PDF files in a specific format/encoding for the text to be properly extracted. This will require adjustments in to the external library usage in the next sprint. 
 * [TEAM11-26] - HTML and JavaScript files were added for the Home and Login page. At the moment they do not have controllers or services which handle interaction with the back-end, and more work on the CSS is needed to make the GUI more user-friendly. We will have to implement the aforementioned features in the next sprint.
 
@@ -28,6 +29,7 @@ These tasks are still in progress, more tasks will be added when appropriate:
 ### End (Sunday, July 1)
 ![Task Board - July 1](./TaskBoardAtEndOfSprint2.png)
 
+[TEAM11-19]: https://cmsweb.utsc.utoronto.ca/jira/browse/TEAM11-19
 [TEAM11-20]: https://cmsweb.utsc.utoronto.ca/jira/browse/TEAM11-20
 [TEAM11-25]: https://cmsweb.utsc.utoronto.ca/jira/browse/TEAM11-25
 [TEAM11-26]: https://cmsweb.utsc.utoronto.ca/jira/browse/TEAM11-26
