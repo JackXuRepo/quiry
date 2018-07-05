@@ -3,6 +3,7 @@
 	<div ng-controller="homeController">
 		<head>
 			<link rel="stylesheet" href="./css/styles.css">
+			<link rel="icon" href="./Resources/favicon.ico" type="image/x-icon">
 			<title>Home</title>
 			<img class="center" src="./Resources/logo.png" alt="Quiry Search Engine" style="width:500px;height:200px;"></img>
 			<div class="center">
@@ -12,6 +13,12 @@
 		    </div>
 		</head>
 		<body>
+			<div class="center">
+				<a href="#" class="clickabletext" ng-click="toggleAdvancedSearch()">{{ advancedSearchText }}</a>
+				<span ng-show="advancedSearchOn">
+					NIHAUMA
+				</span>
+			</div>
 
 
 

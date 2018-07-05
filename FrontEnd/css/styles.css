@@ -4,3 +4,23 @@
     margin-right: auto;
     width: 50%;
 }
+
+.clickabletext {
+    text-decoration: underline;    
+    text-decoration-color: steelblue;
+    color: steelblue; 
+}
+
+.slide-animate-container {
+  position:relative;
+  background:white;
+  border:1px solid black;
+  height:40px;
+  overflow:hidden;
+}
+
+/**
+.center .clickableExpandable {
+
+}
+**/
