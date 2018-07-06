@@ -5,7 +5,7 @@
 	angular.module("quiryApp")
 		.controller('loginController', LoginController);
 
-		function LoginController($scope){
+		function LoginController($scope, $window){
 			// $scope is provided by angular so that the view can refer to
 			// the controller scope values
 			$scope.username;
@@ -23,10 +23,20 @@
 				// Notice how the view and the model changes dynamically
 				if($scope.username == "admin" && $scope.password == "admin"){
 					$scope.message = "Access Granted";
+					document.getElementById("password").className = "input-valid";
+					document.getElementById("username").className = "input-valid";
+					document.getElementById("statusMessage").style = "color:green";
+
+					$window.location.href = "./index.html";
 				}
 				else{
 					$scope.message = "WRONG PASSWORD";
+					document.getElementById("password").className = "input-error";
+					document.getElementById("username").className = "input-error";
+					document.getElementById("statusMessage").style = "color:red";
 				}
+
+
 			}
 		}
 })();

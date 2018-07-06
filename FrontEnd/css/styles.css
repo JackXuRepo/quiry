@@ -5,6 +5,14 @@
     width: 50%;
 }
 
+.center-2 {
+	display: block;
+	padding-left: 100px;
+	padding-right: 100px;
+	padding-top:  100px;
+	padding-bottom: 100px;
+}
+
 .clickabletext {
     text-decoration: underline;    
     text-decoration-color: steelblue;
@@ -38,6 +46,16 @@
  	color: white;
  	width: 120px;
  	height: 30px;
+}
+
+.input-error
+{
+ border:1px solid red;
+}
+
+.input-valid
+{
+ border:1px solid green;
 }
 
 .ng-cloak {

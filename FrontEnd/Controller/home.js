@@ -45,6 +45,26 @@
 				$scope.coursesSelected = [];
 			}
 
+			/**
+			$scope.query = function(searchText) {
+			    return $http
+			      .get(BACKEND_URL + '/items/' + searchText)
+			      .then(function(data) {
+			        return data;
+			      });
+			  };
+			  **/
+
+			 $scope.query = function(searchText) {
+			 	return [
+						  "CSCA01 Winter 2016 Final Exam",
+						  "Journals on Artificial Intelligence",
+						  "PSYA01 Lecture 11 Notes",
+						  "Calculus Formula Sheet",
+						  "Statistics - Distributions",
+						  "PSYA01 Midterm Fall 2017"
+						]
+			}
 
 			$scope.loadOptions = function(query, path) {
     			return $http.get(path);
