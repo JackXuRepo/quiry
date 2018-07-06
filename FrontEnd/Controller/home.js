@@ -5,7 +5,7 @@
 	angular.module("quiryApp")
 		.controller('homeController', HomeController);
 		
-		function HomeController($scope, $http){
+		function HomeController($scope, $http, StorageService){
 			$scope.searchText;
 			$scope.timeOptions = ["Today", "This Week", "This Month", "This Year", "Anytime"];
 			$scope.advancedSearchOn = false;
@@ -21,10 +21,13 @@
 			$scope.txtType = true;
 			$scope.htmlType = true;
 			$scope.coursesSelected = [];
+			$scope.userId = StorageService.getValue("userId");
 
 
 			$scope.search = function(){
 				// Need to call back-end
+				console.log($scope.userId);
+				console.log(StorageService.getValue("userId"));
 			}
 
 			$scope.resetAdvancedSearch = function(){
@@ -54,6 +57,11 @@
 			      });
 			  };
 			  **/
+
+			$scope.signOut = function(){
+				StorageService.removeValue("userId");
+				$scope.userId = null;
+			}
 
 			 $scope.query = function(searchText) {
 			 	return [

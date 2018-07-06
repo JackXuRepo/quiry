@@ -5,12 +5,13 @@
 	angular.module("quiryApp")
 		.controller('loginController', LoginController);
 
-		function LoginController($scope, $window){
+		function LoginController($scope, $window, StorageService){
 			// $scope is provided by angular so that the view can refer to
 			// the controller scope values
 			$scope.username;
 			$scope.password;
 		    $scope.message;
+		    $scope.userId;
 
 		    // Called when user clicks on login button
 			$scope.loginUser = function(){
@@ -27,6 +28,9 @@
 					document.getElementById("username").className = "input-valid";
 					document.getElementById("statusMessage").style = "color:green";
 
+					$scope.userId = "admin";
+					StorageService.setValue("userId", $scope.userId);
+					console.log(StorageService.getValue("userId"));
 					$window.location.href = "./index.html";
 				}
 				else{
