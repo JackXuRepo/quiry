@@ -1,15 +1,12 @@
 package com.example.lucene;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 
-import org.apache.commons.io.IOUtils;
+import java.io.IOException;
+import java.util.List;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
-import org.apache.lucene.document.StoredField;
 import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.IndexWriter;
@@ -17,62 +14,67 @@ import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.RAMDirectory;
 
+
 public class Index {
 
     private IndexWriter writer;
-    
-    public Index() throws IOException {
+    private Directory index;
+
+    public Index() {
         // this directory will contain the indexes
-        Directory indexDirectory = new RAMDirectory();
-        
-        // create the indexer
+        index = new RAMDirectory();
+
+        // create the index writer
         StandardAnalyzer analyzer = new StandardAnalyzer();
         IndexWriterConfig config = new IndexWriterConfig(analyzer);
-        writer = new IndexWriter(indexDirectory, config);
+
+        try {
+            writer = new IndexWriter(index, config);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     public void close() throws IOException {
         writer.close();
     }
-    
-    private Document getDocument(File file) throws IOException {
-        Document document = new Document();
-        
-        // index file contents
-        Field contentField = new TextField("contents",
-                  IOUtils.toString(new FileReader(file)), Field.Store.YES);
-        // index file name
-        Field fileNameField = new StringField("filename",
-                  file.getName(),Field.Store.YES);
-        // index file path
-        Field filePathField = new StoredField("filepath", file.getCanonicalPath());
-        
-        document.add(contentField);
-        document.add(fileNameField);
-        document.add(filePathField);
-    
-        return document;
-    }   
 
-    private void indexFile(File file) throws IOException {
-        System.out.println("Indexing " + file.getCanonicalPath());
-        Document document = getDocument(file);
+    public Directory getIndex() {
+        return index;
+    }
+
+    public void indexFile(FileInfo file) throws IOException {
+        Document document = new Document();
+
+        Field idField = new StringField("id", file.getId(), Field.Store.YES);
+        Field typeField = new StringField("type", file.getFileType(), Field.Store.NO);
+        Field titleField = new StringField("title", file.getTitle(), Field.Store.NO);
+        Field emailField = new StringField("email", file.getAuthorEmail(), Field.Store.NO);
+        Field courseField = new StringField("course", file.getCourse(), Field.Store.NO);
+
+        Field descriptionField = new TextField("description", file.getDescription(), Field.Store.NO);
+        Field contentField = new TextField("content", file.getContent(), Field.Store.NO);
+
+        document.add(idField);
+        document.add(typeField);
+        document.add(titleField);
+        document.add(emailField);
+        document.add(courseField);
+        document.add(descriptionField);
+        document.add(contentField);
+
         writer.addDocument(document);
    }
 
-   public int createIndex(String dataDirPath) throws IOException {
-       // get all files in the data directory
-       File[] files = new File(dataDirPath).listFiles();
-       
-       for (File file : files) {
-           if ( !file.isDirectory()
-                && !file.isHidden()
-                && file.exists()
-                && file.canRead() ) {
-               indexFile(file);
-           }
+   public int createIndex(List<FileInfo> files) throws IOException {
+       // index every file given list
+       for (FileInfo file : files) {
+           indexFile(file);
+           System.out.println("indexed: " + file.getId() + " " + file.getTitle());
        }
-       
+       writer.commit();
        return writer.numDocs();
    }
+
 }
