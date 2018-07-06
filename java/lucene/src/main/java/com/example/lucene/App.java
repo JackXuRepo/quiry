@@ -5,9 +5,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.lucene.document.Document;
+import org.apache.lucene.queryparser.classic.ParseException;
+import org.apache.lucene.search.ScoreDoc;
+import org.apache.lucene.search.TopDocs;
+
 
 /**
- * Test Index.
+ * Test Index and Search.
  */
 public class App {
 
@@ -74,6 +79,7 @@ public class App {
         fileStorage.add( doc3() );
 
         index();
+        search();
     }
 
     public static void index() {
@@ -83,6 +89,37 @@ public class App {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
+
+    public static void search() {
+        Search search = new Search(index.getIndex());
+
+        // content: me, she, like
+        try {
+            TopDocs hits = search.search("content", "like");
+            System.out.println("found: " + hits.scoreDocs.length);
+
+            for (ScoreDoc scoreDoc : hits.scoreDocs) {
+                Document doc = search.getDocument(scoreDoc);
+
+                // lookup id in FileStorage to locate actual file
+                FileInfo file = getFile(doc.get("id"));
+                System.out.println(file.getTitle());
+            }
+        } catch (ParseException | IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public static FileInfo getFile(String id) {
+        // use hash map or database lookup
+        for (FileInfo file : fileStorage) {
+            if (file.getId().equals(id)) {
+                return file;
+            }
+        }
+        return null;
     }
 
 }
