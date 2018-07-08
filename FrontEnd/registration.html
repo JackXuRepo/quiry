@@ -1,0 +1,86 @@
+<!doctype html>
+<html  ng-app="quiryApp">
+	<div ng-controller="registrationController">
+	<head>
+		<link rel="stylesheet" href="./css/styles.css"/>
+		<!-- Latest compiled and minified CSS -->
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"/>
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
+
+		<!-- fontAwesome -->
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous"/>
+
+		<!-- ng-tag CSS -->
+		<link rel="stylesheet" href="http://mbenford.github.io/ngTagsInput/css/ng-tags-input.min.css" />
+
+		<link rel="icon" href="./Resources/favicon.ico" type="image/x-icon"/>
+		<a href="./index.html"><img src="./Resources/logo.png" alt="Quiry Search Engine" style="width:100px;height:40px;"></img></a>
+		<title>Sign Up</title>
+		<h1 class="header">Create an Account</h1>
+	</head>
+	<body>
+	<form>
+	<div class="container" style="font-weight:bold">
+		<div class="row border border-info rounded padded-light">
+			<div class="col">
+				<label for="firstName">First Name:</label>
+				<input id="firstName" type="text" class="form-control" placeholder="Please enter your First Name" ng-model="firstName" />
+			</div>
+			<div class="col">
+				<label for="lastName">Last Name:</label>
+				<input id="lastName" type="text" class="form-control" placeholder="Please enter your Last Name" ng-model="lastName"/>
+        		<br/>
+			</div>
+		</div>
+		<div class="row padded-light">
+			<div class="col">
+				<div class = "border border-info rounded padded-light">
+					<label for="password">Password:</label>
+					<input id="password" type="password" class="form-control" placeholder="Please enter a valid password" ng-model="password" /><br/>
+					<label for="passwordConf"> Confirm Password:</label>
+					<input id="passwordConf" type="password" class="form-control" placeholder="Please re-enter your password" ng-model="passwordConf" /><br/>
+				</div>
+			</div>
+			<div class="col border border-info rounded padded-light">
+				<label for="username">University of Toronto Id:</label>
+				<input id="username" type="text" class="form-control" placeholder="Please enter your UTORID" ng-model="username"/>
+				<label for="email">E-mail:</label>
+				<input id="email" type="email" class="form-control" placeholder="Please enter a valid E-mail address" ng-model="email"/><br/>
+				<div class="centered-body">
+					<label for="instructorType">Which one of these are you?</label>
+					<label for="instructorType" class="radio-inline" style="font-weight:normal"><input id="instructorType" type="radio" name="accountType" ng-model="accountType" ng-value="Instructor"/>Instructor</label>
+					<label for="studentType" class="radio-inline" style="font-weight:normal"><input id="studentType" type="radio" name="accountType" ng-model="accountType" ng-value="Student"/>Student</label>
+				</div>
+			</div>
+		</div>
+		<div class="row centered-body">
+			<div class="col">
+				<button class="resetbutton" type="submit" ng-click="loginUser()">Submit</button>
+			</div>
+		</div>
+	</div>
+	<br/>
+	</div>
+	</form>
+	</body>
+	</div>
+	<!-- AngularJS libraries -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+	<!-- ng-tag dependency -->
+	<script src="http://mbenford.github.io/ngTagsInput/js/ng-tags-input.min.js"></script>
+
+	<!-- Bootstrap -- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="./route.js"></script>
+	<script src="./Controller/login.js"></script>
+	<script src="./Service/storage.js"></script>
+</html>

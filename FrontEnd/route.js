@@ -40,6 +40,10 @@ angular.module("quiryApp")
         templateUrl : "login.html",
         controller : "loginController"
     })
+    .when("/registration", {
+        templateUrl : "registration.html",
+        controller : "registrationController"
+    })
     .otherwise({
     	redirectTo:"/"
     });

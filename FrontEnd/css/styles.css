@@ -48,6 +48,16 @@
  	height: 30px;
 }
 
+.centered-body{
+	text-align: center;
+	font-family: Calibri;
+}
+
+.header{
+	text-align: center;
+	color: #5076b0;
+}
+
 .input-error
 {
  border:1px solid red;
@@ -60,6 +70,14 @@
 
 .ng-cloak {
 	display: none !important;
+}
+
+.padded-light {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+
 }
 
 /**
