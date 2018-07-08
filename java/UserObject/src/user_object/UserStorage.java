@@ -1,6 +1,7 @@
 package user_object;
 
 import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,23 +14,30 @@ public class UserStorage {
     public static List<Instructor> instructorStorage = new ArrayList<>();
     public static List<Student> studentStorage = new ArrayList<>();
     
-    public static boolean addUser(String first_name, String last_name, String email_address, String password, 
-    		int access_lv, Image photo) {
+    public static boolean userExist(String email_address) {
     	for (int i = 0; i < adminStorage.size(); i++) {
 			if (adminStorage.get(i).getEmail_address() == email_address) {
-				return false;
+				return true;
 			}
 		}
     	for (int i = 0; i < instructorStorage.size(); i++) {
 			if (instructorStorage.get(i).getEmail_address() == email_address) {
-				return false;
+				return true;
 			}
 		}
 		for (int i = 0; i < studentStorage.size(); i++) {
 			if (studentStorage.get(i).getEmail_address() == email_address) {
-				return false;
+				return true;
 			}
 		}
+		return false;
+    }
+
+    public static boolean addUser(String first_name, String last_name, String email_address, String password, 
+    		int access_lv, Image photo) {
+    	if(userExist(email_address) == true) {
+    		return false;
+    	}
     	if (access_lv == 3) {
     		adminStorage.add(new Admin(first_name, last_name, email_address, password, photo));
     	}
@@ -177,13 +185,16 @@ public class UserStorage {
     	}
     }
     
-    public static void uploadAFile(String email_address, File f) {
+    public static void uploadAFile(String email_address, File f, int access_lv) {
     	int lv = getAccessLevel(email_address);
     	if (lv != 2 && lv != 3) {
     		System.out.println("Upload Fail! Email is wrong.");
     		return;
     	}
-    	String id = FileStorage.addFile(email_address, f);
+    	if (access_lv > lv) {
+    		System.out.println("Upload Fail! You can't upload file that permission is higher than your current one.");
+    	}
+    	String id = FileStorage.addFile(email_address, f, access_lv);
     	if (lv == 2) {
     		findInstructorUser(email_address).setFile_id(id);
     	}
@@ -191,5 +202,37 @@ public class UserStorage {
     		findStudentUser(email_address).setFile_id(id);
     	}
     	System.out.println("Upload Success!");
+    }
+    
+    public static void readAFile(String email_address, String id) throws Exception {
+    	int lv = getAccessLevel(email_address);
+    	int file_lv = FileStorage.getFileInfo(id).getAccess_lv();
+    	if (FileStorage.getFileInfo(id).getAuthor_email() != email_address && lv < file_lv) {
+    		System.out.println("You don't have the permission to access this file.");
+    		return;
+    	}
+		File tempFile = FileStorage.getFileInfo(id).getF();
+		FileReader fr = new FileReader(tempFile.getPath());
+		int i;
+	    while ((i=fr.read()) != -1) {
+	      System.out.print((char) i);
+	    }
+	}
+    
+    public static void deleteAFile(String email_address, String id) {
+		if (!FileStorage.fileExist(id)) {
+			System.out.println("File does not exist.");
+			return;
+		}
+    	int lv = getAccessLevel(email_address);
+    	if (FileStorage.getFileInfo(id).getAuthor_email() == email_address || lv == 3) {
+    		FileStorage.deleteFile(id);
+    		if (lv == 2) {
+        		findInstructorUser(email_address).deleteFile(id);
+        	}
+        	else if (lv == 1) {
+        		findStudentUser(email_address).deleteFile(id);
+        	}
+    	}
     }
 }
