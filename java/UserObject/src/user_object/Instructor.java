@@ -40,4 +40,8 @@ public class Instructor extends User {
 	public void setFile_id(String id) {
 		this.file_id.add(id);
 	}
+	
+	public void deleteFile(String id) {
+		this.file_id.remove(id);
+	}
 }

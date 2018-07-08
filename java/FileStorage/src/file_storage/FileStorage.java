@@ -4,16 +4,21 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import user_object.UserStorage;
+
 public class FileStorage {
 	public static List<FileInfo> storage = new ArrayList<>();
 	
-	public static String addFile(String author_email, File f){
+	public static String addFile(String author_email, File f, int access_lv){
 		String id = FileIDSystem.generate();
-		storage.add(new FileInfo(id, author_email, f.getName(),"","",0,"",f));
+		storage.add(new FileInfo(id, author_email, f.getName(),"","",access_lv,"",f));
 		return id;
 	}
 
 	public static boolean deleteFile(String id){
+		if (!fileExist(id)) {
+			return false;
+		}
 		for (int i = 0; i < storage.size(); i++) {
 			if (storage.get(i).getId() == id) {
 				FileIDSystem.deleteID(id);
@@ -60,5 +65,14 @@ public class FileStorage {
 			result += getFileName(temp.get(i)) + "(" + temp.get(i) + ") ";
 		}
 		return result;
+	}
+	
+	public static boolean fileExist(String id) {
+		for (int i = 0; i < storage.size(); i++) {
+			if (storage.get(i).getId() == id) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
