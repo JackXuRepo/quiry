@@ -4,12 +4,14 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import user_object.UserStorage;
+
 public class FileStorage {
 	public static List<FileInfo> storage = new ArrayList<>();
 	
-	public static String addFile(String author_email, File f){
+	public static String addFile(String author_email, File f, int access_lv){
 		String id = FileIDSystem.generate();
-		storage.add(new FileInfo(id, author_email, f.getName(),"","",0,"",f));
+		storage.add(new FileInfo(id, author_email, f.getName(),"","",access_lv,"",f));
 		return id;
 	}
 
