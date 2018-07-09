@@ -8,9 +8,9 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
-public class PDFCreater {
+public class PDFCreator {
 	
-		//Just a test pdf file creater, not part of project.
+		//Just a test pdf file creator, not part of project.
 	
 
 		public static void main(String args[]) throws IOException {	

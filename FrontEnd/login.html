@@ -2,30 +2,57 @@
 <html  ng-app="quiryApp">
 	<div ng-controller="loginController">
 	<head>
-		<link rel="stylesheet" href="./css/styles.css">
+		<link rel="stylesheet" href="./css/styles.css"/>
+		<!-- Latest compiled and minified CSS -->
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"/>
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
+
+		<!-- fontAwesome -->
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous"/>
+
+		<!-- ng-tag CSS -->
+		<link rel="stylesheet" href="http://mbenford.github.io/ngTagsInput/css/ng-tags-input.min.css" />
+
+		<link rel="icon" href="./Resources/favicon.ico" type="image/x-icon"/>
+		<a href="./index.html"><img src="./Resources/logo.png" alt="Quiry Search Engine" style="width:100px;height:40px;"></img></a>
 		<title>Login</title>
-		<h1>Login</h1>
+		<h1 class="header">Login</h1>
 	</head>
 	<body>
 
-	<div>
+	<div class="centered-body ng-cloak">
 	<span>Username:</span>
-	<input type="text" ng-model="username" />
-        <br/>
+	<input id="username" type="text" ng-model="username" style="width: 240px"/>
+        <br/><br/>
         <span>Password:</span>
-	<input type="text" ng-model="password"/>
+	<input id="password" type="password" ng-model="password" style="width: 240px"/>
         <br/>
-	<span>{{ message }}</span>
+	<span id="statusMessage">{{ message }}</span><br/>
+	<button class="resetbutton" ng-click="loginUser()">Login</button><br/>
+	<a href="./registration.html">Don't have an account?<br/> Sign up Here</a>
 	</div>
-	<button ng-click="loginUser()">Login</button>
 	<br/>
 	</div>
 
 	</body>
 	</div>
+	<!-- AngularJS libraries -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+	<!-- ng-tag dependency -->
+	<script src="http://mbenford.github.io/ngTagsInput/js/ng-tags-input.min.js"></script>
+
+	<!-- Bootstrap -- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<script src="./route.js"></script>
 	<script src="./Controller/login.js"></script>
+	<script src="./Service/storage.js"></script>
 </html>

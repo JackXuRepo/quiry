@@ -18,7 +18,7 @@
 // module names (ie services, other API names) we will inject for our front-end
 // For now we only have ngRoute which handles routing of urls
 (function(){
-    angular.module("quiryApp", ["ngRoute", "ngAnimate"]);
+    angular.module("quiryApp", ["ngRoute", "ngAnimate", "ngTagsInput"]);
 })();
 
 // Whenever u see "$something", those are AngularJS services 
@@ -39,6 +39,10 @@ angular.module("quiryApp")
     .when("/login", {
         templateUrl : "login.html",
         controller : "loginController"
+    })
+    .when("/registration", {
+        templateUrl : "registration.html",
+        controller : "registrationController"
     })
     .otherwise({
     	redirectTo:"/"
