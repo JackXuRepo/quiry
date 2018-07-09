@@ -13,40 +13,32 @@
 		    $scope.message;
 		    $scope.userId;
 		    $scope.firstName;
-		    $scope.leastName;
-		    $socpe.email;
+		    $scope.lastName;
+		    $scope.email;
 		    $scope.accountType;
 		    $scope.passwordConf;
-		    
+		    $scope.submit;
 
-		    // Called when user clicks on login button
-			$scope.loginUser = function(){
 
-				// For debugging
-				console.log("Click Registered");
-				// To view the console, open ur browsers developer tools by pressing F12 (at least for chrome)
+		    // Called when user clicks on submit button
+			$scope.submitForm = function(form){
+				$scope.submit = true;
+				console.log(form);
+				console.log(form.$valid);
+				console.log($scope.password == $scope.passwordConf);
+				if(form.$valid && ($scope.password == $scope.passwordConf)){
+					console.log("nice");
+					StorageService.setValue("userId", $scope.username);
 
-				// Just mocking for now
-				// Notice how the view and the model changes dynamically
-				if($scope.username == "admin" && $scope.password == "admin"){
-					$scope.message = "Access Granted";
-					document.getElementById("password").className = "input-valid";
-					document.getElementById("username").className = "input-valid";
-					document.getElementById("statusMessage").style = "color:green";
+					StorageService.setValue("username", $scope.username);
+					StorageService.setValue("password", $scope.password);
 
-					$scope.userId = "admin";
-					StorageService.setValue("userId", $scope.userId);
-					console.log(StorageService.getValue("userId"));
 					$window.location.href = "./index.html";
 				}
-				else{
-					$scope.message = "WRONG PASSWORD";
-					document.getElementById("password").className = "input-error";
-					document.getElementById("username").className = "input-error";
-					document.getElementById("statusMessage").style = "color:red";
-				}
-
 
 			}
+
+
+
 		}
 })();

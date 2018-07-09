@@ -22,13 +22,13 @@
 
 				// Just mocking for now
 				// Notice how the view and the model changes dynamically
-				if($scope.username == "admin" && $scope.password == "admin"){
+				if(($scope.username == "admin" && $scope.password == "admin" )|| ($scope.username == StorageService.getValue("username") && $scope.password == StorageService.getValue("password"))){
 					$scope.message = "Access Granted";
 					document.getElementById("password").className = "input-valid";
 					document.getElementById("username").className = "input-valid";
 					document.getElementById("statusMessage").style = "color:green";
 
-					$scope.userId = "admin";
+					$scope.userId = $scope.username;
 					StorageService.setValue("userId", $scope.userId);
 					console.log(StorageService.getValue("userId"));
 					$window.location.href = "./index.html";

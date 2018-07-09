@@ -68,6 +68,19 @@
  border:1px solid green;
 }
 
+.error-message
+{
+ color:red;
+ font-weight: normal;
+}
+
+.valid-message
+{
+ color:green;
+ font-weight: normal;
+}
+
+
 .ng-cloak {
 	display: none !important;
 }
@@ -79,6 +92,8 @@
 	padding-right: 10px;
 
 }
+
+
 
 /**
 .center .clickableExpandable {
