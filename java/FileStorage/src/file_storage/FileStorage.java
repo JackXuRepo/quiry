@@ -16,6 +16,9 @@ public class FileStorage {
 	}
 
 	public static boolean deleteFile(String id){
+		if (!fileExist(id)) {
+			return false;
+		}
 		for (int i = 0; i < storage.size(); i++) {
 			if (storage.get(i).getId() == id) {
 				FileIDSystem.deleteID(id);
@@ -62,5 +65,14 @@ public class FileStorage {
 			result += getFileName(temp.get(i)) + "(" + temp.get(i) + ") ";
 		}
 		return result;
+	}
+	
+	public static boolean fileExist(String id) {
+		for (int i = 0; i < storage.size(); i++) {
+			if (storage.get(i).getId() == id) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

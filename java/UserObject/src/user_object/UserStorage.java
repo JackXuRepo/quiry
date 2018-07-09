@@ -218,4 +218,21 @@ public class UserStorage {
 	      System.out.print((char) i);
 	    }
 	}
+    
+    public static void deleteAFile(String email_address, String id) {
+		if (!FileStorage.fileExist(id)) {
+			System.out.println("File does not exist.");
+			return;
+		}
+    	int lv = getAccessLevel(email_address);
+    	if (FileStorage.getFileInfo(id).getAuthor_email() == email_address || lv == 3) {
+    		FileStorage.deleteFile(id);
+    		if (lv == 2) {
+        		findInstructorUser(email_address).deleteFile(id);
+        	}
+        	else if (lv == 1) {
+        		findStudentUser(email_address).deleteFile(id);
+        	}
+    	}
+    }
 }
