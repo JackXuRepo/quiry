@@ -1,19 +1,26 @@
 package cscc01.summer2018.team11.lucene;
 
-
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 
+import org.apache.pdfbox.cos.COSDocument;
+import org.apache.pdfbox.io.RandomAccessRead;
+import org.apache.pdfbox.pdfparser.PDFParser;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
-
 
 public class Parser {
 	public static void main(String[] args) {
 		//Print file content:
-		//System.out.println(getContent("/cmshome/make2/test/p.pdf"));
+		if (args.length == 1) {
+			System.out.println(getContent(args[0]));
+		} else {
+			System.out.println("Only one file at a time.");
+		}
+		
 	}
 	
 	public static String getExtension(String fileName) {
@@ -74,6 +81,7 @@ public class Parser {
 	    	PDFTextStripper pdfStripper = new PDFTextStripper();
 	    	
 	    	parsedText = pdfStripper.getText(pdDoc);
+	    	pdDoc.close();
 	    	
 	    } catch (Exception e) {
 	        e.printStackTrace();
