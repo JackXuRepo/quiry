@@ -10,7 +10,7 @@ import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
 
-import cscc01.summer2018.team11.file.FileInfo;
+import cscc01.summer2018.team11.file.FileInfo2;
 import cscc01.summer2018.team11.lucene.Index;
 import cscc01.summer2018.team11.lucene.Search;
 
@@ -21,9 +21,9 @@ import cscc01.summer2018.team11.lucene.Search;
 public class Lucene {
 
     private static Index index = new Index();
-    private static List<FileInfo> fileStorage = new ArrayList<>();
+    private static List<FileInfo2> fileStorage = new ArrayList<>();
 
-    private static FileInfo doc1() {
+    private static FileInfo2 doc1() {
         String email = "doc1@example.com";
         String title = "doc1";
         String description = "test doc1";
@@ -38,10 +38,10 @@ public class Lucene {
                 "his plate. Offending or extremity therefore so difficult he on provision. " +
                 "Tended depart turned not are. ";
 
-        return new FileInfo(email, title, description, course, access, type, content);
+        return new FileInfo2(email, title, description, course, access, type, content);
     }
 
-    private static FileInfo doc2() {
+    private static FileInfo2 doc2() {
         String email = "doc2@abc.com";
         String title = "doc2";
         String description = "test doc2";
@@ -56,10 +56,10 @@ public class Lucene {
                 "like six. Among sex are leave law built now. In built table in an rapid blush. " +
                 "Merits behind on afraid or warmly. ";
 
-        return new FileInfo(email, title, description, course, access, type, content);
+        return new FileInfo2(email, title, description, course, access, type, content);
     }
 
-    private static FileInfo doc3() {
+    private static FileInfo2 doc3() {
         String email = "doc3@xyz.com";
         String title = "doc3";
         String description = "test doc3";
@@ -73,7 +73,7 @@ public class Lucene {
                 "less till dear read. Considered use me dispatched melancholy sympathize discretion " +
                 "led. Oh feel if up to till like. ";
 
-        return new FileInfo(email, title, description, course, access, type, content);
+        return new FileInfo2(email, title, description, course, access, type, content);
     }
 
     public static void main(String[] args) {
@@ -107,7 +107,7 @@ public class Lucene {
                 Document doc = search.getDocument(scoreDoc);
 
                 // lookup id in FileStorage to locate actual file
-                FileInfo file = getFile(doc.get("id"));
+                FileInfo2 file = getFile(doc.get("id"));
                 System.out.println(file.getTitle());
             }
         } catch (ParseException | IOException e) {
@@ -116,9 +116,9 @@ public class Lucene {
         }
     }
 
-    public static FileInfo getFile(String id) {
+    public static FileInfo2 getFile(String id) {
         // use hash map or database lookup
-        for (FileInfo file : fileStorage) {
+        for (FileInfo2 file : fileStorage) {
             if (file.getId().equals(id)) {
                 return file;
             }

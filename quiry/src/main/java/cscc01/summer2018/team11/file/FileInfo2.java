@@ -1,10 +1,10 @@
-package cscc01.summer2018.team11;
+package cscc01.summer2018.team11.file;
 
 
 import java.util.Random;
 
 
-public class FileInfo {
+public class FileInfo2 {
 
     private String id;
     private String author_email;
@@ -20,7 +20,7 @@ public class FileInfo {
         return Integer.toString(id);
     }
 
-    public FileInfo(String author_email, String title, String description,
+    public FileInfo2(String author_email, String title, String description,
                     String course, int access_lv, String file_type, String content) {
         this.id = generateID();
         this.author_email = author_email;

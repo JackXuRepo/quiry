@@ -1,6 +1,9 @@
-package user_object;
+package cscc01.summer2018.team11;
 
 import java.io.File;
+
+import cscc01.summer2018.team11.user.Admin;
+import cscc01.summer2018.team11.user.UserStorage;
 
 public class TestTeam11_23 {
 
@@ -28,10 +31,9 @@ public class TestTeam11_23 {
 		System.out.println(UserStorage.deleteUser("test-delete@mail.utoronto.ca") + "\n");
 		
 		//upload the file
-		UserStorage.uploadAFile("wayne-why@mail.utoronto.ca", a);
-		UserStorage.uploadAFile("wayne-why@mail.utoronto.ca", b);
+		UserStorage.uploadAFile("wayne-why@mail.utoronto.ca", a, 0);
+		UserStorage.uploadAFile("wayne-why@mail.utoronto.ca", b, 0);
 		//upload to a deleted account
-		UserStorage.uploadAFile("test-delete@mail.utoronto.ca", b);
 		System.out.println(UserStorage.getUserInfo("wayne-why@mail.utoronto.ca") + "\n");
 		
 		//add classes to instructor
