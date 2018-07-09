@@ -10,10 +10,6 @@ import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
 
-import cscc01.summer2018.team11.file.FileInfo;
-import cscc01.summer2018.team11.lucene.Index;
-import cscc01.summer2018.team11.lucene.Search;
-
 
 /**
  * Test Index and Search.
