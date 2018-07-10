@@ -27,13 +27,29 @@ The following documentation are written for each phase of the project. They will
 [JIRA]: https://cmsweb.utsc.utoronto.ca/jira/projects/TEAM11
 
 ## Development
-The main project is located in the [quiry](quiry/) directory. It is developed using:
+The Quiry project is developed using:
 
 * [Java SE Development Kit 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) (Latest Update 172)
-* [Eclipse IDE for Java EE Developers](https://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/oxygen3a) (Latest version Oxygen 4.7.3a)
-* [Maven](https://maven.apache.org/download.cgi) (Latest version 3.5.3)
+* [Eclipse IDE for Java EE Developers](https://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/oxygen3a) (Latest version Photon 4.8.0)
+* [Maven](https://maven.apache.org/download.cgi) (Latest version 3.5.4)
 
-The [java](java/) directory shall contain sample test Java projects intended to test individual features before they are ready to be included in the main project.
+### Java Build
+To build the project in the [quiry](quiry/) directory, run `mvn compile`, you may clean the build files with `mvn clean`. The main function is in the class `App`.
+
+```console
+foo@bar:CSC01TeamProjectRepo11\quiry$ mvn clean
+foo@bar:CSC01TeamProjectRepo11\quiry$ mvn compile
+foo@bar:CSC01TeamProjectRepo11\quiry$ mvn exec:java -Dexec.mainClass="cscc01.summer2018.team11.App"
+```
+
+Component level [test functions](quiry/src/test/java/cscc01/summer2018/team11) can be compiled separately and executed by specifying the class name.
+
+```console
+foo@bar:CSC01TeamProjectRepo11\quiry$ mvn test-compile
+foo@bar:CSC01TeamProjectRepo11\quiry$ mvn exec:java -Dexec.mainClass="cscc01.summer2018.team11.Lucene" -Dexec.classpathScope="test"
+```
+
+The [java](java/) directory contains sample test Java projects intended to test individual features before they are ready to be included in the main project.
 
 These coding [guidelines](http://cr.openjdk.java.net/~alundblad/styleguide/index-v6.html) will be enforced.
 
