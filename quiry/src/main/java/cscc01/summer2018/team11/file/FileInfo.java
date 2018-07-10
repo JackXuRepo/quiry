@@ -3,7 +3,7 @@ package cscc01.summer2018.team11.file;
 import java.io.File;
 
 public class FileInfo {
-	
+
 	private String id;
 	private String author_email;
 	private String title;
@@ -12,7 +12,7 @@ public class FileInfo {
 	private int access_lv;
 	private String file_type;
 	private File f;
-	
+
 	public FileInfo(String id, String author_email, String title,
 			String description, String course, int access_lv, String file_type, File f) {
 		this.id = id;
@@ -89,11 +89,16 @@ public class FileInfo {
 		this.f = f;
 	}
 
+	public String getContent() {
+		String fileName = f.getAbsolutePath();
+		return Parser.getContent(fileName);
+	}
+
 	@Override
 	public String toString() {
 		return "FileInfo [id=" + id + ", author_email=" + author_email + ", title=" + title + ", description="
 				+ description + ", course=" + course + ", access_lv=" + access_lv + ", file_type=" + file_type + ", f="
 				+ f + "]";
 	}
-	
+
 }

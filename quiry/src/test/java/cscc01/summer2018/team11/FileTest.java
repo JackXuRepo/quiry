@@ -13,11 +13,8 @@ public class FileTest {
 		String id2 = FileStorage.addFile("kin.he@gmail.com",b, 0);
 		System.out.println("ID1 = " + id1);
 		System.out.println("ID2 = " + id2);
-		System.out.println(FileStorage.storage);
 		FileStorage.deleteFile(id1);
-		System.out.println(FileStorage.storage);
 		System.out.println(FileStorage.getFileInfo(id1));
-		
 	}
 
 }

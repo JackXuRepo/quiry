@@ -1,11 +1,10 @@
 package cscc01.summer2018.team11.user;
 
 
-public class Guest {
-	private int access_lv;
+public class Guest extends User {
 
 	public Guest() {
-		this.access_lv = 0;
+		super("Guest", "Guest", "Guest", "Guest", 0, null);
 	}
 
 }
