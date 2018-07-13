@@ -55,6 +55,16 @@ public class UserDatabase {
     	
     }
     
+    private static void deleteUser (String email) throws SQLException{
+       	String changeLastName = "DELETE FROM Users WHERE email = ?";
+       	Connection conn = connect();
+       	PreparedStatement stmt = conn.prepareStatement(changeLastName);
+       	stmt.setString(1, email);
+       	
+       	// execute
+       	stmt.executeUpdate();
+       }
+    
     /**
      * helper to start the connection
      */
@@ -68,10 +78,73 @@ public class UserDatabase {
         }
         return conn;
     }
+    /**
+     * changes the firstname using emailaddress
+     */
+    
+    private static void changefirstName(String email, String newFirstName) throws SQLException{
+    	String changefirstName = "UPDATE Users SET firstName = ?, "
+    			+ "WHERE email = ?";
+    	Connection conn = connect();
+    	PreparedStatement stmt = conn.prepareStatement(changefirstName);
+    	stmt.setString(1, newFirstName);
+    	stmt.setString(2, email);
+    	
+    	// execute
+    	stmt.executeUpdate();
+    }
+    
+    /**
+    * changes the lastname using emailaddress
+    */
+   
+   private static void changelastName(String email, String newLastName) throws SQLException{
+   	String changeLastName = "UPDATE Users SET lastName = ?, "
+   			+ "WHERE email = ?";
+   	Connection conn = connect();
+   	PreparedStatement stmt = conn.prepareStatement(changeLastName);
+   	stmt.setString(1, newLastName);
+   	stmt.setString(2, email);
+   	
+   	// execute
+   	stmt.executeUpdate();
+   }
 
-
-
-
+   private static void changepassword(String email, String newpassword) throws SQLException{
+	   String changepassword = "UPDATE Users SET password = ?, "
+	   			+ "WHERE email = ?";
+	   	Connection conn = connect();
+	   	PreparedStatement stmt = conn.prepareStatement(changepassword);
+	   	stmt.setString(1, newpassword);
+	   	stmt.setString(2, email);
+	   	
+	   	// execute
+	   	stmt.executeUpdate();
+   }
+    
+   private static void changeaccesslvl(String email, int accesslvl) throws SQLException{
+	   String changeaccesslvl = "UPDATE Users SET accesslvl = ?, "
+	   			+ "WHERE email = ?";
+	   	Connection conn = connect();
+	   	PreparedStatement stmt = conn.prepareStatement(changeaccesslvl);
+	   	stmt.setInt(1, accesslvl);
+	   	stmt.setString(2, email);
+	   	
+	   	// execute
+	   	stmt.executeUpdate();
+   }
+   
+   private static void changeimage(String email, Blob image) throws SQLException{
+	   String changeimage = "UPDATE Users SET image = ?, "
+	   			+ "WHERE email = ?";
+	   	Connection conn = connect();
+	   	PreparedStatement stmt = conn.prepareStatement(changeimage);
+	   	stmt.setBlob(1, image);
+	   	stmt.setString(2, email);
+	   	
+	   	// execute
+	   	stmt.executeUpdate();
+   }
 }
 
 
