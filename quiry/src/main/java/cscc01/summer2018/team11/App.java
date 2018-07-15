@@ -11,7 +11,7 @@ import cscc01.summer2018.team11.user.User;
 public class App
 {
     // keep track of current logged in user
-    public static User currentUser = new Guest();
+    public static User currentUser = new Guest("guest");
 
     public static void main( String[] args )
     {

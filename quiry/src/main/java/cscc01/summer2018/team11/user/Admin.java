@@ -1,11 +1,16 @@
 package cscc01.summer2018.team11.user;
 
+
 import java.util.HashSet;
+
+import cscc01.summer2018.team11.file.FileInfo2;
+
 
 public class Admin extends User {
 
-	public Admin(String userId, String email, String password, String firstName, String lastName) {
-		super(userId, email, password, firstName, lastName, 3);
+	public Admin(String userId, String email, String password,
+	        String firstName, String lastName) {
+		super(userId, email, password, firstName, lastName, AccessLevel.ADMIN);
 	}
 	
 	public User getUser(String eid) {
@@ -16,7 +21,7 @@ public class Admin extends User {
 		return null;
 	}
 	
-	public boolean addFile(FileInfo f) {
+	public boolean addFile(FileInfo2 f) {
 		return true;
 	}
 	

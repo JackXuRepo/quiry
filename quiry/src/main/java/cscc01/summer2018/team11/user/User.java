@@ -1,6 +1,7 @@
 package cscc01.summer2018.team11.user;
 
 import java.io.File;
+import cscc01.summer2018.team11.file.FileInfo2;
 
 public abstract class User {
 	
@@ -8,7 +9,7 @@ public abstract class User {
     private String lastName;
     private String email;
     private String password;
-    private int accessLv;
+    private AccessLevel accessLv;
     private String userId;
     
     // access level:
@@ -16,7 +17,8 @@ public abstract class User {
     // instructor = 2
     // student = 1
     // guest = 0
-    public User(String userId, String email, String password, String firstName, String lastName, int accessLv) {
+    public User(String userId, String email, String password,
+            String firstName, String lastName, AccessLevel accessLv) {
     	this.userId = userId;
     	this.email = email;
     	this.password = password;
@@ -57,11 +59,11 @@ public abstract class User {
 		this.password = password;
 	}
 
-	public int getAccessLv() {
+	public AccessLevel getAccessLv() {
 		return accessLv;
 	}
 
-	public void setAccessLv(int accessLv) {
+	public void setAccessLv(AccessLevel accessLv) {
 		this.accessLv = accessLv;
 	}
 
@@ -73,7 +75,7 @@ public abstract class User {
 		this.userId = userId;
 	}
     
-	public boolean addFile(FileInfo f) {
+	public boolean addFile(FileInfo2 f) {
 		return true;
 	}
 	
@@ -81,7 +83,7 @@ public abstract class User {
 		return null;
 	}
 	
-	public FileInfo getFileInfo(String fileId) {
+	public FileInfo2 getFileInfo(String fileId) {
 		return null;
 	}
 	
