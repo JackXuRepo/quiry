@@ -13,6 +13,7 @@ public class DatabaseConnection {
 	public DatabaseConnection() throws SQLException {
 		this.dbConnection = connectToDatabase("quiry");
 		createNewUserTable();
+		createNewFileTable();
 
 	}
 	
@@ -45,7 +46,28 @@ public class DatabaseConnection {
 
     }
     
+    public void createNewFileTable() throws SQLException {
+    	// for now lets create the local database in the home directory
+        String sql = "CREATE TABLE IF NOT EXISTS File (\n"
+             	+ "	fileId int PRIMARY KEY,\n"
+             	+ "	userId text NOT NULL,\n"
+             	+ "	fileType int NOT NULL,\n"
+             	+ "	contentType int NOT NULL,\n"
+             	+ "	accesslvl int NOT NULL,\n"
+             	+ "	title text NOT NULL,\n"
+             	+ "	course text NOT NULL,\n"
+             	+ "	courseRestricted int NOT NULL,\n"
+             	+ "	filePath text NOT NULL,\n"
+             	+ "	description text NOT NULL,\n"
+             	+ " FOREIGN KEY (userId) REFERENCES User (userId)\n"
+             	+ " ON DELETE CASCADE ON UPDATE NO ACTION"
+             	+ ");";
+        
 
+        dbConnection.createStatement().execute(sql);
+
+    }
+    
 
     public Connection getConnection() {
     	return this.dbConnection;
