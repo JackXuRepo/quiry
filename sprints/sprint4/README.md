@@ -10,9 +10,9 @@ Our team was not able to finish all the tasks assigned to this sprint. The major
 
 The following tasks are still in progress:
 
-* [TEAM11-28] - A complete database definition ([TEAM11-26]) was delayed. The implementation of User storage database is dependent on that task therefore still require some changes.
-* [TEAM11-35] - The definition of internal Java interfaces in the UML is complete except for database related functions.
+* [TEAM11-28] - A complete database definition ([TEAM11-36]) was delayed. The implementation of User storage database is dependent on that task therefore still require some changes.
 * [TEAM11-38] - An implementation of saving files on the local disk is completed. It is however pending server setup ([TEAM11-39], [TEAM11-40]) to validate if those functions will work in a Tomcat environment.
+* [TEAM11-41] - The definition of internal Java interfaces in the UML is complete except for database related functions.
 
 The increase in story points on Tuesday was caused by the re-evaluation of tasks after restructuring our project on Monday. The reason we did not make as much progress as we did on the previous sprints is primarily because efforts were diverted to completing Assignment 2.
 
@@ -28,10 +28,9 @@ The increase in story points on Tuesday was caused by the re-evaluation of tasks
 ![Task Board - July 15](./TaskBoardAtEndOfSprint4.png)
 
 [TEAM11-17]: https://cmsweb.utsc.utoronto.ca/jira/browse/TEAM11-17
-[TEAM11-26]: https://cmsweb.utsc.utoronto.ca/jira/browse/TEAM11-26
 [TEAM11-28]: https://cmsweb.utsc.utoronto.ca/jira/browse/TEAM11-28
 [TEAM11-30]: https://cmsweb.utsc.utoronto.ca/jira/browse/TEAM11-30
-[TEAM11-35]: https://cmsweb.utsc.utoronto.ca/jira/browse/TEAM11-35
+[TEAM11-36]: https://cmsweb.utsc.utoronto.ca/jira/browse/TEAM11-36
 [TEAM11-38]: https://cmsweb.utsc.utoronto.ca/jira/browse/TEAM11-38
 [TEAM11-39]: https://cmsweb.utsc.utoronto.ca/jira/browse/TEAM11-39
 [TEAM11-40]: https://cmsweb.utsc.utoronto.ca/jira/browse/TEAM11-40
