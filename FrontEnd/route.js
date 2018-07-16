@@ -44,6 +44,10 @@ angular.module("quiryApp")
         templateUrl : "registration.html",
         controller : "registrationController"
     })
+    .when("/upload", {
+        templateUrl : "upload.html",
+        controller : "uploadController"
+    })
     .otherwise({
     	redirectTo:"/"
     });

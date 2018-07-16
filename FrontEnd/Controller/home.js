@@ -50,8 +50,8 @@
 
 			/**
 			$scope.query = function(searchText) {
-			    return $http
-			      .get(BACKEND_URL + '/items/' + searchText)
+			    return $http.
+			      .get(BACKEND_URL + '/files/' + searchText)
 			      .then(function(data) {
 			        return data;
 			      });

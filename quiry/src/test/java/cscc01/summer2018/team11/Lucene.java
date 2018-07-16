@@ -10,9 +10,12 @@ import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
 
+import cscc01.summer2018.team11.file.ContentType;
 import cscc01.summer2018.team11.file.FileInfo2;
+import cscc01.summer2018.team11.file.FileType;
 import cscc01.summer2018.team11.lucene.Index;
 import cscc01.summer2018.team11.lucene.Search;
+import cscc01.summer2018.team11.user.AccessLevel;
 
 
 /**
@@ -28,8 +31,6 @@ public class Lucene {
         String title = "doc1";
         String description = "test doc1";
         String course = "cscc01";
-        int access = 0;
-        String type = "txt";
 
         String content = "Ever man are put down his very. And marry may table him avoid. Hard " +
                 "sell it were into it upon. He forbade affixed parties of assured to me " +
@@ -38,7 +39,8 @@ public class Lucene {
                 "his plate. Offending or extremity therefore so difficult he on provision. " +
                 "Tended depart turned not are. ";
 
-        return new FileInfo2(email, title, description, course, access, type, content);
+        return new FileInfo2(email, title, description, ContentType.NOTES, AccessLevel.GUEST,
+                content, course, true, FileType.TEXT);
     }
 
     private static FileInfo2 doc2() {
@@ -46,8 +48,6 @@ public class Lucene {
         String title = "doc2";
         String description = "test doc2";
         String course = "cscc01";
-        int access = 1;
-        String type = "html";
 
         String content = "Led ask possible mistress relation elegance eat likewise debating. By " +
                 "message or am nothing amongst chiefly address. The its enable direct men depend " +
@@ -56,7 +56,8 @@ public class Lucene {
                 "like six. Among sex are leave law built now. In built table in an rapid blush. " +
                 "Merits behind on afraid or warmly. ";
 
-        return new FileInfo2(email, title, description, course, access, type, content);
+        return new FileInfo2(email, title, description, ContentType.EXAM, AccessLevel.STUDENT,
+                content, course, true, FileType.HTML);
     }
 
     private static FileInfo2 doc3() {
@@ -64,8 +65,6 @@ public class Lucene {
         String title = "doc3";
         String description = "test doc3";
         String course = "cscc01";
-        int access = 2;
-        String type = "pdf";
 
         String content = "Article evident arrived express highest men did boy. Mistress sensible " +
                 "entirely am so. Quick can manor smart money hopes worth too. Comfort produce " +
@@ -73,7 +72,8 @@ public class Lucene {
                 "less till dear read. Considered use me dispatched melancholy sympathize discretion " +
                 "led. Oh feel if up to till like. ";
 
-        return new FileInfo2(email, title, description, course, access, type, content);
+        return new FileInfo2(email, title, description, ContentType.JOURNAL, AccessLevel.INSTRUCTOR,
+                content, course, false, FileType.PDF);
     }
 
     public static void main(String[] args) {
@@ -119,7 +119,7 @@ public class Lucene {
     public static FileInfo2 getFile(String id) {
         // use hash map or database lookup
         for (FileInfo2 file : fileStorage) {
-            if (file.getId().equals(id)) {
+            if (file.getFileId().equals(id)) {
                 return file;
             }
         }

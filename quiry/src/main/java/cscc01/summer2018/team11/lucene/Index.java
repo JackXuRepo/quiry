@@ -49,10 +49,10 @@ public class Index {
     public void indexFile(FileInfo2 file) throws IOException {
         Document document = new Document();
 
-        Field idField = new StringField("id", file.getId(), Field.Store.YES);
-        Field typeField = new StringField("type", file.getFileType(), Field.Store.NO);
+        Field idField = new StringField("id", file.getFileId(), Field.Store.YES);
+        Field typeField = new StringField("type", file.getFileType().toString(), Field.Store.NO);
         Field titleField = new StringField("title", file.getTitle(), Field.Store.NO);
-        Field emailField = new StringField("email", file.getAuthorEmail(), Field.Store.NO);
+        Field emailField = new StringField("email", file.getAuthor(), Field.Store.NO);
         Field courseField = new StringField("course", file.getCourse(), Field.Store.NO);
 
         Field descriptionField = new TextField("description", file.getDescription(), Field.Store.NO);

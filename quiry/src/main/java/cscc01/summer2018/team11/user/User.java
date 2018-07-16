@@ -1,54 +1,55 @@
 package cscc01.summer2018.team11.user;
 
-import java.awt.Image;
+import java.io.File;
+import cscc01.summer2018.team11.file.FileInfo2;
 
-public class User {
+public abstract class User {
 	
-    private String first_name;
-    private String last_name;
-    private String email_address;
+    private String firstName;
+    private String lastName;
+    private String email;
     private String password;
-    private int access_lv;
-    private Image photo;
+    private AccessLevel accessLv;
+    private String userId;
     
     // access level:
     // admin = 3
     // instructor = 2
     // student = 1
     // guest = 0
-    public User(String first_name, String last_name, String email_address, String password, int access_lv, Image photo) {
-    	this.first_name = first_name;
-    	this.last_name = last_name;
-    	this.email_address = email_address;
+    public User(String userId, String email, String password,
+            String firstName, String lastName, AccessLevel accessLv) {
+    	this.userId = userId;
+    	this.email = email;
     	this.password = password;
-    	this.access_lv = access_lv;
-    	this.photo = photo;
+    	this.firstName = firstName;
+    	this.lastName = lastName;
+    	this.accessLv = accessLv;
     }
 
-	public String getFirst_name() {
-		return first_name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setFirst_name(String first_name) {
-		this.first_name = first_name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getLast_name() {
-		return last_name;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setLast_name(String last_name) {
-		this.last_name = last_name;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
-	public String getEmail_address() {
-		return email_address;
+	public String getEmail() {
+		return email;
 	}
 
-	//email can not be set again, once he/she registered, unless delete the user
-	//public void setEmail_address(String email_address) {
-	//	this.email_address = email_address;
-	//}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public String getPassword() {
 		return password;
@@ -58,19 +59,35 @@ public class User {
 		this.password = password;
 	}
 
-	public int getAccess_lv() {
-		return access_lv;
+	public AccessLevel getAccessLv() {
+		return accessLv;
 	}
 
-	public void setAccess_lv(int access_lv) {
-		this.access_lv = access_lv;
+	public void setAccessLv(AccessLevel accessLv) {
+		this.accessLv = accessLv;
 	}
 
-	public Image getPhoto() {
-		return photo;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setPhoto(Image photo) {
-		this.photo = photo;
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+    
+	public boolean addFile(FileInfo2 f) {
+		return true;
+	}
+	
+	public File getFile(String fileId) {
+		return null;
+	}
+	
+	public FileInfo2 getFileInfo(String fileId) {
+		return null;
+	}
+	
+	public boolean deleteFile(String fileId) {
+		return true;
 	}
 }
