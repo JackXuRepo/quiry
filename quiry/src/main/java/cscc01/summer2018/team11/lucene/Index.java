@@ -15,6 +15,7 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.RAMDirectory;
 
 import cscc01.summer2018.team11.file.FileInfo2;
+import cscc01.summer2018.team11.file.FileType;
 
 
 public class Index {
@@ -50,7 +51,7 @@ public class Index {
         Document document = new Document();
 
         Field idField = new StringField("id", file.getFileId(), Field.Store.YES);
-        Field typeField = new StringField("type", file.getFileType().toString(), Field.Store.NO);
+        Field typeField = new StringField("type", FileType.toString(file.getFileType()), Field.Store.NO);
         Field titleField = new StringField("title", file.getTitle(), Field.Store.NO);
         Field emailField = new StringField("email", file.getAuthor(), Field.Store.NO);
         Field courseField = new StringField("course", file.getCourse(), Field.Store.NO);

@@ -9,7 +9,7 @@ public abstract class User {
     private String lastName;
     private String email;
     private String password;
-    private AccessLevel accessLv;
+    private int accessLv;
     private String userId;
     
     // access level:
@@ -18,7 +18,7 @@ public abstract class User {
     // student = 1
     // guest = 0
     public User(String userId, String email, String password,
-            String firstName, String lastName, AccessLevel accessLv) {
+            String firstName, String lastName, int accessLv) {
     	this.userId = userId;
     	this.email = email;
     	this.password = password;
@@ -59,11 +59,11 @@ public abstract class User {
 		this.password = password;
 	}
 
-	public AccessLevel getAccessLv() {
+	public int getAccessLv() {
 		return accessLv;
 	}
 
-	public void setAccessLv(AccessLevel accessLv) {
+	public void setAccessLv(int accessLv) {
 		this.accessLv = accessLv;
 	}
 

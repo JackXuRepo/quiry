@@ -21,7 +21,7 @@ public class Parser {
         return extension;
     }
 
-    public static FileType getFileType(String fileName) {
+    public static int getFileType(String fileName) {
         /* TODO: method stub */
         return FileType.PDF;
     }

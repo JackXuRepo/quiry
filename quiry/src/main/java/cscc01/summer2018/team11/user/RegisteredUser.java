@@ -8,7 +8,7 @@ public abstract class RegisteredUser extends User {
 	private HashSet<String> courses = new HashSet<String>();
 	
 	public RegisteredUser(String userId, String email, String password,
-	        String firstName, String lastName, AccessLevel accessLv) {
+	        String firstName, String lastName, int accessLv) {
 		super(userId, email, password, firstName, lastName, accessLv);
 	}
 	
