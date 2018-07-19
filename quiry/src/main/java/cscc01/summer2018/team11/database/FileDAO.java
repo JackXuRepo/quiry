@@ -41,7 +41,8 @@ public class FileDAO {
         String sql = "INSERT INTO File (fileId, userId, fileType,"
                 + " contentType, accesslvl, title, course, courseRestricted,"
                 + " filePath, description, uploadMs)"
-                + " VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+                + " VALUES (?,?,?,?,?,?,?,?,?,?,?)"
+                + " ON DUPLICATE KEY UPDATE;";
         PreparedStatement stmt = c.prepareStatement(sql);
 
         int i = 1;
