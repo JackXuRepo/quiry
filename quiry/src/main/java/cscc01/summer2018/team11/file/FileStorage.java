@@ -44,4 +44,27 @@ public class FileStorage {
         return allFiles.contains(fileId);
     }
 
+    public static boolean deleteFile(int fileId) {
+        try {
+            fileDAO.deleteFile(fileId);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        allFiles.remove(fileId);
+        return false;
+    }
+
+    public static FileInfo2 getFileInfo(int fileId) {
+        FileInfo2 fileInfo = null;
+        try {
+            fileInfo = fileDAO.getFileByFileId(fileId);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return fileInfo;
+    }
+
 }

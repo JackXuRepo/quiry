@@ -29,8 +29,8 @@ The following documentation are written for each phase of the project. They will
 ## Development
 The Quiry project is developed using:
 
-* [Java SE Development Kit 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) (Latest Update 172)
-* [Eclipse IDE for Java EE Developers](https://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/oxygen3a) (Latest version Photon 4.8.0)
+* [Java SE Development Kit 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) (Latest Update 181)
+* [Eclipse IDE for Java EE Developers](https://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/photonr) (Latest version Photon 4.8.0)
 * [Maven](https://maven.apache.org/download.cgi) (Latest version 3.5.4)
 
 ### Java Build
