@@ -6,28 +6,31 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
-public class DbConnection {
+public class Database {
 
-    private Connection dbConnection;
+    private static Connection dbConnection;
 
-    public DbConnection() throws SQLException {
-        this.dbConnection = connectToDatabase("quiry");
-        createNewUserTable();
-        createNewFileTable();
-    }
+    public static Connection connect(String dbName) {
+        String url = "jdbc:sqlite:" + dbName +".db";
 
-    public Connection connectToDatabase(String dbName) {
-        String url = "jdbc:sqlite:C:" + dbName +".db";
-        Connection conn = null;
         try {
-            conn = DriverManager.getConnection(url);
+            dbConnection = DriverManager.getConnection(url);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return conn;
+
+        try {
+            createNewUserTable();
+            createNewFileTable();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return dbConnection;
     }
 
-    public void createNewUserTable() throws SQLException {
+    public static void createNewUserTable() throws SQLException {
         // for now lets create the local database in the home directory
         String sql = "CREATE TABLE IF NOT EXISTS User (\n"
                 + "userId text PRIMARY KEY,\n"
@@ -41,7 +44,7 @@ public class DbConnection {
         dbConnection.createStatement().execute(sql);
     }
 
-    public void createNewFileTable() throws SQLException {
+    public static void createNewFileTable() throws SQLException {
         // for now lets create the local database in the home directory
         String sql = "CREATE TABLE IF NOT EXISTS File (\n"
                 + "fileId int PRIMARY KEY\n,"
@@ -62,8 +65,11 @@ public class DbConnection {
         dbConnection.createStatement().execute(sql);
     }
 
-    public Connection getConnection() {
-        return this.dbConnection;
+    public static Connection getConnection() {
+        if (dbConnection == null) {
+            connect("quiry");
+        }
+        return dbConnection;
     }
 
 }

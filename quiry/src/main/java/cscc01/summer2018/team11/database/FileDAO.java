@@ -3,6 +3,9 @@ package cscc01.summer2018.team11.database;
 
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,8 +19,8 @@ public class FileDAO {
     private Connection c;
     private Statement stmt;
 
-    public FileDAO(Connection c) throws SQLException {
-        this.c = c;
+    public FileDAO() throws SQLException {
+        this.c = Database.getConnection();
         this.stmt = c.createStatement();
     }
 
@@ -38,11 +41,10 @@ public class FileDAO {
     }
 
     public void addFile(FileInfo2 fileData) throws SQLException {
-        String sql = "INSERT INTO File (fileId, userId, fileType,"
+        String sql = "INSERT OR REPLACE INTO File (fileId, userId, fileType,"
                 + " contentType, accesslvl, title, course, courseRestricted,"
                 + " filePath, description, uploadMs)"
-                + " VALUES (?,?,?,?,?,?,?,?,?,?,?)"
-                + " ON DUPLICATE KEY UPDATE;";
+                + " VALUES (?,?,?,?,?,?,?,?,?,?,?);";
         PreparedStatement stmt = c.prepareStatement(sql);
 
         int i = 1;
@@ -89,22 +91,32 @@ public class FileDAO {
     }
 
     public FileInfo2 getFileByFileId(int idFile) throws SQLException{
-        ResultSet rs = stmt.executeQuery( "SELECT * FROM File WHERE fileId=" + idFile + ";");
+        ResultSet rs = stmt.executeQuery("SELECT * FROM File WHERE fileId=" + idFile + ";");
         if ( rs.next() ) {
             return getFileInfo(rs);
         }
         return null;
     }
 
-    public ArrayList<FileInfo2> getFilesByUserId(String idUser) throws SQLException {
-        ResultSet rs = stmt.executeQuery( "SELECT * FROM File WHERE userId=" + idUser + ";");
-        ArrayList<FileInfo2> fileDataList = new ArrayList<FileInfo2>();
+    public List<FileInfo2> getFilesByUserId(String idUser) throws SQLException {
+        ResultSet rs = stmt.executeQuery("SELECT * FROM File WHERE userId=" + idUser + ";");
+        ArrayList<FileInfo2> fileDataList = new ArrayList<>();
 
-        while( rs.next() ) {
+        while ( rs.next() ) {
             FileInfo2 fileData = getFileInfo(rs);
             fileDataList.add(fileData);
         }
         return fileDataList;
+    }
+
+    public Set<Integer> getAllFileIds() throws SQLException {
+        ResultSet rs = stmt.executeQuery("SELECT fileId FROM File;");
+        HashSet<Integer> fileIdSet = new HashSet<>();
+
+        while ( rs.next() ) {
+            fileIdSet.add( rs.getInt(1) );
+        }
+        return fileIdSet;
     }
 
 }

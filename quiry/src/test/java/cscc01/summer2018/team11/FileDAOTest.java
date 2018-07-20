@@ -3,14 +3,15 @@ package cscc01.summer2018.team11;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import cscc01.summer2018.team11.database.DbConnection;
+import cscc01.summer2018.team11.database.Database;
 import cscc01.summer2018.team11.database.FileDAO;
 import cscc01.summer2018.team11.file.FileInfo2;
+import cscc01.summer2018.team11.file.FileStorage;
 
 public class FileDAOTest {
 
 	public static void main(String[] args) throws SQLException {
-		DbConnection connection = new DbConnection();
+		FileStorage.initialize();
 
 		int fileId = FileInfo2.generateId();
 		String userId = "xuhaosen";
@@ -27,7 +28,7 @@ public class FileDAOTest {
 		// Create a user row
 		String sql = "INSERT INTO User (userId, firstName, lastName, email, password, accesslvl) "
 				+ "VALUES (?,?,?,?,?,?);";
-		PreparedStatement stmt = connection.getConnection().prepareStatement(sql);
+		PreparedStatement stmt = Database.getConnection().prepareStatement(sql);
 		int i = 1;
 		stmt.setString(i++, "xuhaosen");
 		stmt.setString(i++, "Jack");						// Need to add userId to to FileInfo
@@ -41,11 +42,12 @@ public class FileDAOTest {
 		FileInfo2 fileData = new FileInfo2(userId, title, description, contentType,
 				accessLevel, filePath, course, courseRestricted, fileType, uploadMs, fileId);
 
-		FileDAO fileDatabase = new FileDAO(connection.getConnection());
+		FileDAO fileDatabase = new FileDAO();
 		fileDatabase.addFile(fileData);
 
 		FileInfo2 file = fileDatabase.getFileByFileId(fileId);
 		System.out.println(file.getId());
+		System.out.println(fileDatabase.getAllFileIds());
 	}
 
 }
