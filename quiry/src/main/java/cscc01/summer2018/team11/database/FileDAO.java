@@ -40,7 +40,7 @@ public class FileDAO {
         this.stmt = stmt;
     }
 
-    public void addFile(FileInfo2 fileData) throws SQLException {
+    public void updateFile(FileInfo2 fileData) throws SQLException {
         String sql = "INSERT OR REPLACE INTO File (fileId, userId, fileType,"
                 + " contentType, accesslvl, title, course, courseRestricted,"
                 + " filePath, description, uploadMs)"
@@ -71,7 +71,7 @@ public class FileDAO {
         stmt.close();
     }
 
-    private static FileInfo2 getFileInfo(ResultSet rs) throws SQLException {
+    private static FileInfo2 generateFileInfo(ResultSet rs) throws SQLException {
         int i = 1;
 
         int fileId = rs.getInt(i++);
@@ -93,7 +93,7 @@ public class FileDAO {
     public FileInfo2 getFileByFileId(int idFile) throws SQLException{
         ResultSet rs = stmt.executeQuery("SELECT * FROM File WHERE fileId=" + idFile + ";");
         if ( rs.next() ) {
-            return getFileInfo(rs);
+            return generateFileInfo(rs);
         }
         return null;
     }
@@ -103,7 +103,7 @@ public class FileDAO {
         ArrayList<FileInfo2> fileDataList = new ArrayList<>();
 
         while ( rs.next() ) {
-            FileInfo2 fileData = getFileInfo(rs);
+            FileInfo2 fileData = generateFileInfo(rs);
             fileDataList.add(fileData);
         }
         return fileDataList;

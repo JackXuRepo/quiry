@@ -13,7 +13,7 @@ public class FileStorage {
     private static Set<Integer> allFiles;
 
     public static void initialize() {
-        /* TODO: read all fileId from disk and populate allFiles set */
+        // read all fileId from database and populate allFiles
         try {
             fileDAO = new FileDAO();
             allFiles = fileDAO.getAllFileIds();
@@ -21,39 +21,6 @@ public class FileStorage {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-    }
-
-    public static boolean addFile(FileInfo2 fileInfo) {
-        int fileId = fileInfo.getId();
-        if ( existFile(fileId) ) {
-            return false;
-        }
-
-        try {
-            fileDAO.addFile(fileInfo);
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        allFiles.add(fileId);
-        return true;
-    }
-
-    public static boolean existFile(int fileId) {
-        return allFiles.contains(fileId);
-    }
-
-    public static boolean deleteFile(int fileId) {
-        try {
-            fileDAO.deleteFile(fileId);
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        allFiles.remove(fileId);
-        return false;
     }
 
     public static FileInfo2 getFileInfo(int fileId) {
@@ -65,6 +32,39 @@ public class FileStorage {
             e.printStackTrace();
         }
         return fileInfo;
+    }
+
+    public static boolean addFile(FileInfo2 fileInfo) {
+        int fileId = fileInfo.getId();
+        if ( existFile(fileId) ) {
+            return false;
+        }
+
+        return updateFile(fileInfo);
+    }
+
+    public static boolean updateFile(FileInfo2 fileInfo) {
+        try {
+            fileDAO.updateFile(fileInfo);
+        } catch (SQLException e) {
+            return false;
+        }
+
+        return allFiles.add(fileInfo.getId());
+    }
+
+    public static boolean deleteFile(int fileId) {
+        try {
+            fileDAO.deleteFile(fileId);
+        } catch (SQLException e) {
+            return false;
+        }
+
+        return allFiles.remove(fileId);
+    }
+
+    public static boolean existFile(int fileId) {
+        return allFiles.contains(fileId);
     }
 
 }

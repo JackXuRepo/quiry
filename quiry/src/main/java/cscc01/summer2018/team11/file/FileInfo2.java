@@ -1,13 +1,13 @@
 package cscc01.summer2018.team11.file;
 
 
+import java.security.SecureRandom;
 import java.util.Date;
-import java.util.Random;
 
 
 public class FileInfo2 {
 
-    private static Random rand = new Random();
+    private static final SecureRandom rand = new SecureRandom();
 
     private int fileId;
     private String userId;
@@ -25,7 +25,6 @@ public class FileInfo2 {
         int n;
         do {
             n = rand.nextInt(8999) + 1000;
-        /* TODO: replace with file system lookup */
         } while ( FileStorage.existFile(n) );
         return n;
     }
