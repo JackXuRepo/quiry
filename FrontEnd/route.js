@@ -19,43 +19,46 @@
 // For now we only have ngRoute which handles routing of urls
 (function(){
     angular.module("quiryApp", ["ngRoute", "ngAnimate", "ngTagsInput"]);
+
+    angular.module("quiryApp")
+    .constant("constant", {
+        backEndUrl : "http://localhost:8080"
+    });
+
+    // Whenever u see "$something", those are AngularJS services 
+    // Any service that is provided by the angularJS framework
+    // has the prefix "$".
+    // We are using the default router the is provided by Angular
+    angular.module("quiryApp")
+        .config(function($routeProvider) {
+        // This binds each unique url request to a view (HTML) and a
+        // Controller module (ie: .js) that handles the actions from
+        // view. (Controller classes will then handle the request
+        // by calling Services injected into it)
+        $routeProvider
+        .when("/", {
+            templateUrl : "index.html",
+            controller : "homeController"
+        })
+        .when("/login", {
+            templateUrl : "login.html",
+            controller : "loginController"
+        })
+        .when("/registration", {
+            templateUrl : "registration.html",
+            controller : "registrationController"
+        })
+        .when("/upload", {
+            templateUrl : "upload.html",
+            controller : "uploadController"
+        })
+        .otherwise({
+            redirectTo:"/"
+        });
+        // Usually this would be a 404 error
+        // redirectTo:"/404", but lets just return to main
+    });
 })();
 
-// Whenever u see "$something", those are AngularJS services 
-// Any service that is provided by the angularJS framework
-// has the prefix "$".
-// We are using the default router the is provided by Angular
-angular.module("quiryApp")
-    .config(function($routeProvider) {
-	// This binds each unique url request to a view (HTML) and a
-	// Controller module (ie: .js) that handles the actions from
-	// view. (Controller classes will then handle the request
-	// by calling Services injected into it)
-    $routeProvider
-    .when("/", {
-        templateUrl : "index.html",
-        controller : "homeController"
-    })
-    .when("/login", {
-        templateUrl : "login.html",
-        controller : "loginController"
-    })
-    .when("/registration", {
-        templateUrl : "registration.html",
-        controller : "registrationController"
-    })
-    .when("/upload", {
-        templateUrl : "upload.html",
-        controller : "uploadController"
-    })
-    .otherwise({
-    	redirectTo:"/"
-    });
-    // Usually this would be a 404 error
-    // redirectTo:"/404", but lets just return to main
-});
 
-// We do not have a Web Server (Tomcat) running yet
-// so this does not work atm
-// i.e: We need to get the Back-End implemented first
-// (partially)
+

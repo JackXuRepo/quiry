@@ -31,15 +31,15 @@
 			</div>
 			
 			<img class="center" src="./Resources/logo.png" alt="Quiry Search Engine" style="width:500px;height:200px;"></img>
-			<div class="center">
+			<div class="centered-body">
 				<input type="text" ng-model="searchText" style="width:500px;" placeholder="Simple Search"/>
 		        <button ng-click="search()">Search</button>
 		        <br/>
+		        <a href="#" class="clickabletext" style="text-align:right;" ng-click="toggleAdvancedSearch()">{{ advancedSearchText }}</a>
 		    </div>
 		</head>
 		<body>
 			<div class="center">
-				<a href="#" class="clickabletext" ng-click="toggleAdvancedSearch()">{{ advancedSearchText }}</a>
 				<div class="container ng-cloak" ng-show="advancedSearchOn">
 				  <div class="row">
 				  	<div class="col-lg">
