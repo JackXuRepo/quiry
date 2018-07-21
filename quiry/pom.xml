@@ -17,6 +17,12 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
+	
+	<parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.3.RELEASE</version>
+    </parent>
 
 	<dependencies>
 		<dependency>
@@ -94,6 +100,20 @@
 			<version>2.0.11</version>
 		</dependency>
 		<!-- END - PDFBox Dependencies -->
+		<!-- Spring Dependencies -->
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
 	</dependencies>
 
 	<build>
@@ -140,6 +160,10 @@
 					<version>2.8.2</version>
 				</plugin>
 				<!-- END - Maven Plugins -->
+				<plugin>
+	                <groupId>org.springframework.boot</groupId>
+	                <artifactId>spring-boot-maven-plugin</artifactId>
+            	</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
