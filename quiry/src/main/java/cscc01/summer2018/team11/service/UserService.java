@@ -1,6 +1,5 @@
 package cscc01.summer2018.team11.service;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
@@ -54,4 +53,39 @@ public class UserService {
 		}
     	return userExist;
     }
+    
+    public static User loginUser(HashMap<String, String> userData) {
+    	
+    	UserDAO userDb;
+    	User currUser;
+    	
+		try {
+			userDb = new UserDAO();
+	    	currUser = userDb.getUserByUserId(userData.get("userId"));
+	    	if(!userData.get("password").equals(currUser.getPassword())) {
+	    		return null;
+	    	}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
+    	return currUser;
+    }
+    
+    
+    public static HashMap<String, String> parseUser(User userData){
+    	
+    	System.out.println(userData);
+    	HashMap<String, String> userMap = new HashMap<String, String>();
+    	userMap.put("userId", userData.getUserId());
+    	userMap.put("firstName", userData.getFirstName());
+    	userMap.put("lastName", userData.getLastName());
+    	userMap.put("email", userData.getEmail());
+    	userMap.put("accessLevel", userData.getAccessLv()+"");
+    	
+		return userMap; 
+    }
+    
 }
