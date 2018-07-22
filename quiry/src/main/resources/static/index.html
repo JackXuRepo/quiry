@@ -1,0 +1,124 @@
+<!doctype html>
+<html  ng-app="quiryApp">
+	<div ng-controller="homeController">
+		<head>
+			<link rel="stylesheet" href="./css/styles.css">
+			<!-- Latest compiled and minified CSS -->
+			<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+			<!-- Optional theme -->
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+			<!-- fontAwesome -->
+			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
+			<!-- ng-tag CSS -->
+			<link rel="stylesheet" href="http://mbenford.github.io/ngTagsInput/css/ng-tags-input.min.css" />
+
+			<link rel="icon" href="./Resources/favicon.ico" type="image/x-icon"/>
+			<title>Home</title>
+
+			<div ng-show="!userId" class="ng-cloak" align="right">
+				<a href="./login.html" style="padding-right: 30px"><i class="fas fa-sign-in-alt"></i> Sign in </a>
+				<a href="./registration.html" style="padding-right: 30px"><i class="fas fa-plus-square"></i> Register </a>
+			</div>
+
+			<div ng-show="userId" class="ng-cloak" align="right">
+				<a href="#" style="padding-right: 30px"><i class="fas fa-id-card"></i> {{ userId }} </a>
+				<a href="./upload.html" style="color:green;padding-right: 30px"><i class="fas fa-upload"></i> Upload </a>
+				<a href="#" style="color:red;padding-right: 30px" ng-click="signOut()">
+					<i class="fas fa-sign-out-alt"></i> Sign out </a>
+			</div>
+			
+			<img class="center" src="./Resources/logo.png" alt="Quiry Search Engine" style="width:500px;height:200px;"></img>
+			<div class="centered-body">
+				<input type="text" ng-model="searchText" style="width:500px;" placeholder="Simple Search"/>
+		        <button ng-click="search()">Search</button>
+		        <br/>
+		        <a href="#" class="clickabletext" style="text-align:right;" ng-click="toggleAdvancedSearch()">{{ advancedSearchText }}</a>
+		    </div>
+		</head>
+		<body>
+			<div class="center">
+				<div class="container ng-cloak" ng-show="advancedSearchOn">
+				  <div class="row">
+				  	<div class="col-lg">
+				  		<label>Uploaded by: </label>
+				  		<button id="InstructorButton" class="button-on" ng-click="toggleInstructor()">Instructor</button>
+				  		<button id="StudentButton" class="button-on" ng-click="toggleStudent()">Student</button>
+				  		<br/>
+				  	</div>
+				  </div>	
+				  <div class="row">
+				    <div class="col-sm-4">
+						<b>Content Type</b><br/>
+						<label><input type="checkbox" ng-model="pastExams">Past Exams </label><br/>
+						<label><input type="checkbox" ng-model="notes"></label>Notes <br/>
+						<label><input type="checkbox" ng-model="journals">Journals </label><br/>
+
+						<b>Author Name:</b><br/>
+				      <input type="text" ng-model="author" placeholder="Firstname Lastname"></input><br/>
+				    </div>
+				    <div class="col-sm-4">
+						<b>File Type</b><br/>
+						<label><input type="checkbox" ng-model="pdfType">.pdf </label><br/>
+						<label><input type="checkbox" ng-model="txtType">.txt </label><br/>
+						<label><input type="checkbox" ng-model="htmlType">.html </label><br/>
+
+						<b>File Name:</b><br/>
+				      	<input type="text" ng-model="fileName" placeholder="File Name"></input><br/>
+				    	</div>
+				    <div class="col-sm-4">
+				    	<b>Last Updated:</b><br/>
+				    	<select ng-model="lastUpdated" ng-options="x for x in timeOptions">
+				    	</select><br/><br/>
+				    	<b>Date Uploaded:</b><br/>
+				    	<select ng-model="dateUploaded" ng-options="y for y in timeOptions">
+				    	</select><br/>
+				    	<br/>
+				    </div>
+					<div class="col-sm">
+						<br/>
+					    <tags-input ng-model="coursesSelected" 
+					    			add-on-paste="true"
+					                placeholder="Add a course code" 
+					                min-length="6"
+					                max-length="6"
+					                allowed-tags-pattern="^(?:[A-Z]{4}|[a-z]{4})[0-9]{2}$">
+					    <auto-complete source="loadOptions($query, './json/courses.json')"></auto-complete>
+					    </tags-input>
+				    </div>
+				  </div>
+				  <div class="row">
+				  	<div class="col-sm-4">
+					<br/>
+			  		<br/>
+	       			<button class="resetbutton" ng-click="resetAdvancedSearch()">Reset</button>
+	        		<br/>
+	        		</div>
+				  </div>
+				</div>
+			</div>
+
+
+
+		</body>
+	</div>
+	<!-- AngularJS libraries -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<!-- Bootstrap -- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+	<!-- ng-tag dependency -->
+	<script src="http://mbenford.github.io/ngTagsInput/js/ng-tags-input.min.js"></script>
+
+	<script src="./route.js"></script>
+	<script src="./Controller/home.js"></script>
+	<script src="./Service/storage.js"></script>
+</html>

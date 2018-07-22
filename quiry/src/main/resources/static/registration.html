@@ -1,0 +1,97 @@
+<!doctype html>
+<html  ng-app="quiryApp">
+	<div ng-controller="registrationController">
+		<head>
+			<link rel="stylesheet" href="./css/styles.css"/>
+			<!-- Latest compiled and minified CSS -->
+			<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"/>
+
+			<!-- Optional theme -->
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
+
+			<!-- fontAwesome -->
+			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous"/>
+
+			<!-- ng-tag CSS -->
+			<link rel="stylesheet" href="http://mbenford.github.io/ngTagsInput/css/ng-tags-input.min.css" />
+
+			<link rel="icon" href="./Resources/favicon.ico" type="image/x-icon"/>
+			<a href="./index.html"><img src="./Resources/logo.png" alt="Quiry Search Engine" style="width:100px;height:40px;"></img></a>
+			<title>Sign Up</title>
+			<h1 class="header">Create an Account</h1>
+		</head>
+		<body>
+		<form id="registrationForm" name="registrationForm" ng-submit="submitForm(registrationForm)">
+			<div class="container ng-cloak" style="font-weight:bold">
+				<div class="row border border-info rounded padded-light">
+					<div class="col">
+						<label for="firstName">First Name:</label>
+						<input name="firstName" id="firstName" type="text" class="form-control" placeholder="Please enter your First Name" ng-model="firstName" required/>
+						<span class="error-message" ng-show="(registrationForm.firstName.$touched || submit == true) && registrationForm.firstName.$invalid">The first name is required.</span>
+					</div>
+					<div class="col">
+						<label for="lastName">Last Name:</label>
+						<input id="lastName" name="lastName" type="text" class="form-control" placeholder="Please enter your Last Name" ng-model="lastName" required/>
+						<span class="error-message" ng-show="(registrationForm.lastName.$touched || submit == true) && registrationForm.lastName.$invalid">The last name is required.</span>
+		        		<br/>
+					</div>
+				</div>
+				<div class="row padded-light">
+					<div class="col">
+						<div class = "border border-info rounded padded-light">
+							<label for="password">Password:</label>
+							<input ng-minlength="8" ng-pattern="/^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])([a-zA-Z0-9]+)$/" name="password" id="password" type="password" class="form-control" placeholder="Please enter a valid password" ng-model="password" required/>
+							<span class="error-message" ng-show="(registrationForm.password.$touched || submit == true) && registrationForm.password.$invalid">The password must be a valid one.</span>
+							<span class="valid-message" ng-show="registrationForm.password.$touched && registrationForm.password.$valid">The password entered is valid.</span>
+							<br/>
+							<label for="passwordConf"> Confirm Password:</label>
+							<input id="passwordConf" name="passwordConf" type="password" class="form-control" placeholder="Please re-enter your password" ng-model="passwordConf" ng-required="" required/>
+							<span class="error-message" ng-show="(registrationForm.passwordConf.$touched || submit == true) && registrationForm.password.$viewValue != registrationForm.passwordConf.$viewValue">The password confirmation must match your password.</span>
+							<span class="valid-message" ng-show="registrationForm.passwordConf.$touched && registrationForm.password.$viewValue == registrationForm.passwordConf.$viewValue">The password confirmation matches your password.</span>
+							<br/>
+
+						</div>
+					</div>
+					<div class="col border border-info rounded padded-light">
+						<label for="username">University of Toronto Id:</label>
+						<input id="username" name="username" type="text" class="form-control" placeholder="Please enter your UTORID" ng-model="username" required/>
+						<span class="error-message" ng-show="(registrationForm.username.$touched || submit == true) && registrationForm.username.$invalid">The UTORID is required.<br/></span>
+						<label for="email">E-mail:</label>
+						<input id="email" name="email" type="email" class="form-control" placeholder="Please enter a valid E-mail address" ng-model="email" required/>
+						<span class="error-message" ng-show="(registrationForm.email.$touched || submit == true) && registrationForm.email.$invalid">The email must be a valid one.</span>
+						<br/>
+						<div class="centered-body">
+							<label for="instructorType">Which one of these are you?</label>
+							<label for="instructorType" class="radio-inline" style="font-weight:normal"><input id="instructorType" type="radio" name="accountType" ng-model="accountType" ng-value="2" required/>Instructor</label>
+							<label for="studentType" class="radio-inline" style="font-weight:normal"><input id="studentType" type="radio" name="accountType" ng-model="accountType" ng-value="1"/>Student</label>
+						</div>
+					</div>
+				</div>
+				<div class="row centered-body">
+					<div class="col">
+						<button class="resetbutton" type="submit" ng-click="submitForm(registrationForm)">Submit</button>
+					</div>
+				</div>
+			</div>
+			<br/>
+		</form>
+		</body>
+	</div>
+	<!-- AngularJS libraries -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+	<!-- ng-tag dependency -->
+	<script src="http://mbenford.github.io/ngTagsInput/js/ng-tags-input.min.js"></script>
+
+	<!-- Bootstrap -- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="./route.js"></script>
+	<script src="./Controller/registration.js"></script>
+	<script src="./Service/storage.js"></script>
+</html>

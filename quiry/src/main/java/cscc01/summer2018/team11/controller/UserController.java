@@ -20,7 +20,9 @@ public class UserController {
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ResponseEntity<HashMap<String, Boolean>> registerUser(@RequestBody HashMap<String, String> body){
+		System.out.println(body);
 		boolean successStatus = UserService.createUser(body);
+		System.out.println(successStatus);
 		HashMap<String, Boolean> response = new HashMap<String, Boolean>();
 		response.put("userExists", successStatus);
 		if(successStatus) {
@@ -30,17 +32,6 @@ public class UserController {
 	}
 	
 	
-	
-	public HashMap<String, String> getSomething() {
-		HashMap<String, String> users = new HashMap<String, String>();
-		users.put("nice", "meme");
-		users.put("testing", "incase");
-		users.put("n4", "mee");
-		users.put("ng", "ise");
-		users.put("resce", "memess");
-		users.put("kolng", "llse");
 
-		return users;
-	}
 
 }
