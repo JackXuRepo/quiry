@@ -12,24 +12,18 @@ import org.apache.pdfbox.text.PDFTextStripper;
 
 public class Parser {
 
-    public static String getExtension(String fileName) {
+    public static int getFileType(String fileName) {
         String extension = "";
         int i = fileName.lastIndexOf('.');
         if (i >= 0) {
             extension = fileName.substring(i+1);
         }
-        return extension;
-    }
-
-    public static int getFileType(String fileName) {
-        /* TODO: method stub */
-        return FileType.PDF;
+        return FileType.toFileType(extension);
     }
 
     public static String getContent(String fileName) {
         String fileContent;
-        String extension = getExtension(fileName);
-        if (extension.equals("pdf")) {
+        if (getFileType(fileName) == FileType.PDF) {
             fileContent = pdfFileContent(fileName);
         } else {
             fileContent = fileContent(fileName);
@@ -54,11 +48,8 @@ public class Parser {
             e.printStackTrace();
         } finally {
             try {
-                if (br != null)
-                    br.close();
-
-                if (fr != null)
-                    fr.close();
+                if (br != null) br.close();
+                if (fr != null) fr.close();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -70,22 +61,18 @@ public class Parser {
         PDDocument pdDoc = null;
         File file = new File(fileName);
         String parsedText = "";
+
         try {
             pdDoc = PDDocument.load(file);
-            PDFTextStripper pdfStripper = new PDFTextStripper();
-
-            parsedText = pdfStripper.getText(pdDoc);
-            pdDoc.close();
-
+            parsedText = new PDFTextStripper().getText(pdDoc);
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
             try {
-                if (pdDoc != null)
-                    pdDoc.close();
-            } catch (Exception e1) {
-                e.printStackTrace();
+                if (pdDoc != null) pdDoc.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
-
         }
         return parsedText;
     }

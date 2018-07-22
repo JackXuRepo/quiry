@@ -34,6 +34,11 @@ public class FileStorage {
         return fileInfo;
     }
 
+    public static FileInfo2 getFileInfo(String fileId) {
+        int id = Integer.valueOf(fileId);
+        return getFileInfo(id);
+    }
+
     public static boolean addFile(FileInfo2 fileInfo) {
         int fileId = fileInfo.getId();
         if ( existFile(fileId) ) {
@@ -61,6 +66,11 @@ public class FileStorage {
         }
 
         return allFiles.remove(fileId);
+    }
+
+    public static boolean deleteFile(String fileId) {
+        int id = Integer.valueOf(fileId);
+        return deleteFile(id);
     }
 
     public static boolean existFile(int fileId) {

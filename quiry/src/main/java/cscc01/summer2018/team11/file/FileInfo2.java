@@ -40,7 +40,7 @@ public class FileInfo2 {
         this.contentType = contentType;
         this.accessLv = accessLv;
         this.path = absPath;
-        this.course = course;
+        this.course = course.toLowerCase();
         this.courseRestricted = courseRestricted;
         this.fileType = fileType;
         this.uploadMs = uploadMs;
@@ -77,7 +77,7 @@ public class FileInfo2 {
     }
 
     public String getContent() {
-        return getPath(); // TODO: Parser.getContent(path);
+        return Parser.getContent(path);
     }
 
     public String getAuthor() {

@@ -2,6 +2,7 @@ package cscc01.summer2018.team11.file;
 
 public class ContentType {
 
+	public static final int NONE    = -1;
 	public static final int EXAM    = 0;
 	public static final int NOTES   = 1;
 	public static final int JOURNAL = 2;
