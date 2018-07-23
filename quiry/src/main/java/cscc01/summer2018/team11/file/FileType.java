@@ -1,21 +1,36 @@
 package cscc01.summer2018.team11.file;
 
-public enum FileType {
-    PDF ("pdf"),
-    TEXT ("txt"),
-    HTML ("html");
+public class FileType {
 
-    private final String name;
+	public static final int NONE = -1;
+	public static final int PDF  = 0;
+	public static final int TEXT = 1;
+	public static final int HTML = 2;
 
-    private FileType(String s) {
-        name = s;
-    }
+	public static String toString(int x) {
+		switch (x) {
+		case 0:
+			return "pdf";
+		case 1:
+			return "txt";
+		case 2:
+			return "html";
+		default:
+			return null;
+		}
+	}
 
-    public boolean equalsName(String otherName) {
-        return name.equals(otherName);
-    }
+	public static int toFileType(String x) {
+		switch (x) {
+		case "pdf":
+			return FileType.PDF;
+		case "txt":
+			return FileType.TEXT;
+		case "html":
+			return FileType.HTML;
+		default:
+			return FileType.NONE;
+		}
+	}
 
-    public String toString() {
-       return this.name;
-    }
 }

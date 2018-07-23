@@ -1,21 +1,19 @@
 package cscc01.summer2018.team11.file;
 
 
+import java.security.SecureRandom;
 import java.util.Date;
-import java.util.Random;
-
-import cscc01.summer2018.team11.user.AccessLevel;
 
 
 public class FileInfo2 {
 
-    private static Random rand = new Random();
+    private static final SecureRandom rand = new SecureRandom();
 
     private int fileId;
     private String userId;
-    private FileType fileType;
-    private ContentType contentType;
-    private AccessLevel accessLv;
+    private int fileType;
+    private int contentType;
+    private int accessLv;
     private String title;
     private String description;
     private String course;
@@ -27,38 +25,45 @@ public class FileInfo2 {
         int n;
         do {
             n = rand.nextInt(8999) + 1000;
-        /* TODO: replace with file system lookup */
         } while ( FileStorage.existFile(n) );
         return n;
     }
 
     public FileInfo2(String userId, String title, String description,
-            ContentType contentType, AccessLevel accessLv, String absPath, String course,
-            boolean courseRestricted, FileType fileType, long uploadMs)
+            int contentType, int accessLv, String absPath, String course,
+            boolean courseRestricted, int fileType, long uploadMs, int fileId)
     {
-        this.fileId = generateId();
+        this.fileId = fileId;
         this.userId = userId;
         this.title = title;
         this.description = description;
         this.contentType = contentType;
         this.accessLv = accessLv;
         this.path = absPath;
-        this.course = course;
+        this.course = course.toLowerCase();
         this.courseRestricted = courseRestricted;
         this.fileType = fileType;
         this.uploadMs = uploadMs;
     }
 
     public FileInfo2(String userId, String title, String description,
-            ContentType contentType, AccessLevel accessLv, String absPath, String course,
-            boolean courseRestricted, FileType fileType)
+            int contentType, int accessLv, String absPath, String course,
+            boolean courseRestricted, int fileType, long uploadMs)
+    {
+        this(userId, title, description, contentType, accessLv, absPath,
+                course, courseRestricted, fileType, uploadMs, generateId());
+    }
+
+    public FileInfo2(String userId, String title, String description,
+            int contentType, int accessLv, String absPath, String course,
+            boolean courseRestricted, int fileType)
     {
         this(userId, title, description, contentType, accessLv, absPath,
                 course, courseRestricted, fileType, System.currentTimeMillis());
     }
 
     public FileInfo2(String userId, String title, String description,
-            ContentType contentType, AccessLevel accessLv, String absPath,
+            int contentType, int accessLv, String absPath,
             String course, boolean courseRestricted) {
         /* get file type based on file path */
         this(userId, title, description, contentType, accessLv, absPath,
@@ -66,13 +71,13 @@ public class FileInfo2 {
     }
 
     public FileInfo2(String userId, String title, String description,
-            ContentType contentType, AccessLevel accessLv, String absPath) {
+            int contentType, int accessLv, String absPath) {
         /* no course set */
         this(userId, title, description, contentType, accessLv, absPath, null, false);
     }
 
     public String getContent() {
-        return getPath(); // TODO: Parser.getContent(path);
+        return Parser.getContent(path);
     }
 
     public String getAuthor() {
@@ -83,27 +88,27 @@ public class FileInfo2 {
         this.userId = userId;
     }
 
-    public FileType getFileType() {
+    public int getFileType() {
         return fileType;
     }
 
-    public void setFileType(FileType fileType) {
+    public void setFileType(int fileType) {
         this.fileType = fileType;
     }
 
-    public ContentType getContentType() {
+    public int getContentType() {
         return contentType;
     }
 
-    public void setContentType(ContentType contentType) {
+    public void setContentType(int contentType) {
         this.contentType = contentType;
     }
 
-    public AccessLevel getAccessLv() {
+    public int getAccessLv() {
         return accessLv;
     }
 
-    public void setAccessLv(AccessLevel accessLv) {
+    public void setAccessLv(int accessLv) {
         this.accessLv = accessLv;
     }
 
@@ -153,6 +158,10 @@ public class FileInfo2 {
 
     public String getFileId() {
         return Integer.toString(fileId);
+    }
+
+    public long getUploadMs() {
+        return uploadMs;
     }
 
     public Date getUploadDate() {

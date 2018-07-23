@@ -3,12 +3,15 @@ package cscc01.summer2018.team11.database;
 
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import cscc01.summer2018.team11.file.FileInfo3;
+import cscc01.summer2018.team11.file.FileInfo2;
 
 
 public class FileDAO {
@@ -16,8 +19,8 @@ public class FileDAO {
     private Connection c;
     private Statement stmt;
 
-    public FileDAO(Connection c) throws SQLException {
-        this.c = c;
+    public FileDAO() throws SQLException {
+        this.c = Database.getConnection();
         this.stmt = c.createStatement();
     }
 
@@ -37,43 +40,42 @@ public class FileDAO {
         this.stmt = stmt;
     }
 
-    public void addFile(FileInfo3 fileData) throws SQLException{
-        String sql = "INSERT INTO File (fileId, userId, fileType, contentType, accesslvl, title, course, courseRestricted, filePath, description) "
-                + "VALUES (?,?,?,?,?,?,?,?,?,?);";
+    public void updateFile(FileInfo2 fileData) throws SQLException {
+        String sql = "INSERT OR REPLACE INTO File (fileId, userId, fileType,"
+                + " contentType, accesslvl, title, course, courseRestricted,"
+                + " filePath, description, uploadMs)"
+                + " VALUES (?,?,?,?,?,?,?,?,?,?,?);";
         PreparedStatement stmt = c.prepareStatement(sql);
 
-        int i = 0;
-        stmt.setInt(i++, fileData.getFileId());
-        stmt.setString(i++, fileData.getUserId()); // Need to add userId to to FileInfo
+        int i = 1;
+        stmt.setInt(i++, fileData.getId());
+        stmt.setString(i++, fileData.getAuthor());           // Need to add userId to FileInfo
         stmt.setInt(i++, fileData.getFileType());
-        stmt.setInt(i++, fileData.getContentType()); // Need to add content type variable to FileInfo
-        stmt.setInt(i++, fileData.getAccessLevel());
+        stmt.setInt(i++, fileData.getContentType());         // Need to add content type to FileInfo
+        stmt.setInt(i++, fileData.getAccessLv());
         stmt.setString(i++, fileData.getTitle());
         stmt.setString(i++, fileData.getCourse());
-        stmt.setBoolean(i++, fileData.isCourseRestricted()); // Need to add course restricted variable to FileInfo
-        stmt.setString(i++, fileData.getFilePath()); // Need to add file path variable to FileInfo
+        stmt.setBoolean(i++, fileData.isCourseRestricted()); // Need to add course restricted to FileInfo
+        stmt.setString(i++, fileData.getPath());             // Need to add file path to FileInfo
         stmt.setString(i++, fileData.getDescription());
-
-        stmt.executeUpdate(sql);
+        stmt.setLong(i++, fileData.getUploadMs());
+        stmt.executeUpdate();
     }
 
     public void deleteFile(int fileId) throws SQLException {
-        String sql = "DROP * FROM INVOICE WHERE fileId=" + fileId + ";";
+        String sql = "DROP * FROM File WHERE fileId=" + fileId + ";";
         stmt.executeUpdate(sql);
     }
 
-    public void close() throws SQLException{
-         stmt.close();
+    public void close() throws SQLException {
+        stmt.close();
     }
 
-    public FileInfo3 getFileByFileId(String fileId) throws SQLException{
-        ResultSet rs = stmt.executeQuery( "SELECT * FROM INVOICE WHERE fileId=" + fileId + ";");
+    private static FileInfo2 generateFileInfo(ResultSet rs) throws SQLException {
+        int i = 1;
 
-        rs.next();
-        int i = 0;
-
-        int id = rs.getInt(i++);
-        String userId= rs.getString(i++);
+        int fileId = rs.getInt(i++);
+        String userId = rs.getString(i++);
         int fileType = rs.getInt(i++);
         int contentType = rs.getInt(i++);
         int accessLevel = rs.getInt(i++);
@@ -82,36 +84,39 @@ public class FileDAO {
         boolean courseRestricted = rs.getBoolean(i++);
         String filePath = rs.getString(i++);
         String description = rs.getString(i++);
+        long uploadMs = rs.getLong(i++);
 
-        FileInfo3 fileData = new FileInfo3(id, userId, title, description, course,
-                accessLevel, fileType, contentType, filePath, courseRestricted);
-
-        return fileData;
+        return new FileInfo2(userId, title, description, contentType, accessLevel,
+                filePath, course, courseRestricted, fileType, uploadMs, fileId);
     }
 
-    public ArrayList<FileInfo3> getFilesByUserId(String idUser) throws SQLException{
-        ResultSet rs = stmt.executeQuery( "SELECT * FROM INVOICE WHERE userId=" + idUser + ";");
-        ArrayList<FileInfo3> fileDataList = new ArrayList<FileInfo3>();
+    public FileInfo2 getFileByFileId(int idFile) throws SQLException{
+        ResultSet rs = stmt.executeQuery("SELECT * FROM File WHERE fileId=" + idFile + ";");
+        if ( rs.next() ) {
+            return generateFileInfo(rs);
+        }
+        return null;
+    }
 
-        while(rs.next()) {
-            int i = 0;
-            int id = rs.getInt(i++);
-            String userId= rs.getString(i++);
-            int fileType = rs.getInt(i++);
-            int contentType = rs.getInt(i++);
-            int accessLevel = rs.getInt(i++);
-            String title = rs.getString(i++);
-            String course = rs.getString(i++);
-            boolean courseRestricted = rs.getBoolean(i++);
-            String filePath = rs.getString(i++);
-            String description = rs.getString(i++);
+    public List<FileInfo2> getFilesByUserId(String idUser) throws SQLException {
+        ResultSet rs = stmt.executeQuery("SELECT * FROM File WHERE userId=" + idUser + ";");
+        ArrayList<FileInfo2> fileDataList = new ArrayList<>();
 
-            FileInfo3 fileData = new FileInfo3(id, userId, title, description, course,
-                    accessLevel, fileType, contentType, filePath, courseRestricted);
+        while ( rs.next() ) {
+            FileInfo2 fileData = generateFileInfo(rs);
             fileDataList.add(fileData);
         }
-
         return fileDataList;
+    }
+
+    public Set<Integer> getAllFileIds() throws SQLException {
+        ResultSet rs = stmt.executeQuery("SELECT fileId FROM File;");
+        HashSet<Integer> fileIdSet = new HashSet<>();
+
+        while ( rs.next() ) {
+            fileIdSet.add( rs.getInt(1) );
+        }
+        return fileIdSet;
     }
 
 }

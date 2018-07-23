@@ -27,24 +27,26 @@
 				console.log(form);
 				console.log(form.$valid);
 				console.log($scope.password == $scope.passwordConf);
-				if(form.$valid && ($scope.password == $scope.passwordConf) && ($scope.userExists == false)){
-					console.log($scope.parseData);
-					$http.post(constant.backEndUrl + '/user/register', JSON.stringify($scope.parseData))
-				      .then(
+				if(form.$valid && ($scope.password == $scope.passwordConf)){
+					console.log(JSON.stringify($scope.parseData()));
+					$http.post('/user/register', JSON.stringify($scope.parseData()))
+				    .then(
 				      	function(response){
-				      		var responseStatus = response.status;
 				      		var responseData = response.data;
+				      		StorageService.setValue("userId", $scope.username);
+				      		StorageService.setValue("userData", responseData);
+							$window.location.href = "./index.html";
 
-				      		if(response.status == 200){
-					      		StorageService.setValue("userId", $scope.username);
-								$window.location.href = "./index.html";
-				      		}
-				      		else{
-				      			$scope.userExists = response.data.get("userExists");
-				      		}
+
 				      	}
 
-				    );
+				    )
+				    .catch(
+				    	function(response){
+				      		var responseData = response.data;
+				      		$scope.userExists = responseData.userExists;
+				    	}
+				     );
 
 				}
 
@@ -53,12 +55,12 @@
 			$scope.parseData = function(){
 				return (
 					{
-						userId : $scope.username,
-						password : $scope.password,
-						firstName : $scope.firstName,
-						lastName : $scope.lastName,
-						email : $scope.email,
-						accessLevel : $scope.accountType
+						'userId' : $scope.username,
+						'password' : $scope.password,
+						'firstName' : $scope.firstName,
+						'lastName' : $scope.lastName,
+						'email' : $scope.email,
+						'accessLevel' : $scope.accountType
 					}
 				);
 			}

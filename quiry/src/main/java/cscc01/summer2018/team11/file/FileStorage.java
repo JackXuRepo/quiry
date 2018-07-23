@@ -1,19 +1,42 @@
 package cscc01.summer2018.team11.file;
 
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.sql.SQLException;
 import java.util.Set;
+
+import cscc01.summer2018.team11.database.FileDAO;
 
 
 public class FileStorage {
 
-    private static Map<Integer, FileInfo2> runtimeStorage = new HashMap<>();
-    private static Set<Integer> allFiles = new HashSet<>();
+    private static FileDAO fileDAO;
+    private static Set<Integer> allFiles;
 
     public static void initialize() {
-        /* TODO: read all fileId from disk and populate allFiles set */
+        // read all fileId from database and populate allFiles
+        try {
+            fileDAO = new FileDAO();
+            allFiles = fileDAO.getAllFileIds();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public static FileInfo2 getFileInfo(int fileId) {
+        FileInfo2 fileInfo = null;
+        try {
+            fileInfo = fileDAO.getFileByFileId(fileId);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return fileInfo;
+    }
+
+    public static FileInfo2 getFileInfo(String fileId) {
+        int id = Integer.valueOf(fileId);
+        return getFileInfo(id);
     }
 
     public static boolean addFile(FileInfo2 fileInfo) {
@@ -22,9 +45,32 @@ public class FileStorage {
             return false;
         }
 
-        runtimeStorage.put(fileId, fileInfo);
-        allFiles.add(fileId);
-        return true;
+        return updateFile(fileInfo);
+    }
+
+    public static boolean updateFile(FileInfo2 fileInfo) {
+        try {
+            fileDAO.updateFile(fileInfo);
+        } catch (SQLException e) {
+            return false;
+        }
+
+        return allFiles.add(fileInfo.getId());
+    }
+
+    public static boolean deleteFile(int fileId) {
+        try {
+            fileDAO.deleteFile(fileId);
+        } catch (SQLException e) {
+            return false;
+        }
+
+        return allFiles.remove(fileId);
+    }
+
+    public static boolean deleteFile(String fileId) {
+        int id = Integer.valueOf(fileId);
+        return deleteFile(id);
     }
 
     public static boolean existFile(int fileId) {
