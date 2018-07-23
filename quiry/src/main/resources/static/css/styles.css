@@ -1,8 +1,8 @@
 .center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
 }
 
 .center-2 {
@@ -14,38 +14,38 @@
 }
 
 .clickabletext {
-    text-decoration: underline;    
-    text-decoration-color: steelblue;
-    color: steelblue; 
+	text-decoration: underline;
+	text-decoration-color: steelblue;
+	color: steelblue;
 }
 
 .slide-animate-container {
-  position:relative;
-  background:white;
-  border:1px solid black;
-  height:40px;
-  overflow:hidden;
+	position:relative;
+	background:white;
+	border:1px solid black;
+	height:40px;
+	overflow:hidden;
 }
 
 .resetbutton {
- 	background: #5076b0;
- 	color: white;
- 	width: 150px;
- 	height: 40px;
+	background: #5076b0;
+	color: white;
+	width: 150px;
+	height: 40px;
 }
 
 .button-off {
- 	background: #dbeeff;
- 	color: black;
- 	width: 120px;
- 	height: 30px;
+	background: #dbeeff;
+	color: black;
+	width: 120px;
+	height: 30px;
 }
 
 .button-on{
 	background: #5076b0;
- 	color: white;
- 	width: 120px;
- 	height: 30px;
+	color: white;
+	width: 120px;
+	height: 30px;
 }
 
 .centered-body{
@@ -60,24 +60,24 @@
 
 .input-error
 {
- border:1px solid red;
+	border: 1px solid red;
 }
 
 .input-valid
 {
- border:1px solid green;
+	border: 1px solid green;
 }
 
 .error-message
 {
- color:red;
- font-weight: normal;
+	color: red;
+	font-weight: normal;
 }
 
 .valid-message
 {
- color:green;
- font-weight: normal;
+	color: green;
+	font-weight: normal;
 }
 
 
@@ -90,9 +90,11 @@
 	padding-bottom: 10px;
 	padding-left: 10px;
 	padding-right: 10px;
-
 }
 
+.ng-disabled {
+	background: grey;
+}
 
 
 /**

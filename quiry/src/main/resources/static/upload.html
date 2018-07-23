@@ -55,7 +55,7 @@
 
 					<div class="col" style="text-align: right">
 						<br/>
-						<input type="file" name="file" ng-model="file"/>
+						<input type="file" name="file" file-model="file"/>
 						<br/>
 						<label for="courseOnlyType" class="radio-inline" style="font-weight:normal"><input id="courseOnlyType" type="radio" name="courseOnlyType" ng-model="visibility" ng-value="1" required/>Course Only</label>
 						<label for="publicType" class="radio-inline" style="font-weight:normal"><input id="publicType" type="radio" name="journalType" ng-model="visibility" ng-value="2" />Public</label>
@@ -65,14 +65,14 @@
 			</div>
 			<br/>
 			<div class="container centered-body">
-				<button class="resetbutton" type="submit" ng-click="uploadDocument(uploadForm)"> Upload </button>
+				<button class="resetbutton" type="submit" ng-disabled="file == null" ng-click="uploadDocument(uploadForm)"> Upload </button>
 			</div>
 		</form>
 		<div ng-show="userId == null" class="centered-body">
 			You must be signed in to access this Feature.
 			<a href="./login.html"><br/> Sign in Here</a>
 			<a href="./registration.html"><br/>or Sign up for an Account Here</a>
-		</div>	
+		</div>
 		</body>
 	</div>
 	<!-- AngularJS libraries -->
