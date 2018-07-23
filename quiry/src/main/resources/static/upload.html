@@ -27,8 +27,8 @@
 				<div class="row">
 					<div class="col">
 						<label style="font-family: Calibri" for="contentType">Content Type:</label>
-						<label for="courseNoteType" class="radio-inline" style="font-weight:normal"><input id="courseNoteType" type="radio" name="contentType" ng-model="contentType" ng-value="1" required/>Course Notes</label>
-						<label for="pastExamType" class="radio-inline" style="font-weight:normal"><input id="pastExamType" type="radio" name="contentType" ng-model="contentType" ng-value="2"/>Past Exam</label>
+						<label for="courseNoteType" class="radio-inline" style="font-weight:normal"><input id="courseNoteType" type="radio" name="courseNoteType" ng-model="contentType" ng-value="1" required/>Course Notes</label>
+						<label for="pastExamType" class="radio-inline" style="font-weight:normal"><input id="pastExamType" type="radio" name="pastExamType" ng-model="contentType" ng-value="2"/>Past Exam</label>
 						<label for="journalType" class="radio-inline" style="font-weight:normal"><input id="journalType" type="radio" name="journalType" ng-model="contentType" ng-value="3"/>Journal</label>
 						<span class="error-message" ng-show="(uploadForm.contentType.$touched || submit == true) && registrationForm.contentType.$invalid">You must select one.</span>
 					</div>
@@ -57,7 +57,7 @@
 						<br/>
 						<input type="file" name="file" ng-model="file"/>
 						<br/>
-						<label for="couseOnlyType" class="radio-inline" style="font-weight:normal"><input id="courseOnlyType" type="radio" name="courseOnlyType" ng-model="visibility" ng-value="1" required/>Course Only</label>
+						<label for="courseOnlyType" class="radio-inline" style="font-weight:normal"><input id="courseOnlyType" type="radio" name="courseOnlyType" ng-model="visibility" ng-value="1" required/>Course Only</label>
 						<label for="publicType" class="radio-inline" style="font-weight:normal"><input id="publicType" type="radio" name="journalType" ng-model="visibility" ng-value="2" />Public</label>
 						<br/>
 					</div>
