@@ -17,10 +17,10 @@ import cscc01.summer2018.team11.service.UserService;
 import cscc01.summer2018.team11.user.User;
 
 @RestController
-@RequestMapping(value = "/user")
-public class UserController {
+@RequestMapping(value = "/file")
+public class FileController {
 	
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	public ResponseEntity<HashMap<String, String>> registerUser(@RequestBody HashMap<String, String> body){
 		System.out.println(body);
 		boolean userExists = UserService.createUser(body);

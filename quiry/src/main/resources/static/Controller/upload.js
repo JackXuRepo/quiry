@@ -10,10 +10,11 @@
 			// the controller scope values
 			$scope.file;
 			$scope.description;
-			$scope.fileName;
+			$scope.fileTitle;
 			$scope.visibility;
-			$scope.fileType;
+			$scope.contentType;
 			$scope.course;
+			$scope.userId = StorageService.getValue("userId");
 
 
 		    // Called when user clicks on submit button

@@ -21,20 +21,22 @@
 			<h1 class="header">Upload a Document</h1>
 		</head>
 		<body>
-		<form name="uploadForm" id="uploadForm">
-			<div class="container border border-info rounded padded-light">
+		<form name="uploadForm" id="uploadForm" ng-show="userId != null">
+			<div class="container border border-info rounded padded-light ng-cloak">
 				<div class="row">
 					<div class="col">
-						<label style="font-family: Calibri" for="fileType">File Type:</label>
-						<label for="courseNoteType" class="radio-inline" style="font-weight:normal"><input id="courseNoteType" type="radio" name="fileType" ng-model="fileType" ng-value="Course Notes"/>Course Notes</label>
-						<label for="pastExamType" class="radio-inline" style="font-weight:normal"><input id="pastExamType" type="radio" name="fileType" ng-model="fileType" ng-value="Past Exam"/>Past Exam</label>
-						<label for="journalType" class="radio-inline" style="font-weight:normal"><input id="journalType" type="radio" name="fileType" ng-model="fileType" ng-value="Journal"/>Journal</label>
+						<label style="font-family: Calibri" for="contentType">Content Type:</label>
+						<label for="courseNoteType" class="radio-inline" style="font-weight:normal"><input id="courseNoteType" type="radio" name="contentType" ng-model="contentType" ng-value="Course Notes" required/>Course Notes</label>
+						<label for="pastExamType" class="radio-inline" style="font-weight:normal"><input id="pastExamType" type="radio" name="contentType" ng-model="contentType" ng-value="Past Exam"/>Past Exam</label>
+						<label for="journalType" class="radio-inline" style="font-weight:normal"><input id="journalType" type="radio" name="contentType" ng-model="contentType" ng-value="Journal"/>Journal</label>
+						<span class="error-message" ng-show="(uploadForm.contentType.$touched || submit == true) && registrationForm.contentType.$invalid">You must select one.</span>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-8">
 						<label for="fileName">Title:</label>
-						<input type="text" style="width:550px" ng-model="fileName"/>
+						<input type="text" style="width:550px" name="fileTitle" ng-model="fileTitle" placeholder="Please include a title for this document" required/>
+						<span class="error-message" ng-show="(uploadForm.fileTitle.$touched || submit == true) && registrationForm.Title.$invalid">Please include a title for this document</span>
 					</div>
 					<div class="col-sm-4" style="padding-left: 50px">
 						<label for="course">Course:</label>
@@ -62,9 +64,14 @@
 			</div>
 			<br/>
 			<div class="container centered-body">
-				<button class="resetbutton" type="submit" ng-click="uploadDocument"> Upload </button>
+				<button class="resetbutton" type="submit" ng-click="uploadDocument(uploadForm)"> Upload </button>
 			</div>
-		</form>	
+		</form>
+		<div ng-show="userId == null" class="centered-body">
+			You must be signed in to access this Feature.
+			<a href="./login.html"><br/> Sign in Here</a>
+			<a href="./registration.html"><br/>or Sign up for an Account Here</a>
+		</div>	
 		</body>
 	</div>
 	<!-- AngularJS libraries -->
