@@ -23,8 +23,8 @@ public class FileStorage {
         }
     }
 
-    public static FileInfo2 getFileInfo(int fileId) {
-        FileInfo2 fileInfo = null;
+    public static FileInfo getFileInfo(int fileId) {
+        FileInfo fileInfo = null;
         try {
             fileInfo = fileDAO.getFileByFileId(fileId);
         } catch (SQLException e) {
@@ -34,12 +34,12 @@ public class FileStorage {
         return fileInfo;
     }
 
-    public static FileInfo2 getFileInfo(String fileId) {
+    public static FileInfo getFileInfo(String fileId) {
         int id = Integer.valueOf(fileId);
         return getFileInfo(id);
     }
 
-    public static boolean addFile(FileInfo2 fileInfo) {
+    public static boolean addFile(FileInfo fileInfo) {
         int fileId = fileInfo.getId();
         if ( existFile(fileId) ) {
             return false;
@@ -48,7 +48,7 @@ public class FileStorage {
         return updateFile(fileInfo);
     }
 
-    public static boolean updateFile(FileInfo2 fileInfo) {
+    public static boolean updateFile(FileInfo fileInfo) {
         try {
             fileDAO.updateFile(fileInfo);
         } catch (SQLException e) {

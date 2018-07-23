@@ -11,7 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import cscc01.summer2018.team11.file.FileInfo2;
+import cscc01.summer2018.team11.file.FileInfo;
 
 
 public class FileDAO {
@@ -40,7 +40,7 @@ public class FileDAO {
         this.stmt = stmt;
     }
 
-    public void updateFile(FileInfo2 fileData) throws SQLException {
+    public void updateFile(FileInfo fileData) throws SQLException {
         String sql = "INSERT OR REPLACE INTO File (fileId, userId, fileType,"
                 + " contentType, accesslvl, title, course, courseRestricted,"
                 + " filePath, description, uploadMs)"
@@ -71,7 +71,7 @@ public class FileDAO {
         stmt.close();
     }
 
-    private static FileInfo2 generateFileInfo(ResultSet rs) throws SQLException {
+    private static FileInfo generateFileInfo(ResultSet rs) throws SQLException {
         int i = 1;
 
         int fileId = rs.getInt(i++);
@@ -86,11 +86,11 @@ public class FileDAO {
         String description = rs.getString(i++);
         long uploadMs = rs.getLong(i++);
 
-        return new FileInfo2(userId, title, description, contentType, accessLevel,
+        return new FileInfo(userId, title, description, contentType, accessLevel,
                 filePath, course, courseRestricted, fileType, uploadMs, fileId);
     }
 
-    public FileInfo2 getFileByFileId(int idFile) throws SQLException{
+    public FileInfo getFileByFileId(int idFile) throws SQLException{
         ResultSet rs = stmt.executeQuery("SELECT * FROM File WHERE fileId=" + idFile + ";");
         if ( rs.next() ) {
             return generateFileInfo(rs);
@@ -98,12 +98,12 @@ public class FileDAO {
         return null;
     }
 
-    public List<FileInfo2> getFilesByUserId(String idUser) throws SQLException {
+    public List<FileInfo> getFilesByUserId(String idUser) throws SQLException {
         ResultSet rs = stmt.executeQuery("SELECT * FROM File WHERE userId=" + idUser + ";");
-        ArrayList<FileInfo2> fileDataList = new ArrayList<>();
+        ArrayList<FileInfo> fileDataList = new ArrayList<>();
 
         while ( rs.next() ) {
-            FileInfo2 fileData = generateFileInfo(rs);
+            FileInfo fileData = generateFileInfo(rs);
             fileDataList.add(fileData);
         }
         return fileDataList;

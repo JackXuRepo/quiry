@@ -5,7 +5,7 @@ import java.security.SecureRandom;
 import java.util.Date;
 
 
-public class FileInfo2 {
+public class FileInfo {
 
     private static final SecureRandom rand = new SecureRandom();
 
@@ -29,7 +29,7 @@ public class FileInfo2 {
         return n;
     }
 
-    public FileInfo2(String userId, String title, String description,
+    public FileInfo(String userId, String title, String description,
             int contentType, int accessLv, String absPath, String course,
             boolean courseRestricted, int fileType, long uploadMs, int fileId)
     {
@@ -46,7 +46,7 @@ public class FileInfo2 {
         this.uploadMs = uploadMs;
     }
 
-    public FileInfo2(String userId, String title, String description,
+    public FileInfo(String userId, String title, String description,
             int contentType, int accessLv, String absPath, String course,
             boolean courseRestricted, int fileType, long uploadMs)
     {
@@ -54,7 +54,7 @@ public class FileInfo2 {
                 course, courseRestricted, fileType, uploadMs, generateId());
     }
 
-    public FileInfo2(String userId, String title, String description,
+    public FileInfo(String userId, String title, String description,
             int contentType, int accessLv, String absPath, String course,
             boolean courseRestricted, int fileType)
     {
@@ -62,7 +62,7 @@ public class FileInfo2 {
                 course, courseRestricted, fileType, System.currentTimeMillis());
     }
 
-    public FileInfo2(String userId, String title, String description,
+    public FileInfo(String userId, String title, String description,
             int contentType, int accessLv, String absPath,
             String course, boolean courseRestricted) {
         /* get file type based on file path */
@@ -70,7 +70,7 @@ public class FileInfo2 {
                 course, courseRestricted, Parser.getFileType(absPath));
     }
 
-    public FileInfo2(String userId, String title, String description,
+    public FileInfo(String userId, String title, String description,
             int contentType, int accessLv, String absPath) {
         /* no course set */
         this(userId, title, description, contentType, accessLv, absPath, null, false);

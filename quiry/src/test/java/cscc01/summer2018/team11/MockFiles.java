@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import cscc01.summer2018.team11.file.ContentType;
-import cscc01.summer2018.team11.file.FileInfo2;
+import cscc01.summer2018.team11.file.FileInfo;
 import cscc01.summer2018.team11.file.FileType;
 import cscc01.summer2018.team11.lucene.Index;
 import cscc01.summer2018.team11.user.User;
@@ -21,10 +21,10 @@ import cscc01.summer2018.team11.user.User;
  */
 public class MockFiles {
 
-    public static Map<String, FileInfo2> fileStorage = new HashMap<>();
+    public static Map<String, FileInfo> fileStorage = new HashMap<>();
     // public static Map<String, User>  userStorage = new HashMap<>();
 
-    public static FileInfo2 doc1() {
+    public static FileInfo doc1() {
         String userId = "hallsara";
         String firstName = "Sarah";
         String lastName = "Hall";
@@ -47,7 +47,7 @@ public class MockFiles {
         when(usr.getFirstName()).thenReturn(firstName);
         when(usr.getLastName()).thenReturn(lastName);
 
-        FileInfo2 doc = mock(FileInfo2.class);
+        FileInfo doc = mock(FileInfo.class);
         when(doc.getId()).thenReturn(fileId);
         when(doc.getFileId()).thenReturn(Integer.toString(fileId));
         when(doc.getAuthor()).thenReturn(userId);
@@ -65,7 +65,7 @@ public class MockFiles {
         return doc;
     }
 
-    public static FileInfo2 doc2() {
+    public static FileInfo doc2() {
         String userId = "houelleb";
         String firstName = "Michel";
         String lastName = "Houellebecq";
@@ -89,7 +89,7 @@ public class MockFiles {
         when(usr.getFirstName()).thenReturn(firstName);
         when(usr.getLastName()).thenReturn(lastName);
 
-        FileInfo2 doc = mock(FileInfo2.class);
+        FileInfo doc = mock(FileInfo.class);
         when(doc.getId()).thenReturn(fileId);
         when(doc.getFileId()).thenReturn(Integer.toString(fileId));
         when(doc.getAuthor()).thenReturn(userId);
@@ -107,7 +107,7 @@ public class MockFiles {
         return doc;
     }
 
-    public static FileInfo2 doc3() {
+    public static FileInfo doc3() {
         String userId = "houelleb";
         String firstName = "Michel";
         String lastName = "Houellebecq";
@@ -134,7 +134,7 @@ public class MockFiles {
         when(usr.getFirstName()).thenReturn(firstName);
         when(usr.getLastName()).thenReturn(lastName);
 
-        FileInfo2 doc = mock(FileInfo2.class);
+        FileInfo doc = mock(FileInfo.class);
         when(doc.getId()).thenReturn(fileId);
         when(doc.getFileId()).thenReturn(Integer.toString(fileId));
         when(doc.getAuthor()).thenReturn(userId);
@@ -152,7 +152,7 @@ public class MockFiles {
         return doc;
     }
 
-    public static FileInfo2 doc4() {
+    public static FileInfo doc4() {
         String userId = "mitchell";
         String firstName = "David";
         String lastName = "Mitchell";
@@ -182,7 +182,7 @@ public class MockFiles {
         when(usr.getFirstName()).thenReturn(firstName);
         when(usr.getLastName()).thenReturn(lastName);
 
-        FileInfo2 doc = mock(FileInfo2.class);
+        FileInfo doc = mock(FileInfo.class);
         when(doc.getId()).thenReturn(fileId);
         when(doc.getFileId()).thenReturn(Integer.toString(fileId));
         when(doc.getAuthor()).thenReturn(userId);
@@ -200,7 +200,7 @@ public class MockFiles {
         return doc;
     }
 
-    public static FileInfo2 doc5() {
+    public static FileInfo doc5() {
         String userId = "mantelhi";
         String firstName = "Hilary";
         String lastName = "Mantel";
@@ -228,7 +228,7 @@ public class MockFiles {
         when(usr.getFirstName()).thenReturn(firstName);
         when(usr.getLastName()).thenReturn(lastName);
 
-        FileInfo2 doc = mock(FileInfo2.class);
+        FileInfo doc = mock(FileInfo.class);
         when(doc.getId()).thenReturn(fileId);
         when(doc.getFileId()).thenReturn(Integer.toString(fileId));
         when(doc.getAuthor()).thenReturn(userId);

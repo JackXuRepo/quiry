@@ -2,7 +2,7 @@ package cscc01.summer2018.team11.user;
 
 import java.io.File;
 
-import cscc01.summer2018.team11.file.FileInfo2;
+import cscc01.summer2018.team11.file.FileInfo;
 import cscc01.summer2018.team11.file.FileStorage;
 
 /**
@@ -84,7 +84,7 @@ public abstract class User {
         return new File( getFileInfo(fileId).getPath() );
     }
 
-    public FileInfo2 getFileInfo(int fileId) {
+    public FileInfo getFileInfo(int fileId) {
         return FileStorage.getFileInfo(fileId);
     }
 }

@@ -19,7 +19,7 @@ import org.apache.lucene.index.Term;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.RAMDirectory;
 
-import cscc01.summer2018.team11.file.FileInfo2;
+import cscc01.summer2018.team11.file.FileInfo;
 import cscc01.summer2018.team11.user.User;
 
 
@@ -54,7 +54,7 @@ public class Index {
         return index;
     }
 
-    public static void indexFile(FileInfo2 file) throws IOException {
+    public static void indexFile(FileInfo file) throws IOException {
         Document document = new Document();
 
         Field idField = new StringField("id", file.getFileId(), Field.Store.YES);
@@ -101,9 +101,9 @@ public class Index {
         writer.commit();
     }
 
-    public static int createIndex(Collection<FileInfo2> collection) throws IOException {
+    public static int createIndex(Collection<FileInfo> collection) throws IOException {
         // index every file given list
-        for (FileInfo2 file : collection) {
+        for (FileInfo file : collection) {
             indexFile(file);
             System.out.println("indexed: " + file.getId() + " " + file.getTitle());
         }
