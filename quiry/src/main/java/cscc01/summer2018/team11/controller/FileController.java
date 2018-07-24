@@ -1,6 +1,8 @@
 package cscc01.summer2018.team11.controller;
 
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.HashMap;
 
 import org.springframework.http.HttpStatus;
@@ -12,7 +14,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import cscc01.summer2018.team11.file.ContentType;
+import cscc01.summer2018.team11.file.FileGetter;
+import cscc01.summer2018.team11.file.FileInfo;
+import cscc01.summer2018.team11.file.FileStorage;
+import cscc01.summer2018.team11.file.FileType;
 import cscc01.summer2018.team11.service.UserService;
+import cscc01.summer2018.team11.user.AccessLevel;
 import cscc01.summer2018.team11.user.User;
 
 
@@ -21,23 +29,67 @@ import cscc01.summer2018.team11.user.User;
 public class FileController {
 
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
-	public ResponseEntity<HashMap<String, String>> uploadFile(
-			@RequestParam("file") MultipartFile file,
+	public ResponseEntity<String> uploadFile(
+			@RequestParam("file") MultipartFile remoteFile,
 			@RequestParam("userId") String userId,
 			@RequestParam("description") String description,
-			@RequestParam("fileTitle") String fileTitle,
+			@RequestParam("fileTitle") String title,
 			@RequestParam("fileType") String fileType,
 			@RequestParam("contentType") String contentType,
 			@RequestParam("courseRestricted") String courseRestricted)
 	{
-		System.out.println(file);
+		System.out.println(remoteFile);
 		System.out.println(userId);
 		System.out.println(description);
-		System.out.println(fileTitle);
+		System.out.println(title);
 		System.out.println(fileType);
 		System.out.println(contentType);
 		System.out.println(courseRestricted);
-		return null;
+
+		// TODO: create fileInfo object
+		FileInfo fileInfo = new FileInfo(userId, title, description, ContentType.JOURNAL, AccessLevel.GUEST,
+				null, "cscc10", false, FileType.TEXT);
+		File localFile = FileGetter.createFile(fileInfo.getFileId(), remoteFile.getOriginalFilename());
+
+		/* attempt upload
+		 * doesn't work - returns temp directory
+		try {
+			remoteFile.transferTo(localFile);
+		} catch (IllegalStateException | IOException ex) {
+			// TODO Auto-generated catch block
+			ex.printStackTrace();
+			String response = ex.getMessage();
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+		}
+		 */
+
+		// attempt upload
+		String response = "size mismatch";
+
+		try {
+			FileOutputStream fos = new FileOutputStream(localFile);
+			fos.write(remoteFile.getBytes());
+			fos.close();
+		} catch (Exception ex) {
+			FileGetter.deleteFile(fileInfo.getFileId());
+			// respond error message
+			ex.printStackTrace();
+			response = ex.getMessage();
+		}
+
+		// check file size
+		if (remoteFile.getSize() != localFile.length()) {
+			FileGetter.deleteFile(fileInfo.getFileId());
+			System.out.println(response);
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+		}
+
+		// complete add file to database
+		fileInfo.setPath(localFile.getAbsolutePath());
+		FileStorage.addFile(fileInfo);
+
+		// respond success
+		return ResponseEntity.status(HttpStatus.OK).body("success");
 	}
 
 

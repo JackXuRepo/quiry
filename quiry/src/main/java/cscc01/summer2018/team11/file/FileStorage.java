@@ -55,6 +55,7 @@ public class FileStorage {
             return false;
         }
 
+        // TODO: write to database, update index
         return allFiles.add(fileInfo.getId());
     }
 
@@ -65,6 +66,7 @@ public class FileStorage {
             return false;
         }
 
+        // TODO: write to database, update index
         return allFiles.remove(fileId);
     }
 
