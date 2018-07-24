@@ -19,9 +19,10 @@ public abstract class RegisteredUser extends User {
 
 	public boolean addFile(String title, String description, int contentType, int accessLv,
 			String course, boolean courseRestricted, String absPath) {
-		FileInfo temp = new FileInfo(this.getUserId(), title, description, contentType, accessLv, absPath,
-				course, courseRestricted);
-		return FileStorage.addFile(temp);
+//		FileInfo temp = new FileInfo(this.getUserId(), title, description, contentType, accessLv, absPath,
+//				course, courseRestricted);
+//		return FileStorage.addFile(temp);
+		return false;
 	}
 
 	public boolean deleteFile(int fileId) {

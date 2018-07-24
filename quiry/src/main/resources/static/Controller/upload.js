@@ -1,6 +1,6 @@
 // Find angular module module
-// This is the controller for the login page
-//				   controller name , function(dependency, ....)
+// This is the controller for the upload page
+//					controller name , function(dependency, ....)
 (function(){
 	angular.module("quiryApp")
 		.controller('uploadController', uploadController);
@@ -42,13 +42,12 @@
 				fd.append('userId', $scope.userId);
 				fd.append('description', $scope.description);
 				fd.append('fileTitle', $scope.fileTitle);
-				fd.append('fileType', $scope.fileTitle);
 				fd.append('contentType', $scope.contentType);
 				fd.append('courseRestricted', $scope.visibility);
 
 				$http.post('/file/upload', fd, {
 					transformRequest: angular.identity,
-		   			transformResponse: angular.identity,
+					transformResponse: angular.identity,
 					headers: {'Content-Type': undefined}
 				})
 				.then(
@@ -60,8 +59,7 @@
 					function(response) {
 						$window.location.href = "./index.html";
 					}
-				 );
+				);
 			}
-
 		}
 })();

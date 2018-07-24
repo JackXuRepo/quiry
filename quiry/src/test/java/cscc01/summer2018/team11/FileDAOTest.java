@@ -28,11 +28,11 @@ public class FileDAOTest {
 		boolean courseRestricted = true;
 		long uploadMs = System.currentTimeMillis();
 
-		FileInfo fileData = new FileInfo(userId, title, description, contentType,
-				accessLevel, filePath, course, courseRestricted, fileType, uploadMs, fileId);
+//		FileInfo fileData = new FileInfo(userId, title, description, contentType,
+//				accessLevel, filePath, course, courseRestricted, fileType, uploadMs, fileId);
 
 		FileDAO fileDatabase = new FileDAO();
-		fileDatabase.updateFile(fileData);
+//		fileDatabase.updateFile(fileData);
 
 		FileInfo file = fileDatabase.getFileByFileId(fileId);
 		System.out.println(file.getId());

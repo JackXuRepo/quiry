@@ -1,15 +1,17 @@
 package cscc01.summer2018.team11.database;
 
 
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 
 import cscc01.summer2018.team11.file.FileInfo;
 
@@ -52,7 +54,7 @@ public class FileDAO {
         stmt.setString(i++, fileData.getAuthor());           // Need to add userId to FileInfo
         stmt.setInt(i++, fileData.getFileType());
         stmt.setInt(i++, fileData.getContentType());         // Need to add content type to FileInfo
-        stmt.setInt(i++, fileData.getAccessLv());
+        stmt.setInt(i++, fileData.getAccessLevel());
         stmt.setString(i++, fileData.getTitle());
         stmt.setString(i++, fileData.getCourse());
         stmt.setBoolean(i++, fileData.isCourseRestricted()); // Need to add course restricted to FileInfo
@@ -73,21 +75,19 @@ public class FileDAO {
 
     private static FileInfo generateFileInfo(ResultSet rs) throws SQLException {
         int i = 1;
-
-        int fileId = rs.getInt(i++);
-        String userId = rs.getString(i++);
-        int fileType = rs.getInt(i++);
-        int contentType = rs.getInt(i++);
-        int accessLevel = rs.getInt(i++);
-        String title = rs.getString(i++);
-        String course = rs.getString(i++);
-        boolean courseRestricted = rs.getBoolean(i++);
-        String filePath = rs.getString(i++);
-        String description = rs.getString(i++);
-        long uploadMs = rs.getLong(i++);
-
-        return new FileInfo(userId, title, description, contentType, accessLevel,
-                filePath, course, courseRestricted, fileType, uploadMs, fileId);
+        return new FileInfo.Builder()
+                .fileId(rs.getInt(i++))
+                .userId(rs.getString(i++))
+                .fileType(rs.getInt(i++))
+                .contentType(rs.getInt(i++))
+                .accessLevel(rs.getInt(i++))
+                .title(rs.getString(i++))
+                .course(rs.getString(i++))
+                .courseRestricted(rs.getBoolean(i++))
+                .path(rs.getString(i++))
+                .description(rs.getString(i++))
+                .uploadMs(rs.getLong(i++))
+                .build();
     }
 
     public FileInfo getFileByFileId(int idFile) throws SQLException{

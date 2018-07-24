@@ -60,7 +60,6 @@ public class MockFiles {
         when(doc.getContentType()).thenReturn(contentType);
         when(doc.getUploadMs()).thenReturn(System.currentTimeMillis() - TimeUnit.DAYS.toMillis(uploadDate));
 
-        Index.userStorage.put(userId, usr);
         fileStorage.put(doc.getFileId(), doc);
         return doc;
     }
@@ -102,7 +101,6 @@ public class MockFiles {
         when(doc.getContentType()).thenReturn(contentType);
         when(doc.getUploadMs()).thenReturn(System.currentTimeMillis() - TimeUnit.DAYS.toMillis(uploadDate));
 
-        Index.userStorage.put(userId, usr);
         fileStorage.put(doc.getFileId(), doc);
         return doc;
     }
@@ -147,7 +145,6 @@ public class MockFiles {
         when(doc.getContentType()).thenReturn(contentType);
         when(doc.getUploadMs()).thenReturn(System.currentTimeMillis() - TimeUnit.DAYS.toMillis(uploadDate));
 
-        Index.userStorage.put(userId, usr);
         fileStorage.put(doc.getFileId(), doc);
         return doc;
     }
@@ -195,7 +192,6 @@ public class MockFiles {
         when(doc.getContentType()).thenReturn(contentType);
         when(doc.getUploadMs()).thenReturn(System.currentTimeMillis() - TimeUnit.DAYS.toMillis(uploadDate));
 
-        Index.userStorage.put(userId, usr);
         fileStorage.put(doc.getFileId(), doc);
         return doc;
     }
@@ -241,7 +237,6 @@ public class MockFiles {
         when(doc.getContentType()).thenReturn(contentType);
         when(doc.getUploadMs()).thenReturn(System.currentTimeMillis() - TimeUnit.DAYS.toMillis(uploadDate));
 
-        Index.userStorage.put(userId, usr);
         fileStorage.put(doc.getFileId(), doc);
         return doc;
     }

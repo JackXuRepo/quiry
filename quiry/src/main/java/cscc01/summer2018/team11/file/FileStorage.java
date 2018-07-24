@@ -1,10 +1,12 @@
 package cscc01.summer2018.team11.file;
 
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Set;
 
 import cscc01.summer2018.team11.database.FileDAO;
+import cscc01.summer2018.team11.lucene.Index;
 
 
 public class FileStorage {
@@ -51,11 +53,11 @@ public class FileStorage {
     public static boolean updateFile(FileInfo fileInfo) {
         try {
             fileDAO.updateFile(fileInfo);
-        } catch (SQLException e) {
+            Index.indexFile(fileInfo);
+        } catch (SQLException | IOException ex) {
             return false;
         }
 
-        // TODO: write to database, update index
         return allFiles.add(fileInfo.getId());
     }
 
@@ -66,7 +68,7 @@ public class FileStorage {
             return false;
         }
 
-        // TODO: write to database, update index
+        // TODO: update index
         return allFiles.remove(fileId);
     }
 

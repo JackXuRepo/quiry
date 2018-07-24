@@ -14,13 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import cscc01.summer2018.team11.file.ContentType;
 import cscc01.summer2018.team11.file.FileGetter;
 import cscc01.summer2018.team11.file.FileInfo;
 import cscc01.summer2018.team11.file.FileStorage;
-import cscc01.summer2018.team11.file.FileType;
 import cscc01.summer2018.team11.service.UserService;
-import cscc01.summer2018.team11.user.AccessLevel;
 import cscc01.summer2018.team11.user.User;
 
 
@@ -34,7 +31,6 @@ public class FileController {
 			@RequestParam("userId") String userId,
 			@RequestParam("description") String description,
 			@RequestParam("fileTitle") String title,
-			@RequestParam("fileType") String fileType,
 			@RequestParam("contentType") String contentType,
 			@RequestParam("courseRestricted") String courseRestricted)
 	{
@@ -42,13 +38,17 @@ public class FileController {
 		System.out.println(userId);
 		System.out.println(description);
 		System.out.println(title);
-		System.out.println(fileType);
 		System.out.println(contentType);
 		System.out.println(courseRestricted);
 
 		// TODO: create fileInfo object
-		FileInfo fileInfo = new FileInfo(userId, title, description, ContentType.JOURNAL, AccessLevel.GUEST,
-				null, "cscc10", false, FileType.TEXT);
+		FileInfo fileInfo = new FileInfo.Builder()
+								.userId(userId)
+								.description(description)
+								.title(title)
+								.contentType(Integer.parseInt(contentType))
+								.courseRestricted(courseRestricted.equals(1) ? true : false)
+								.build();
 		File localFile = FileGetter.createFile(fileInfo.getFileId(), remoteFile.getOriginalFilename());
 
 		/* attempt upload
