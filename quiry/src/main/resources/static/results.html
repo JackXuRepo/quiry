@@ -1,0 +1,76 @@
+<!doctype html>
+<html ng-app="quiryApp">
+  <head>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-sanitize.js"></script>
+   	<script src="http://mbenford.github.io/ngTagsInput/js/ng-tags-input.min.js"></script>
+
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
+    <script src="./route.js"></script>
+    <script src="./Service/storage.js"></script>
+    <script src="./Controller/results.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- fontAwesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
+	<!-- ng-tag CSS -->
+	<link rel="stylesheet" href="http://mbenford.github.io/ngTagsInput/css/ng-tags-input.min.css" />
+	<link rel="stylesheet" href="./css/styles.css">
+	<link rel="icon" href="./Resources/favicon.ico" type="image/x-icon"/>
+	<title>Search</title>
+
+	<div ng-show="!userId" class="ng-cloak" align="right">
+		<a href="./login.html" style="padding-right: 30px"><i class="fas fa-sign-in-alt"></i> Sign in </a>
+		<a href="./registration.html" style="padding-right: 30px"><i class="fas fa-plus-square"></i> Register </a>
+	</div>
+
+	<div ng-show="userId" class="ng-cloak" align="right">
+		<a href="#" style="padding-right: 30px"><i class="fas fa-id-card"></i> {{ userId }} </a>
+		<a href="./upload.html" style="color:green;padding-right: 30px"><i class="fas fa-upload"></i> Upload </a>
+		<a href="#" style="color:red;padding-right: 30px" ng-click="signOut()">
+			<i class="fas fa-sign-out-alt"></i> Sign out </a>
+	</div>
+		<a href="./index.html"><img src="./Resources/logo.png" alt="Quiry Search Engine" style="width:100px;height:40px;"></img></a>
+  </head>
+
+  <body>
+
+<div ng-controller="resultsController">
+	<h1 class="header">Search Results</h1>
+	<div class="container">
+		<div class="row">
+			<div class="col">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<table class="table table-hover">
+					<thead>
+						<th>File Type</th>
+						<th>File Name</th>
+						<th>Author</th>
+						<th>Content Type</th>
+						<th>Course</th>
+					</thead>
+					<tr ng-repeat="result in results">
+						<td><i class="{{ getIcon(result.fileType) }}"></i></td>
+						<td>{{ result.title }}</td>
+						<td>{{ result.author }}</td>
+						<td>{{ result.contentType }}</td>
+						<td>{{ result.course}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col centered-body">
+				<ul uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></ul>
+			</div>
+		</div>
+	</div>
+</div>
+  </body>
+</html>

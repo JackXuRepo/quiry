@@ -38,6 +38,17 @@
 		        <a href="#" class="clickabletext" style="text-align:right;" ng-click="toggleAdvancedSearch()">{{ advancedSearchText }}</a>
 		    </div>
 		</head>
+		<!---
+		    <div uib-carousel interval="4000">
+      <div uib-slide ng-repeat="slide in slides" active="0">
+        <img ng-src="{{slide.image}}" style="margin:auto;">
+        <div class="carousel-caption">
+          <h4>Slide {{$index}}</h4>
+          <p>{{slide.title}}</p>
+        </div>
+      </div>
+    </div>
+-->
 		<body>
 			<div class="center">
 				<div class="container ng-cloak" ng-show="advancedSearchOn">
@@ -101,7 +112,6 @@
 			</div>
 
 
-
 		</body>
 	</div>
 	<!-- AngularJS libraries -->
@@ -114,6 +124,8 @@
 
 	<!-- Bootstrap -- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
 
 	<!-- ng-tag dependency -->
 	<script src="http://mbenford.github.io/ngTagsInput/js/ng-tags-input.min.js"></script>
