@@ -23,7 +23,7 @@
     angular.module("quiryApp")
     .constant("constant", {
         backEndUrl : "http://localhost:8080"
-    });
+    })
 
     // Whenever u see "$something", those are AngularJS services 
     // Any service that is provided by the angularJS framework

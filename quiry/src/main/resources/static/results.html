@@ -43,6 +43,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col">
+				<label for="maxSize">Results to Show:</label>
+				<input name="maxSize" ng-model="maxSize"></input>
 			</div>
 		</div>
 		<div class="row">
@@ -55,7 +57,7 @@
 						<th>Content Type</th>
 						<th>Course</th>
 					</thead>
-					<tr ng-repeat="result in results">
+					<tr ng-repeat="result in results | orderBy:sortKey:reverse | limitTo: ((currentPage-1)*maxSize - results.length) | limitTo : maxSize">
 						<td><i class="{{ getIcon(result.fileType) }}"></i></td>
 						<td>{{ result.title }}</td>
 						<td>{{ result.author }}</td>
@@ -67,7 +69,7 @@
 		</div>
 		<div class="row">
 			<div class="col centered-body">
-				<ul uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></ul>
+				<ul uib-pagination total-items="results.length" items-per-page="maxSize" ng-model="currentPage" ng-change="pageChanged()"></ul>
 			</div>
 		</div>
 	</div>

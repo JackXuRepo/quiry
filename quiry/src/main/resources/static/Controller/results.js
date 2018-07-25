@@ -3,6 +3,7 @@ angular.module('quiryApp').controller('resultsController', function ($scope, $lo
   $scope.currentPage = 4;
   $scope.userId = StorageService.getValue("userId");
   $scope.results = StorageService.getValue("results");
+  $scope.maxSize = 5;
 
   $scope.setPage = function (pageNo) {
     $scope.currentPage = pageNo;
@@ -35,6 +36,4 @@ angular.module('quiryApp').controller('resultsController', function ($scope, $lo
     $log.log('Page changed to: ' + $scope.currentPage);
     $log.log($scope.results);
   };
-
-  $scope.maxSize = 5;
 });

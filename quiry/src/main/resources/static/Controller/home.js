@@ -28,8 +28,12 @@
 				// Need to call back-end
 				console.log($scope.userId);
 				console.log(StorageService.getValue("userId"));
-				StorageService.setValue("results", $scope.results);
-				$window.location.href = "./results.html";
+
+				$http.get("../json/mock.json")
+					.then(function(response){
+						StorageService.setValue("results", response.data);
+						$window.location.href = "./results.html";
+					});
 			}
 
 			$scope.resetAdvancedSearch = function(){
@@ -115,45 +119,6 @@
 					$scope.advancedSearchText = "Hide Advanced Search -";
 				}
 			}
-
-    $scope.results = [
-      {
-        title: "Final Exam CSC01 2017",
-        fileType: "pdf",
-        contentType: "Past Exams",
-        author: "A. Abbas",
-        course: "CSC01"
-
-      },
-      {
-        title: "How to Code in Haskell",
-        fileType: "html", 
-        contentType: "Notes",
-        author: "H. Askell",
-        course: "CSC24"
-      },
-      {
-        title: "A Study of Text Files",
-        fileType: "txt",
-        contentType: "Journals",
-        author: "T. Extee",
-        course: "CSC01"
-      },
-      {
-        title: "How to Program",
-        fileType: "html",
-        contentType: "Notes",
-        author: "P. Rogers",
-        course: "CSC02"
-      },
-      {
-        title: "Notes for CSC43",
-        fileType: "pdf",
-        contentType: "Notes",
-        author: "T. Lee",
-        course: "CSC43"
-      },
-    ];
 
 
 		}
