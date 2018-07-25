@@ -51,11 +51,16 @@
 			<div class="col">
 				<table class="table table-hover">
 					<thead>
-						<th>File Type</th>
-						<th>File Name</th>
-						<th>Author</th>
-						<th>Content Type</th>
-						<th>Course</th>
+						<th ng-click="sort('fileType')">File Type
+						<span class="glyphicon sort-icon" ng-show="sortKey=='fileType'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+						<th ng-click="sort('title')">File Name
+						<span class="glyphicon sort-icon" ng-show="sortKey=='title'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+						<th ng-click="sort('author')">Author
+						<span class="glyphicon sort-icon" ng-show="sortKey=='author'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+						<th ng-click="sort('contentType')">Content Type
+						<span class="glyphicon sort-icon" ng-show="sortKey=='contentType'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+						<th ng-click="sort('course')">Course
+						<span class="glyphicon sort-icon" ng-show="sortKey=='course'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
 					</thead>
 					<tr ng-repeat="result in results | orderBy:sortKey:reverse | limitTo: ((currentPage-1)*maxSize - results.length) | limitTo : maxSize">
 						<td><i class="{{ getIcon(result.fileType) }}"></i></td>
