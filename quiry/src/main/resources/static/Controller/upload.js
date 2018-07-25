@@ -35,7 +35,6 @@
 
 			// Called when user clicks on submit button
 			$scope.uploadDocument = function(form){
-				console.log($scope.file);
 
 				var fd = new FormData();
 				fd.append('file', $scope.file);
@@ -60,6 +59,27 @@
 						$window.location.href = "./index.html";
 					}
 				);
+/*
+				$http.get('/file/download', {
+					responseType: 'arraybuffer',
+					params: { fileId: 8706 }
+				})
+				.then(
+					function(response) {
+						console.log(response);
+						console.log(response.headers('Content-Type'));
+						console.log(response.headers('File-Name'));
+
+						var blob = new Blob([response.data], {type: response.headers('Content-Type')});
+						saveAs(blob, response.headers('File-Name'));
+					}
+				)
+				.catch(
+					function(response) {
+						alert("error");
+					}
+				);
+*/
 			}
 		}
 })();
