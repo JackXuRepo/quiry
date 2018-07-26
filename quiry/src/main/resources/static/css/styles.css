@@ -106,6 +106,17 @@
 	color:gold;
 }
 
+.result-text {
+    font-style: italic;    
+    text-decoration-color: steelblue;
+    color: steelblue; 
+}
+
+select.form-control:not([size]):not([multiple]) {
+  height: auto!important;
+}
+
+
 
 /**
 .center .clickableExpandable {

@@ -1,11 +1,16 @@
 angular.module('quiryApp').controller('resultsController', function ($scope, $log, StorageService) {
   $scope.totalItems = 64;
-  $scope.currentPage = 4;
+  $scope.currentPage = 1;
   $scope.userId = StorageService.getValue("userId");
   $scope.results = StorageService.getValue("results");
   $scope.maxSize = 5;
   $scope.sortKey;
   $scope.reverse;
+
+  $scope.clearSort = function(){
+  	$scope.sortKey = '';
+  	$scope.reverse = null;
+  }
 
   $scope.sort = function(key){
   	$scope.sortKey = key;
