@@ -3,8 +3,6 @@ package cscc01.summer2018.team11.lucene;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
@@ -21,11 +19,10 @@ import org.apache.lucene.store.RAMDirectory;
 
 import cscc01.summer2018.team11.file.FileInfo;
 import cscc01.summer2018.team11.user.User;
+import cscc01.summer2018.team11.user.UserStorage;
 
 
 public class Index {
-
-    public static Map<String, User> userStorage = new HashMap<>();
 
     private static IndexWriter writer;
     private static Directory index;
@@ -69,7 +66,7 @@ public class Index {
         Field dateField = new LongPoint("date", file.getUploadMs());
 
         String author = file.getAuthor();
-        User user = userStorage.get(author); // TODO: UserStorage.getUser(author);
+        User user = UserStorage.getUser(author);
         Field authorField = new StringField("author", author, Field.Store.NO);
         Field firstNField = new StringField("firstName", user.getFirstName(), Field.Store.NO);
         Field lastNField = new StringField("lastName", user.getLastName(), Field.Store.NO);
@@ -90,6 +87,8 @@ public class Index {
 
         writer.addDocument(document);
         writer.commit();
+        
+        System.out.println("indexed" + file.getId());
     }
 
     public static void removeFile(int fileId) throws IOException {

@@ -39,7 +39,7 @@ To build the project in the [quiry](quiry/) directory, run `mvn compile`, you ma
 ```console
 foo@bar:CSC01TeamProjectRepo11\quiry$ mvn clean
 foo@bar:CSC01TeamProjectRepo11\quiry$ mvn compile
-foo@bar:CSC01TeamProjectRepo11\quiry$ mvn exec:java -Dexec.mainClass="cscc01.summer2018.team11.App"
+foo@bar:CSC01TeamProjectRepo11\quiry$ mvn spring-boot:run
 ```
 
 Component level [test functions](quiry/src/test/java/cscc01/summer2018/team11) can be compiled separately and executed by specifying the class name.
