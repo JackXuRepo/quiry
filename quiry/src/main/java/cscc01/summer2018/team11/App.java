@@ -7,9 +7,7 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 
 import cscc01.summer2018.team11.database.Database;
-import cscc01.summer2018.team11.file.FileStorage;
 import cscc01.summer2018.team11.lucene.Index;
-import cscc01.summer2018.team11.user.UserStorage;
 
 
 /**
@@ -23,13 +21,11 @@ public class App
         // start spring framework
         SpringApplication.run(App.class, args);
     }
-    
+
     @EventListener(ApplicationReadyEvent.class)
-    public void initializeComponents() {
+    public void initialize() {
         // initialize components
         Database.connect("quiry");
-        FileStorage.initialize();
-        UserStorage.initialize();
         Index.initialize();
         System.out.println("Finished initialization");
     }

@@ -1,19 +1,19 @@
 package cscc01.summer2018.team11.database;
 
 
-import java.sql.Statement;
-import java.util.HashSet;
-import java.util.Set;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.HashSet;
+import java.util.Set;
 
 import cscc01.summer2018.team11.user.AccessLevel;
 import cscc01.summer2018.team11.user.Admin;
 import cscc01.summer2018.team11.user.Instructor;
-import cscc01.summer2018.team11.user.User;
 import cscc01.summer2018.team11.user.Student;
+import cscc01.summer2018.team11.user.User;
 
 
 public class UserDAO {
@@ -59,7 +59,7 @@ public class UserDAO {
     }
 
     public void deleteUser(String userId) throws SQLException {
-        String sql = "DROP * FROM User WHERE userId=" + userId + ";";
+        String sql = "DELETE FROM User WHERE userId=" + userId + ";";
         stmt.executeUpdate(sql);
     }
 

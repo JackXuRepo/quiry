@@ -32,6 +32,7 @@ public class FileController {
 			@RequestParam("description") String description,
 			@RequestParam("fileTitle") String title,
 			@RequestParam("contentType") int contentType,
+			@RequestParam("course") String course,
 			@RequestParam("courseRestricted") String courseRestricted)
 	{
 		System.out.println(remoteFile);
@@ -39,6 +40,7 @@ public class FileController {
 		System.out.println(description);
 		System.out.println(title);
 		System.out.println(contentType);
+		System.out.println(course);
 
 		// TODO: create fileInfo object
 		FileInfo fileInfo = new FileInfo.Builder()
@@ -46,6 +48,7 @@ public class FileController {
 								.description(description)
 								.title(title)
 								.contentType(contentType)
+								.course(course)
 								.build();
 		File localFile = FileGetter.createFile(fileInfo.getFileId(), remoteFile.getOriginalFilename());
 

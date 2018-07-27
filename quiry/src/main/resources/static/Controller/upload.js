@@ -42,6 +42,7 @@
 				fd.append('description', $scope.description);
 				fd.append('fileTitle', $scope.fileTitle);
 				fd.append('contentType', $scope.contentType);
+				fd.append('course', $scope.course);
 				fd.append('courseRestricted', $scope.visibility);
 
 				$http.post('/file/upload', fd, {
