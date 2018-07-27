@@ -27,6 +27,7 @@
 				// Need to call back-end
 				console.log($scope.userId);
 				console.log(StorageService.getValue("userId"));
+				StorageService.removeValue("results");
 				//console.log(parseCourseJson($scope.coursesSelected));
 
 				// $http.get("../json/mock.json")
@@ -52,7 +53,8 @@
 				$http.get( "/search/advancedSearch", paramConfig)
 					.then(function(response){
 					 	console.log(response.data);
-					 	//$window.location.href = "./results.html";
+					 	StorageService.setValue("results", response.data);
+					 	$window.location.href = "./results.html";
 					 })
 					.catch(function(response){
 						console.log(response.data);

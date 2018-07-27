@@ -5,7 +5,7 @@
 	angular.module("quiryApp")
 		.controller('registrationController', registrationController);
 
-		function registrationController($scope, $window, StorageService, $http, constant){
+		function registrationController($scope, $window, StorageService, $http){
 			// $scope is provided by angular so that the view can refer to
 			// the controller scope values
 			$scope.username;

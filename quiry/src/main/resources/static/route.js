@@ -19,12 +19,6 @@
 // For now we only have ngRoute which handles routing of urls
 (function(){
     angular.module("quiryApp", ["ngAnimate", "ngTagsInput", "ngSanitize", "ui.bootstrap"]);
-
-    angular.module("quiryApp")
-    .constant("constant", {
-        backEndUrl : "http://localhost:8080"
-    })
-
     // Whenever u see "$something", those are AngularJS services 
     // Any service that is provided by the angularJS framework
     // has the prefix "$".

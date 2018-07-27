@@ -23,9 +23,9 @@
           console.log('TYPE : ' + type);
 
           var iconMap = {
-                  "pdf": "fas fa-file-pdf pdf-col",
-                  "txt": "fas fa-file-alt txt-col",
-                  "html":"fab fa-internet-explorer html-col"
+                  "0": "fas fa-file-pdf pdf-col",
+                  "1": "fas fa-file-alt txt-col",
+                  "2":"fab fa-internet-explorer html-col"
                 };
             return iconMap[type];
             
@@ -36,4 +36,22 @@
           $log.log('Page changed to: ' + $scope.currentPage);
           $log.log($scope.results);
       };
+
+      $scope.filterContentType = function(input) {
+            var map = {
+                  "0": "Past Exam",
+                  "1": "Notes",
+                  "2": "Journal"
+                };
+            return map[input];
+      };
+
+      $scope.download = function(fileId){
+            return;
+      }
+
+      $scope.signOut = function(){
+        StorageService.removeValue("userId");
+        $scope.userId = null;
+      }
   });
