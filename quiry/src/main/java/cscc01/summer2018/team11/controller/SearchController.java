@@ -34,7 +34,7 @@ public class SearchController {
 			@RequestParam(value="pdfType") boolean pdfType,
 			@RequestParam(value="txtType") boolean txtType,
 			@RequestParam(value="htmlType") boolean htmlType,
-			@RequestParam(value="courses") String[] courses){
+			@RequestParam(value="courses", required = false) String[] courses){
 		
 		System.out.println(searchText);
 		System.out.println(author);
@@ -47,9 +47,13 @@ public class SearchController {
 		System.out.println(pdfType);
 		System.out.println(txtType);
 		System.out.println(htmlType);
-		System.out.println(courses);
-		
-		Search search = new Search(Index.getIndex());
+		if(courses == null) {
+			courses = new String[0];
+		}
+		for(String course : courses) {
+			System.out.println("course : " + course);
+		}
+		//Search search = new Search(Index.getIndex());
 		
 //		try {
 //			search.search(searchText, contentType, fileType, daysPassed, authorName, courseArr)

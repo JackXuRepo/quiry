@@ -27,6 +27,7 @@
 				// Need to call back-end
 				console.log($scope.userId);
 				console.log(StorageService.getValue("userId"));
+				//console.log(parseCourseJson($scope.coursesSelected));
 
 				// $http.get("../json/mock.json")
 				// 	.then(function(response){
@@ -45,13 +46,18 @@
 									pdfType: $scope.pdfType,
 									txtType: $scope.txtType,
 									htmlType: $scope.htmlType,
-									courses: $scope.coursesSelected
+									courses: parseCourseObject($scope.coursesSelected)
 				    			}};
-
+				console.log(paramConfig.params);
 				$http.get( "/search/advancedSearch", paramConfig)
-				.then(function(response){
-				 	console.log(response.data);
-				 });
+					.then(function(response){
+					 	console.log(response.data);
+					 	//$window.location.href = "./results.html";
+					 })
+					.catch(function(response){
+						console.log(response.data);
+					 	//$window.location.href = "./results.html";
+					});
 			}
 
 			$scope.resetAdvancedSearch = function(){
@@ -114,6 +120,15 @@
                   "Anytime": "0"
                 };
             	return timeMap[timeString];
+			}
+
+			function parseCourseObject(courseObject){
+				var courseArray = new Array();
+				for(courseBracket in courseObject){
+					courseArray.push(courseObject[courseBracket].text);
+				}
+				console.log(courseArray);
+				return courseArray;
 			}
 
 
