@@ -17,7 +17,6 @@ import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
-import org.apache.lucene.store.RAMDirectory;
 
 import cscc01.summer2018.team11.file.FileInfo;
 import cscc01.summer2018.team11.user.User;
@@ -30,14 +29,13 @@ public class Index {
     private static Directory index;
 
     public static void initialize() {
-        // this directory will contain the indexes
-    	//index = new RAMDirectory();
         try {
-			index = FSDirectory.open(Paths.get(".\\index.lucene"));
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+            // this directory will contain the indexes
+            index = FSDirectory.open(Paths.get("lucene"));
+        } catch (IOException ex) {
+            // TODO Auto-generated catch block
+            ex.printStackTrace();
+        }
 
         // create the index writer
         StandardAnalyzer analyzer = new StandardAnalyzer();
@@ -45,9 +43,9 @@ public class Index {
 
         try {
             writer = new IndexWriter(index, config);
-        } catch (IOException e) {
+        } catch (IOException ex) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            ex.printStackTrace();
         }
     }
 
@@ -70,6 +68,7 @@ public class Index {
 
         Field fileTField = new IntPoint("fileType", file.getFileType());
         Field contentTField = new IntPoint("contentType", file.getContentType());
+        Field accessField = new IntPoint("accessLevel", file.getAccessLevel());
 
         Field dateField = new LongPoint("date", file.getUploadMs());
 
@@ -87,6 +86,7 @@ public class Index {
 
         document.add(fileTField);
         document.add(contentTField);
+        document.add(accessField);
         document.add(dateField);
 
         document.add(authorField);
@@ -95,7 +95,7 @@ public class Index {
 
         writer.addDocument(document);
         writer.commit();
-        
+
         System.out.println("indexed" + file.getId());
     }
 

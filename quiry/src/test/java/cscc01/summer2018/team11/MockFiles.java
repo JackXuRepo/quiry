@@ -2,6 +2,7 @@ package cscc01.summer2018.team11;
 
 
 import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.concurrent.TimeUnit;
 
@@ -13,7 +14,7 @@ import cscc01.summer2018.team11.user.AccessLevel;
 
 
 /**
- * Mock File Objects.
+ * Mock File Objects. Run this to populate File database.
  */
 public class MockFiles {
 
@@ -24,7 +25,7 @@ public class MockFiles {
         int fileType = FileType.PDF;
         int contentType = ContentType.EXAM;
 
-        String userId = "mitchell";
+        String userId = "houelleb";
         String fileName = "a2.pdf";
         String course = "cscc01";
         String title = "Assignment 2";
@@ -45,7 +46,7 @@ public class MockFiles {
         int fileType = FileType.TEXT;
         int contentType = ContentType.JOURNAL;
 
-        String userId = "houelleb";
+        String userId = "mitchell";
         String fileName = "big.txt";
         String course = "cscc02";
         String title = "this file";
@@ -66,7 +67,7 @@ public class MockFiles {
         int fileType = FileType.HTML;
         int contentType = ContentType.NOTES;
 
-        String userId = "mitchell";
+        String userId = "mantelhi";
         String fileName = "columbia.html";
         String course = "cscc01";
         String title = "Columbia University";
@@ -108,7 +109,7 @@ public class MockFiles {
         int fileType = FileType.TEXT;
         int contentType = ContentType.JOURNAL;
 
-        String userId = "mitchell";
+        String userId = "houelleb";
         String fileName = "gpl3.txt";
         String course = "mgta02";
         String title = "A Quick Guide to GPLv3";
@@ -129,7 +130,7 @@ public class MockFiles {
         int fileType = FileType.PDF;
         int contentType = ContentType.NOTES;
 
-        String userId = "houelleb";
+        String userId = "mitchell";
         String fileName = "kiwi.pdf";
         String course = "mgta02";
         String title = "Krisanth Technologies";
@@ -150,7 +151,7 @@ public class MockFiles {
         int fileType = FileType.TEXT;
         int contentType = ContentType.JOURNAL;
 
-        String userId = "mitchell";
+        String userId = "mantelhi";
         String fileName = "readme.txt";
         String course = "psya02";
         String title = "CSC01TeamProjectRepo11";
@@ -171,7 +172,7 @@ public class MockFiles {
         int fileType = FileType.PDF;
         int contentType = ContentType.EXAM;
 
-        String userId = "mitchell";
+        String userId = "ferrisjo";
         String fileName = "sakila.pdf";
         String course = "psya03";
         String title = "Sakila Sample Database";
@@ -206,7 +207,22 @@ public class MockFiles {
                 .build();
     }
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, IOException {
+//        UserStorage.initialize();
+//        FileStorage.initialize();
+//
+//        Index.initialize();
+//        Index.indexFile( file1() );
+//        Index.indexFile( file2() );
+//        Index.indexFile( file3() );
+//        Index.indexFile( file4() );
+//        Index.indexFile( file5() );
+//        Index.indexFile( file6() );
+//        Index.indexFile( file7() );
+//        Index.indexFile( file8() );
+//        Index.indexFile( file9() );
+//        Index.close();
+
         FileDAO fileDao = new FileDAO();
         fileDao.updateFile( file1() );
         fileDao.updateFile( file2() );

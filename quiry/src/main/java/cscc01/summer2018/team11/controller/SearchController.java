@@ -1,11 +1,6 @@
 package cscc01.summer2018.team11.controller;
 
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-
-import org.apache.lucene.queryparser.classic.ParseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +30,7 @@ public class SearchController {
 			@RequestParam(value="txtType") boolean txtType,
 			@RequestParam(value="htmlType") boolean htmlType,
 			@RequestParam(value="courses") String[] courses){
-		
+
 		System.out.println(searchText);
 		System.out.println(author);
 		System.out.println(dateUploaded);
@@ -48,9 +43,11 @@ public class SearchController {
 		System.out.println(txtType);
 		System.out.println(htmlType);
 		System.out.println(courses);
-		
+
+		// see SearchTest.java for sample code
+		// do not add search clause if parameter is not populated
 		Search search = new Search(Index.getIndex());
-		
+
 //		try {
 //			search.search(searchText, contentType, fileType, daysPassed, authorName, courseArr)
 //		} catch (ParseException e) {
@@ -65,7 +62,5 @@ public class SearchController {
 
 		//return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 	}
-
-
 
 }

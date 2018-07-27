@@ -10,7 +10,7 @@ import cscc01.summer2018.team11.user.Student;
 
 
 /**
- * Mock User Objects.
+ * Mock User Objects. Run this to populate User database.
  * http://www.randompassages.com/
  */
 public class MockUsers {
