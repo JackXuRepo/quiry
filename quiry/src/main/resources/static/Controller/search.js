@@ -7,6 +7,7 @@
 		
 		function searchController($scope, $http, StorageService, $window){
 			$scope.searchText = "";
+			$scope.author = "";
 			$scope.timeOptions = ["Today", "This Week", "This Month", "This Year", "Anytime"];
 			$scope.advancedSearchOn = false;
 			$scope.advancedSearchText = "Show Advanced Search +";
@@ -19,7 +20,7 @@
 			$scope.pdfType = true;
 			$scope.txtType = true;
 			$scope.htmlType = true;
-			$scope.coursesSelected = [""];
+			$scope.coursesSelected = [];
 
 
 			$scope.search = function(){
@@ -34,6 +35,7 @@
 				// 	});
 				var paramConfig = {params: {   
 									searchText: $scope.searchText,
+									author: $scope.author,
 						    		dateUploaded: parseTimeOptions($scope.dateUploaded),
 									instructorSearch: $scope.instructorSearch,
 									studentSearch: $scope.studentSearch,
@@ -54,6 +56,7 @@
 
 			$scope.resetAdvancedSearch = function(){
 				$scope.dateUploaded = "Anytime";
+				$scope.author = "";
 				$scope.studentSearch = true;
 				$scope.instructorSearch = true;
 				$scope.pastExams = true;
@@ -64,7 +67,7 @@
 				$scope.htmlType = true;
 				$scope.author = "";
 				$scope.fileName = "";
-				$scope.coursesSelected = [""];
+				$scope.coursesSelected = [];
 			}
 
 

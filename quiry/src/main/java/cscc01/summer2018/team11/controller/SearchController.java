@@ -24,6 +24,7 @@ public class SearchController {
 	@RequestMapping(value = "/advancedSearch", method = RequestMethod.GET)
 	public ResponseEntity<String> registerUser(
 			@RequestParam(value="searchText") String searchText,
+			@RequestParam(value="author") String author,
 			@RequestParam(value="dateUploaded") int dateUploaded,
 			@RequestParam(value="instructorSearch") boolean instructorSearch,
 			@RequestParam(value="studentSearch") boolean studentSearch,
@@ -36,6 +37,7 @@ public class SearchController {
 			@RequestParam(value="courses") String[] courses){
 		
 		System.out.println(searchText);
+		System.out.println(author);
 		System.out.println(dateUploaded);
 		System.out.println(instructorSearch);
 		System.out.println(studentSearch);
