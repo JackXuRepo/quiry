@@ -130,7 +130,7 @@ public class Search {
         public Builder searchText(String searchText) throws ParseException {
             MultiFieldQueryParser searchTextParser = new MultiFieldQueryParser(
                     new String[] {"title", "description", "content"}, analyzer);
-            b.add(searchTextParser.parse(searchText), BooleanClause.Occur.SHOULD);
+            b.add(searchTextParser.parse(searchText), BooleanClause.Occur.SHOULD); // MUST
             return this;
         }
 

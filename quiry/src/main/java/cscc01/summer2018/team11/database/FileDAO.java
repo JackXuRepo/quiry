@@ -6,12 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 
 import cscc01.summer2018.team11.file.FileInfo;
 
@@ -65,7 +63,7 @@ public class FileDAO {
     }
 
     public void deleteFile(int fileId) throws SQLException {
-        String sql = "DROP * FROM File WHERE fileId=" + fileId + ";";
+        String sql = "DELETE FROM File WHERE fileId=" + fileId + ";";
         stmt.executeUpdate(sql);
     }
 

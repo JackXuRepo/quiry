@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import cscc01.summer2018.team11.database.UserDAO;
 import cscc01.summer2018.team11.user.Instructor;
 import cscc01.summer2018.team11.user.Student;
-import cscc01.summer2018.team11.user.UserStorage;
 
 
 /**
@@ -29,7 +28,6 @@ public class UserDAOTest {
 	}
 
 	public static void main(String[] args) throws SQLException {
-		UserStorage.initialize();
 
 		String firstName = "Jack";
 		String lastName = "Xu";

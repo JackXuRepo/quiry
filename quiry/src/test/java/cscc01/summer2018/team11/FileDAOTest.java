@@ -5,7 +5,6 @@ import java.sql.SQLException;
 
 import cscc01.summer2018.team11.database.FileDAO;
 import cscc01.summer2018.team11.file.FileInfo;
-import cscc01.summer2018.team11.file.FileStorage;
 
 
 /**
@@ -14,7 +13,6 @@ import cscc01.summer2018.team11.file.FileStorage;
 public class FileDAOTest {
 
 	public static void main(String[] args) throws SQLException {
-		FileStorage.initialize();
 
 		int fileId = FileInfo.generateId();
 		String userId = "xuhaosen";

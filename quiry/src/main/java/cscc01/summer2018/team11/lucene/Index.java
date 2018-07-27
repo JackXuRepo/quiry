@@ -96,7 +96,7 @@ public class Index {
         writer.addDocument(document);
         writer.commit();
 
-        System.out.println("indexed" + file.getId());
+        System.out.println("indexed " + file.getId());
     }
 
     public static void removeFile(int fileId) throws IOException {

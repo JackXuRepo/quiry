@@ -3,35 +3,25 @@ package cscc01.summer2018.team11.file;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Set;
+
+import org.springframework.stereotype.Service;
 
 import cscc01.summer2018.team11.database.FileDAO;
 import cscc01.summer2018.team11.lucene.Index;
 
 
+@Service
 public class FileStorage {
-
-    private static FileDAO fileDAO;
-    private static Set<Integer> allFiles;
-
-    public static void initialize() {
-        // read all fileId from database and populate allFiles
-        try {
-            fileDAO = new FileDAO();
-            allFiles = fileDAO.getAllFileIds();
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
 
     public static FileInfo getFileInfo(int fileId) {
         FileInfo fileInfo = null;
         try {
-            fileInfo = fileDAO.getFileByFileId(fileId);
-        } catch (SQLException e) {
+            FileDAO fileDb = new FileDAO();
+            fileInfo = fileDb.getFileByFileId(fileId);
+
+        } catch (SQLException ex) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            ex.printStackTrace();
         }
         return fileInfo;
     }
@@ -52,24 +42,32 @@ public class FileStorage {
 
     public static boolean updateFile(FileInfo fileInfo) {
         try {
-            fileDAO.updateFile(fileInfo);
+            FileDAO fileDb = new FileDAO();
+            fileDb.updateFile(fileInfo);
+
+            Index.removeFile(fileInfo.getId());
             Index.indexFile(fileInfo);
+
         } catch (SQLException | IOException ex) {
+            // TODO Auto-generated catch block
+            ex.printStackTrace();
             return false;
         }
-
-        return allFiles.add(fileInfo.getId());
+        return true;
     }
 
     public static boolean deleteFile(int fileId) {
         try {
-            fileDAO.deleteFile(fileId);
-        } catch (SQLException e) {
+            FileDAO fileDb = new FileDAO();
+            fileDb.deleteFile(fileId);
+            Index.removeFile(fileId);
+
+        } catch (SQLException | IOException ex) {
+            // TODO Auto-generated catch block
+            ex.printStackTrace();
             return false;
         }
-
-        // TODO: update index
-        return allFiles.remove(fileId);
+        return true;
     }
 
     public static boolean deleteFile(String fileId) {
@@ -78,7 +76,16 @@ public class FileStorage {
     }
 
     public static boolean existFile(int fileId) {
-        return allFiles.contains(fileId);
+        boolean exist = false;
+        try {
+            FileDAO fileDb = new FileDAO();
+            exist = !(fileDb.getFileByFileId(fileId) == null);
+
+        } catch (SQLException ex) {
+            // TODO Auto-generated catch block
+            ex.printStackTrace();
+        }
+        return exist;
     }
 
 }

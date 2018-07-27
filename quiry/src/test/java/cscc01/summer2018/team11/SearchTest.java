@@ -18,8 +18,6 @@ import cscc01.summer2018.team11.user.UserStorage;
 public class SearchTest {
 
     public static void main(String[] args) {
-        FileStorage.initialize();
-        UserStorage.initialize();
         Index.initialize();
 
         try {
