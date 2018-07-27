@@ -3,10 +3,13 @@ package cscc01.summer2018.team11.file;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Set;
 
 import cscc01.summer2018.team11.database.FileDAO;
+import cscc01.summer2018.team11.database.UserDAO;
 import cscc01.summer2018.team11.lucene.Index;
+import cscc01.summer2018.team11.user.User;
 
 
 public class FileStorage {
@@ -80,5 +83,27 @@ public class FileStorage {
     public static boolean existFile(int fileId) {
         return allFiles.contains(fileId);
     }
+    
+	public static HashMap<String, String> parseFileInfo(FileInfo fileInfo) throws SQLException {
+		HashMap<String, String> fileInfoMap = new HashMap<String, String>();
+		UserDAO userDao = new UserDAO();
+		User author = userDao.getUserByUserId(fileInfo.getAuthor());
+		
+		fileInfoMap.put("fileId", fileInfo.getFileId());
+		fileInfoMap.put("title", fileInfo.getTitle());
+		fileInfoMap.put("fileType", fileInfo.getFileType()+"");
+		fileInfoMap.put("contentType", fileInfo.getContentType()+"");
+		fileInfoMap.put("author", author.getFirstName() + " " + author.getLastName());
+		fileInfoMap.put("authorType", author.getAccessLv()+"");
+		fileInfoMap.put("course", fileInfo.getCourse());
+		fileInfoMap.put("uploadDate", fileInfo.getUploadDate().toString());
+		fileInfoMap.put("decription", fileInfo.getDescription());
+		fileInfoMap.put("preview", "...is the difference between VALIDATION and ver... ...compare the following SPRINT burndown cha...");
+		
+		System.out.println(fileInfoMap);
+		return fileInfoMap;
+		
+	}
+	
 
 }

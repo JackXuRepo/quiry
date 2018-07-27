@@ -1,184 +1,289 @@
 [
    {
       "title": "Final Exam CSC01 2017",
-      "fileType": "pdf",
-      "contentType": "Past Exams",
-      "author": "A. Abbas",
-      "course": "CSC01"
+      "fileType": "0",
+      "contentType": "0",
+      "author": "Abbas Attarwala",
+      "authorType":"Instructor",
+      "course": "CSC01",
+      "fileId":"1123",
+      "description": "I haven't written this exam yet.",
+      "uploadDate":"2018-07-27 15:30:00",
+      "preview":"...is the difference between VALIDATION and ver... ...compare the following SPRINT burndown cha..."
    },
    {
       "title": "How to Code in Haskell",
-      "fileType": "html",
-      "contentType": "Notes",
+      "fileType": "2",
+      "contentType": "1",
       "author": "H. Askell",
-      "course": "CSC24"
+      "course": "CSC24",
+      "fileId":"1123",
+      "description": "I haven't written this exam yet.",
+      "uploadDate":"2018-07-27 15:30:00",
+      "preview":"...is the difference between VALIDATION and ver... ...compare the following SPRINT burndown cha..."
    },
    {
       "title": "A Study of Text Files",
-      "fileType": "txt",
-      "contentType": "Journals",
+      "fileType": "1",
+      "contentType": "2",
       "author": "T. Extee",
-      "course": "CSC01"
+      "course": "CSC01",
+      "fileId":"1123",
+      "description": "I haven't written this exam yet.",
+      "uploadDate":"2018-07-27 15:30:00",
+      "preview":"...is the difference between VALIDATION and ver... ...compare the following SPRINT burndown cha..."
    },
    {
       "title": "How to Program",
-      "fileType": "html",
-      "contentType": "Notes",
+      "fileType": "2",
+      "contentType": "1",
       "author": "P. Rogers",
-      "course": "CSC02"
+      "course": "CSC02",
+      "fileId":"1123",
+      "description": "I haven't written this exam yet.",
+      "uploadDate":"2018-07-27 15:30:00",
+      "preview":"...is the difference between VALIDATION and ver... ...compare the following SPRINT burndown cha..."
    },
    {
-      "title": "Notes for CSC43",
-      "fileType": "pdf",
-      "contentType": "Notes",
+      "title": "1 for CSC43",
+      "fileType": "0",
+      "contentType": "1",
       "author": "T. Lee",
-      "course": "CSC43"
+      "course": "CSC43",
+      "fileId":"1123",
+      "description": "I haven't written this exam yet.",
+      "uploadDate":"2018-07-27 15:30:00",
+      "preview":"...is the difference between VALIDATION and ver... ...compare the following SPRINT burndown cha..."
    },
    {
-      "title": "Notes EESA 2017",
-      "fileType": "txt",
-      "contentType": "Notes",
+      "title": "1 EESA 2017",
+      "fileType": "1",
+      "contentType": "1",
       "author": "Y. Kim",
-      "course": "EESA06"
+      "course": "EESA06",
+      "fileId":"1123",
+      "description": "I haven't written this exam yet.",
+      "uploadDate":"2018-07-27 15:30:00",
+      "preview":"...is the difference between VALIDATION and ver... ...compare the following SPRINT burndown cha..."
    },
    {
       "title": "True or False",
-      "fileType": "txt",
-      "contentType": "Journals",
+      "fileType": "1",
+      "contentType": "2",
       "author": "H. Askell",
-      "course": "CSC01"
+      "course": "CSC01",
+      "fileId":"1123",
+      "description": "I haven't written this exam yet.",
+      "uploadDate":"2018-07-27 15:30:00",
+      "preview":"...is the difference between VALIDATION and ver... ...compare the following SPRINT burndown cha..."
    },
    {
       "title": "Exam 2014 - pSYA01",
-      "fileType": "txt",
-      "contentType": "Journals",
+      "fileType": "1",
+      "contentType": "2",
       "author": "J. Peters",
-      "course": "PSYA01"
+      "course": "PSYA01",
+      "fileId":"1123",
+      "description": "I haven't written this exam yet.",
+      "uploadDate":"2018-07-27 15:30:00",
+      "preview":"...is the difference between VALIDATION and ver... ...compare the following SPRINT burndown cha..."
    },
    {
       "title": "Pencils and Pens",
-      "fileType": "html",
-      "contentType": "Journals",
+      "fileType": "2",
+      "contentType": "2",
       "author": "P. Rogers",
-      "course": "SOCA01"
+      "course": "SOCA01",
+      "fileId":"1123",
+      "description": "I haven't written this exam yet.",
+      "uploadDate":"2018-07-27 15:30:00",
+      "preview":"...is the difference between VALIDATION and ver... ...compare the following SPRINT burndown cha..."
    },
    {
-      "title": "Notes for CSC63",
-      "fileType": "pdf",
-      "contentType": "Notes",
+      "title": "1 for CSC63",
+      "fileType": "0",
+      "contentType": "1",
       "author": "T. Lee",
-      "course": "CSC63"
+      "course": "CSC63",
+      "fileId":"1123",
+      "description": "I haven't written this exam yet.",
+      "uploadDate":"2018-07-27 15:30:00",
+      "preview":"...is the difference between VALIDATION and ver... ...compare the following SPRINT burndown cha..."
    },
    {
       "title": "Final Exam CSC63 2007",
-      "fileType": "pdf",
-      "contentType": "Past Exams",
+      "fileType": "0",
+      "contentType": "0",
       "author": "N. Chen",
-      "course": "CSC63"
+      "course": "CSC63",
+      "fileId":"1123",
+      "description": "I haven't written this exam yet.",
+      "uploadDate":"2018-07-27 15:30:00",
+      "preview":"...is the difference between VALIDATION and ver... ...compare the following SPRINT burndown cha..."
    },
    {
       "title": "How to Code in HTML",
-      "fileType": "html",
-      "contentType": "Notes",
+      "fileType": "2",
+      "contentType": "1",
       "author": "H. Webb",
-      "course": "CSC09"
+      "course": "CSC09",
+      "fileId":"1123",
+      "description": "I haven't written this exam yet.",
+      "uploadDate":"2018-07-27 15:30:00",
+      "preview":"...is the difference between VALIDATION and ver... ...compare the following SPRINT burndown cha..."
    },
    {
       "title": "Memes",
-      "fileType": "html",
-      "contentType": "Journals",
+      "fileType": "2",
+      "contentType": "2",
       "author": "M. Eme",
-      "course": "MEMA35"
+      "course": "MEMA35",
+      "fileId":"1123",
+      "description": "I haven't written this exam yet.",
+      "uploadDate":"2018-07-27 15:30:00",
+      "preview":"...is the difference between VALIDATION and ver... ...compare the following SPRINT burndown cha..."
    },
    {
       "title": "Midterm for Bio",
-      "fileType": "pdf",
-      "contentType": "Past Exams",
+      "fileType": "0",
+      "contentType": "0",
       "author": "L. Loaw",
-      "course": "BIOA01"
+      "course": "BIOA01",
+      "fileId":"1123",
+      "description": "I haven't written this exam yet.",
+      "uploadDate":"2018-07-27 15:30:00",
+      "preview":"...is the difference between VALIDATION and ver... ...compare the following SPRINT burndown cha..."
    },
    {
       "title": "Final for Math",
-      "fileType": "pdf",
-      "contentType": "Past Exams",
+      "fileType": "0",
+      "contentType": "0",
       "author": "T. Lee",
-      "course": "MATB24"
+      "course": "MATB24",
+      "fileId":"1123",
+      "description": "I haven't written this exam yet.",
+      "uploadDate":"2018-07-27 15:30:00",
+      "preview":"...is the difference between VALIDATION and ver... ...compare the following SPRINT burndown cha..."
    },
    {
       "title": "Final Exam CSC01 2018",
-      "fileType": "pdf",
-      "contentType": "Past Exams",
+      "fileType": "0",
+      "contentType": "0",
       "author": "A. Abbas",
-      "course": "CSC01"
+      "course": "CSC01",
+      "fileId":"1123",
+      "description": "I haven't written this exam yet.",
+      "uploadDate":"2018-07-27 15:30:00",
+      "preview":"...is the difference between VALIDATION and ver... ...compare the following SPRINT burndown cha..."
    },
    {
       "title": "Midterm Exam for CSCC24",
-      "fileType": "pdf",
-      "contentType": "Past Exams",
+      "fileType": "0",
+      "contentType": "0",
       "author": "H. Askell",
-      "course": "CSC24"
+      "course": "CSC24",
+      "fileId":"1123",
+      "description": "I haven't written this exam yet.",
+      "uploadDate":"2018-07-27 15:30:00",
+      "preview":"...is the difference between VALIDATION and ver... ...compare the following SPRINT burndown cha..."
    },
    {
       "title": "AI the Next Step",
-      "fileType": "html",
-      "contentType": "Journals",
+      "fileType": "2",
+      "contentType": "2",
       "author": "M. Morrison",
-      "course": "CSCD01"
+      "course": "CSCD01",
+      "fileId":"1123",
+      "description": "I haven't written this exam yet.",
+      "uploadDate":"2018-07-27 15:30:00",
+      "preview":"...is the difference between VALIDATION and ver... ...compare the following SPRINT burndown cha..."
    },
    {
       "title": "Flash - Games",
-      "fileType": "html",
-      "contentType": "Journals",
+      "fileType": "2",
+      "contentType": "2",
       "author": "W. Wen",
-      "course": "CSC09"
+      "course": "CSC09",
+      "fileId":"1123",
+      "description": "I haven't written this exam yet.",
+      "uploadDate":"2018-07-27 15:30:00",
+      "preview":"...is the difference between VALIDATION and ver... ...compare the following SPRINT burndown cha..."
    },
    {
       "title": "God vs Man",
-      "fileType": "pdf",
-      "contentType": "Journals",
+      "fileType": "0",
+      "contentType": "2",
       "author": "T. Devoir",
-      "course": "PHLC43"
+      "course": "PHLC43",
+      "fileId":"1123",
+      "description": "I haven't written this exam yet.",
+      "uploadDate":"2018-07-27 15:30:00",
+      "preview":"...is the difference between VALIDATION and ver... ...compare the following SPRINT burndown cha..."
    },
    {
       "title": "Final Exam CSC01 2017",
-      "fileType": "pdf",
-      "contentType": "Past Exams",
+      "fileType": "0",
+      "contentType": "0",
       "author": "A. Abbas",
-      "course": "CSC01"
+      "course": "CSC01",
+      "fileId":"1123",
+      "description": "I haven't written this exam yet.",
+      "uploadDate":"2018-07-27 15:30:00",
+      "preview":"...is the difference between VALIDATION and ver... ...compare the following SPRINT burndown cha..."
    },
    {
       "title": "How to Code in Haskell 4 ",
-      "fileType": "html",
-      "contentType": "Notes",
+      "fileType": "2",
+      "contentType": "1",
       "author": "H. Askell",
-      "course": "CSC24"
+      "course": "CSC24",
+      "fileId":"1123",
+      "description": "I haven't written this exam yet.",
+      "uploadDate":"2018-07-27 15:30:00",
+      "preview":"...is the difference between VALIDATION and ver... ...compare the following SPRINT burndown cha..."
    },
    {
       "title": "A Study of Text Files 2",
-      "fileType": "txt",
-      "contentType": "Journals",
+      "fileType": "1",
+      "contentType": "2",
       "author": "T. Extee",
-      "course": "CSC01"
+      "course": "CSC01",
+      "fileId":"1123",
+      "description": "I haven't written this exam yet.",
+      "uploadDate":"2018-07-27 15:30:00",
+      "preview":"...is the difference between VALIDATION and ver... ...compare the following SPRINT burndown cha..."
    },
    {
       "title": "How to Program in C++",
-      "fileType": "html",
-      "contentType": "Notes",
+      "fileType": "2",
+      "contentType": "1",
       "author": "P. Rogers",
-      "course": "CSC02"
+      "course": "CSC02",
+      "fileId":"1123",
+      "description": "I haven't written this exam yet.",
+      "uploadDate":"2018-07-27 15:30:00",
+      "preview":"...is the difference between VALIDATION and ver... ...compare the following SPRINT burndown cha..."
    },
    {
-      "title": "MGTA01 Week 6 Notes",
-      "fileType": "pdf",
-      "contentType": "Notes",
+      "title": "MGTA01 Week 6 1",
+      "fileType": "0",
+      "contentType": "1",
       "author": "T. Lee",
-      "course": "MGTA01"
+      "course": "MGTA01",
+      "fileId":"1123",
+      "description": "I haven't written this exam yet.",
+      "uploadDate":"2018-07-27 15:30:00",
+      "preview":"...is the difference between VALIDATION and ver... ...compare the following SPRINT burndown cha..."
    },
     {
-      "title": "MGTA02 Week 1 Notes",
-      "fileType": "pdf",
-      "contentType": "Notes",
+      "title": "MGTA02 Week 1 1",
+      "fileType": "0",
+      "contentType": "1",
       "author": "T. Lee",
-      "course": "MGTA02"
+      "course": "MGTA02",
+      "fileId":"1123",
+      "description": "I haven't written this exam yet.",
+      "uploadDate":"2018-07-27 15:30:00",
+      "preview":"...is the difference between VALIDATION and ver... ...compare the following SPRINT burndown cha..."
    }
 ]

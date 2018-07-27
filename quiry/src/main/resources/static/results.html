@@ -1,5 +1,6 @@
 <!doctype html>
 <html ng-app="quiryApp">
+<div ng-controller="resultsController">
   <head>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
@@ -40,9 +41,7 @@
   </head>
 
   <body>
-
-<div ng-controller="resultsController">
-	<h1 class="header">Search Results</h1>
+  	<h1 class="header">Search Results</h1>
 	<div class="container">
 		<div class="row">
 			<div ng-include src="'./search.html'"></div>
@@ -75,14 +74,38 @@
 						<span class="glyphicon sort-icon" ng-show="sortKey=='contentType'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
 						<th ng-click="sort('course')">Course
 						<span class="glyphicon sort-icon" ng-show="sortKey=='course'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+						<th ng-click="sort('uploadDate')">Upload Date
+						<span class="glyphicon sort-icon" ng-show="sortKey=='uploadDate'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+						<th>Download Link</th>
+						<th></th>
 					</thead>
-					<tr ng-repeat="result in results | orderBy:sortKey:reverse | limitTo: ((currentPage-1)*maxSize - results.length) | limitTo : maxSize">
-						<td><i class="{{ getIcon(result.fileType) }}"></i></td>
-						<td>{{ result.title }}</td>
-						<td>{{ result.author }}</td>
-						<td>{{ result.contentType }}</td>
-						<td>{{ result.course}}</td>
-					</tr>
+					<tbody ng-repeat="result in results | orderBy:sortKey:reverse | limitTo: ((currentPage-1)*maxSize - results.length) | limitTo : maxSize">
+						<tr>
+							<td><i class="{{ getIcon(result.fileType) }}"></i></td>
+							<td>{{ result.title }}</td>
+							<td>{{ result.author }}</td>
+							<td>{{ filterContentType(result.contentType) }}</td>
+							<td>{{ result.course  | uppercase }}</td>
+							<td>{{ result.uploadDate | date }}</td>
+							<td><a href="#" ng-click="download(result.fileId)">Download File</a></td>
+							<td>
+							<a class="btn btn-link" ng-init="toggle[$index] = false" ng-click="toggle[$index] = !toggle[$index]">
+							  <span class="glyphicon glyphicon-plus-sign" ng-if="!toggle[$index]"></span>
+							  <span class="glyphicon glyphicon-minus-sign" ng-if="toggle[$index]"></span>
+							</a>
+							</td>
+						</tr>
+						<tr ng-if="toggle[$index]" style="background-color: #f3f9f8;">
+							<td></td>
+							<td><label>Description: </label></td>
+							<td colspan="6">{{result.description}}</td>
+				        </tr>
+				        <tr ng-if="toggle[$index]" style="background-color: #f3f9f8;">
+				        	<td></td>
+				        	<td><label>Search Preview: </label></td>
+				        	<td colspan="6">{{result.preview}}</td>
+				        </tr>
+				    </tbody>
 				</table>
 			</div>
 		</div>
@@ -92,6 +115,6 @@
 			</div>
 		</div>
 	</div>
-</div>
   </body>
+</div>
 </html>
