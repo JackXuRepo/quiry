@@ -2,6 +2,7 @@ package cscc01.summer2018.team11.lucene;
 
 
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.Collection;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
@@ -15,6 +16,7 @@ import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.store.Directory;
+import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.store.RAMDirectory;
 
 import cscc01.summer2018.team11.file.FileInfo;
@@ -29,7 +31,13 @@ public class Index {
 
     public static void initialize() {
         // this directory will contain the indexes
-        index = new RAMDirectory();
+    	//index = new RAMDirectory();
+        try {
+			index = FSDirectory.open(Paths.get(".\\index.lucene"));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
         // create the index writer
         StandardAnalyzer analyzer = new StandardAnalyzer();
