@@ -8,7 +8,7 @@
          <div class="row">
             <div class="col-lg-11">
                <div class="input-group">
-                 <input id="search" name="search" type="text" class="form-control mr-sm-2" placeholder="Please enter a new search here" aria-label="Search" aria-describedby="basic-addon2" ng-model="searchText">
+                 <input id="search" name="search" type="text" class="form-control mr-sm-2" placeholder="Please enter a new search here" aria-label="Search" aria-describedby="basic-addon2" ng-model="searchText" ng-keydown="$event.keyCode === 13 && search()">
                  <div class="input-group-append">
                    <button class="btn btn-primary" type="button" ng-click="search()">Search</button>
                  </div>
