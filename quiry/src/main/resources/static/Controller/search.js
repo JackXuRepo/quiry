@@ -55,6 +55,7 @@
 					.then(function(response){
 					 	console.log(response.data);
 					 	StorageService.setValue("results", response.data);
+					 	StorageService.setValue("searchText", $scope.searchText);
 					 	$window.location.href = "./results.html";
 					 })
 					.catch(function(response){
