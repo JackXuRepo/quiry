@@ -20,7 +20,7 @@ import org.apache.lucene.store.FSDirectory;
 
 import cscc01.summer2018.team11.file.FileInfo;
 import cscc01.summer2018.team11.user.User;
-import cscc01.summer2018.team11.user.UserStorage;
+import cscc01.summer2018.team11.user.UserService;
 
 
 public class Index {
@@ -73,7 +73,7 @@ public class Index {
         Field dateField = new LongPoint("date", file.getUploadMs());
 
         String author = file.getAuthor();
-        User user = UserStorage.getUser(author);
+        User user = UserService.getUser(author);
         Field authorField = new StringField("author", author, Field.Store.NO);
         Field firstNField = new StringField("firstName", user.getFirstName(), Field.Store.NO);
         Field lastNField = new StringField("lastName", user.getLastName(), Field.Store.NO);

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import cscc01.summer2018.team11.database.UserDAO;
 
 @Service
-public class UserStorage {
+public class UserService {
 
     public static User getUser(String userId) {
         User userInfo = null;

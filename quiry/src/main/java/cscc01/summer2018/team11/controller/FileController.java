@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import cscc01.summer2018.team11.file.FileGetter;
 import cscc01.summer2018.team11.file.FileInfo;
-import cscc01.summer2018.team11.file.FileStorage;
+import cscc01.summer2018.team11.file.FileService;
 import cscc01.summer2018.team11.file.FileType;
 
 
@@ -87,7 +87,7 @@ public class FileController {
 
 		// complete add file to database
 		fileInfo.setPath(localFile.getAbsolutePath());
-		FileStorage.addFile(fileInfo);
+		FileService.addFile(fileInfo);
 
 		// respond success
 		return ResponseEntity.ok().body("success");
@@ -96,7 +96,7 @@ public class FileController {
 
 	@RequestMapping(value = "/download", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> downloadFile(@RequestParam("fileId") int fileId) {
-		FileInfo fileInfo = FileStorage.getFileInfo(fileId);
+		FileInfo fileInfo = FileService.getFileInfo(fileId);
 		File file = new File(fileInfo.getPath());
 
 		MediaType mediaType;

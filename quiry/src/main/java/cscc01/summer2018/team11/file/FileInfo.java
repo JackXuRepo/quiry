@@ -27,7 +27,7 @@ public class FileInfo {
         int n;
         do {
             n = rand.nextInt(8999) + 1000;
-        } while ( FileStorage.existFile(n) );
+        } while ( FileService.existFile(n) );
         return n;
     }
 

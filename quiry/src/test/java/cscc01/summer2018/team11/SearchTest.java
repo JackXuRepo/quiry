@@ -5,11 +5,11 @@ import java.io.IOException;
 
 import org.apache.lucene.queryparser.classic.ParseException;
 
-import cscc01.summer2018.team11.file.FileStorage;
+import cscc01.summer2018.team11.file.FileService;
 import cscc01.summer2018.team11.lucene.Index;
 import cscc01.summer2018.team11.lucene.Search;
 import cscc01.summer2018.team11.user.User;
-import cscc01.summer2018.team11.user.UserStorage;
+import cscc01.summer2018.team11.user.UserService;
 
 
 /**
@@ -35,7 +35,7 @@ public class SearchTest {
             System.out.println("found: " + search.search(100));
 
             for (String id : search.getResults()) {
-                User user = UserStorage.getUser(FileStorage.getFileInfo(id).getAuthor());
+                User user = UserService.getUser(FileService.getFileInfo(id).getAuthor());
                 System.out.println(id +  " : " + user.getFirstName() + " " + user.getLastName());
             }
         } catch (ParseException | IOException e) {

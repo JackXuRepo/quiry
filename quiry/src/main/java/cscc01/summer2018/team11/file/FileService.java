@@ -14,7 +14,7 @@ import cscc01.summer2018.team11.user.User;
 
 
 @Service
-public class FileStorage {
+public class FileService {
 
     public static FileInfo getFileInfo(int fileId) {
         FileInfo fileInfo = null;
@@ -104,7 +104,7 @@ public class FileStorage {
         fileInfoMap.put("authorType", author.getAccessLv()+"");
         fileInfoMap.put("course", fileInfo.getCourse());
         fileInfoMap.put("uploadDate", fileInfo.getUploadDate().toString());
-        fileInfoMap.put("decription", fileInfo.getDescription());
+        fileInfoMap.put("description", fileInfo.getDescription());
         fileInfoMap.put("preview", "...is the difference between VALIDATION and ver... ...compare the following SPRINT burndown cha...");
 
         System.out.println(fileInfoMap);

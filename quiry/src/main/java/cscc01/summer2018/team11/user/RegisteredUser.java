@@ -3,7 +3,7 @@ package cscc01.summer2018.team11.user;
 import java.util.HashSet;
 
 import cscc01.summer2018.team11.file.FileInfo;
-import cscc01.summer2018.team11.file.FileStorage;
+import cscc01.summer2018.team11.file.FileService;
 
 public abstract class RegisteredUser extends User {
 
@@ -26,7 +26,7 @@ public abstract class RegisteredUser extends User {
 	}
 
 	public boolean deleteFile(int fileId) {
-		return FileStorage.deleteFile(fileId);
+		return FileService.deleteFile(fileId);
 	}
 
 	public boolean addFileId(int fileId) {
