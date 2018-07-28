@@ -30,37 +30,37 @@
 				StorageService.removeValue("results");
 				//console.log(parseCourseJson($scope.coursesSelected));
 
-				$http.get("../json/mock.json")
-					.then(function(response){
-						StorageService.setValue("results", response.data);
-						StorageService.setValue("searchText", $scope.searchText);
-						$window.location.href = "./results.html";
-					});
-				// var paramConfig = {params: {   
-				// 					searchText: $scope.searchText,
-				// 					author: $scope.author,
-				// 		    		dateUploaded: parseTimeOptions($scope.dateUploaded),
-				// 					instructorSearch: $scope.instructorSearch,
-				// 					studentSearch: $scope.studentSearch,
-				// 					pastExams: $scope.pastExams,
-				// 					notes: $scope.notes,
-				// 					journals: $scope.journals,
-				// 					pdfType: $scope.pdfType,
-				// 					txtType: $scope.txtType,
-				// 					htmlType: $scope.htmlType,
-				// 					courses: parseCourseObject($scope.coursesSelected)
-				//     			}};
-				// console.log(paramConfig.params);
-				// $http.get( "/search/advancedSearch", paramConfig)
+				// $http.get("../json/mock.json")
 				// 	.then(function(response){
-				// 	 	console.log(response.data);
-				// 	 	StorageService.setValue("results", response.data);
-				// 	 	$window.location.href = "./results.html";
-				// 	 })
-				// 	.catch(function(response){
-				// 		console.log(response.data);
-				// 	 	//$window.location.href = "./results.html";
+				// 		StorageService.setValue("results", response.data);
+				// 		StorageService.setValue("searchText", $scope.searchText);
+				// 		$window.location.href = "./results.html";
 				// 	});
+				var paramConfig = {params: {   
+									searchText: $scope.searchText,
+									author: $scope.author,
+						    		dateUploaded: parseTimeOptions($scope.dateUploaded),
+									instructorSearch: $scope.instructorSearch,
+									studentSearch: $scope.studentSearch,
+									pastExams: $scope.pastExams,
+									notes: $scope.notes,
+									journals: $scope.journals,
+									pdfType: $scope.pdfType,
+									txtType: $scope.txtType,
+									htmlType: $scope.htmlType,
+									courses: parseCourseObject($scope.coursesSelected)
+				    			}};
+				console.log(paramConfig.params);
+				$http.get( "/search/advancedSearch", paramConfig)
+					.then(function(response){
+					 	console.log(response.data);
+					 	StorageService.setValue("results", response.data);
+					 	$window.location.href = "./results.html";
+					 })
+					.catch(function(response){
+						console.log(response.data);
+					 	//$window.location.href = "./results.html";
+					});
 			}
 
 			$scope.resetAdvancedSearch = function(){

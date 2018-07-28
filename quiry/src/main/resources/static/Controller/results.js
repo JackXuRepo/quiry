@@ -5,6 +5,7 @@
       $scope.maxSize = 5;
       $scope.sortKey;
       $scope.reverse;
+      $scope.expandAll = false;
 
       $scope.clearSort = function() {
           $scope.sortKey = '';
@@ -20,7 +21,6 @@
       };
 
       $scope.getIcon = function(type) {
-          console.log('TYPE : ' + type);
 
           var iconMap = {
                   "0": "fas fa-file-pdf pdf-col",
@@ -29,6 +29,15 @@
                 };
             return iconMap[type];
             
+      }
+
+      $scope.isInstructor = function(type){
+
+          var map = {
+                  "1": "",
+                  "2": "fas fa-graduation-cap"
+                };
+            return map[type];
       }
 
 
