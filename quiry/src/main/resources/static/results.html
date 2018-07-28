@@ -51,8 +51,11 @@
 				<label for="maxSize">Results to Show:</label>
 				<input name="maxSize" ng-model="maxSize"></input>
 			</div>
-			<div class="col-sm-4">
+			<div class="col-sm-3">
 				<button class="btn btn-default btn-sm" ng-click="clearSort()">Clear Sorting</button>
+			</div>
+			<div class="col-sm-2">
+				<button class="btn btn-default btn-sm" ng-click="expandAll = !expandAll">Expand All</button>
 			</div>
 		</div>
 		<div class="row">
@@ -83,7 +86,7 @@
 						<tr>
 							<td><i class="{{ getIcon(result.fileType) }}"></i></td>
 							<td>{{ result.title }}</td>
-							<td>{{ result.author }}</td>
+							<td>{{ result.author }}<i class="{{ isInstructor(result.authorType) }}"></i></td>
 							<td>{{ filterContentType(result.contentType) }}</td>
 							<td>{{ result.course  | uppercase }}</td>
 							<td>{{ result.uploadDate | date }}</td>
@@ -95,12 +98,12 @@
 							</a>
 							</td>
 						</tr>
-						<tr ng-if="toggle[$index]" style="background-color: #f3f9f8;">
+						<tr ng-if="toggle[$index] || expandAll" style="background-color: #f3f9f8;">
 							<td></td>
 							<td><label>Description: </label></td>
 							<td colspan="6">{{result.description}}</td>
 				        </tr>
-				        <tr ng-if="toggle[$index]" style="background-color: #f3f9f8;">
+				        <tr ng-if="toggle[$index] || expandAll" style="background-color: #f3f9f8;">
 				        	<td></td>
 				        	<td><label>Search Preview: </label></td>
 				        	<td colspan="6">{{result.preview}}</td>

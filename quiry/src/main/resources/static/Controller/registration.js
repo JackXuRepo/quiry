@@ -15,7 +15,7 @@
 		    $scope.firstName;
 		    $scope.lastName;
 		    $scope.email;
-		    $scope.accountType = "1";
+		    $scope.accountType = 1;
 		    $scope.passwordConf;
 		    $scope.submit;
 		    $scope.userExists = false;

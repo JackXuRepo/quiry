@@ -7,6 +7,7 @@
 		
 		function HomeController($scope, $http, StorageService, $window){
 			$scope.userId = StorageService.getValue("userId");
+			StorageService.setValue("searchText", "");
 
 
 

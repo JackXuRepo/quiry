@@ -6,7 +6,7 @@
 		.controller('searchController', searchController);
 		
 		function searchController($scope, $http, StorageService, $window){
-			$scope.searchText = "";
+			$scope.searchText = StorageService.getValue("searchText");
 			$scope.author = "";
 			$scope.timeOptions = ["Today", "This Week", "This Month", "This Year", "Anytime"];
 			$scope.advancedSearchOn = false;
@@ -33,6 +33,7 @@
 				// $http.get("../json/mock.json")
 				// 	.then(function(response){
 				// 		StorageService.setValue("results", response.data);
+				// 		StorageService.setValue("searchText", $scope.searchText);
 				// 		$window.location.href = "./results.html";
 				// 	});
 				var paramConfig = {params: {   
@@ -96,8 +97,14 @@
 			}
 
 			$scope.loadOptions = function(query, path) {
-    			return $http.get(path);
+    			return $http.get(path, { cache: true}).then(function(response) {
+			      var courses = response.data;
+			      return courses.filter(function(course) {
+			        return course.text.toLowerCase().indexOf(query.toLowerCase()) != -1;
+      				});
+    			});
   			}
+
 
 			$scope.toggleAdvancedSearch = function(){
 				$scope.advancedSearchOn = !$scope.advancedSearchOn;

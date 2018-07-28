@@ -79,7 +79,12 @@
                      min-length="6"
                      max-length="6"
                      allowed-tags-pattern="^(?:[A-Z]{4}|[a-z]{4})[0-9]{2}$">
-                     <auto-complete source="loadOptions($query, './json/courses.json')"></auto-complete>
+                     <auto-complete source="loadOptions($query, './json/courses.json')"
+                     load-on-focus="true"
+                     load-on-empty="true"
+                     min-length="0"
+                     max-results-to-show="10">
+                     </auto-complete>
                   </tags-input>
                </div>
             </div>
