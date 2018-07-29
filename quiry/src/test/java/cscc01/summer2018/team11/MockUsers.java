@@ -19,7 +19,7 @@ public class MockUsers {
         String userId = "hallsara";
         String firstName = "Sarah";
         String lastName = "Hall";
-        String email = "hallsara@mail.com";
+        String email = "hallsara@mail.utoronto.ca";
         String password = "password";
         return new Admin(userId, email, password, firstName, lastName);
     }
@@ -28,7 +28,7 @@ public class MockUsers {
         String userId = "houelleb";
         String firstName = "Michel";
         String lastName = "Houellebecq";
-        String email = "houelleb@example.com";
+        String email = "houelleb@mail.utoronto.ca";
         String password = "password";
         return new Instructor(userId, email, password, firstName, lastName);
     }
@@ -38,7 +38,7 @@ public class MockUsers {
         String userId = "mitchell";
         String firstName = "David";
         String lastName = "Mitchell";
-        String email = "mitchell@outlook.com";
+        String email = "mitchell@mail.utoronto.ca";
         String password = "password";
         return new Instructor(userId, email, password, firstName, lastName);
     }
@@ -47,7 +47,7 @@ public class MockUsers {
         String userId = "mantelhi";
         String firstName = "Hilary";
         String lastName = "Mantel";
-        String email = "mantelhi@gmail.com";
+        String email = "mantelhi@mail.utoronto.ca";
         String password = "password";
         return new Student(userId, email, password, firstName, lastName);
     }
@@ -56,7 +56,7 @@ public class MockUsers {
         String userId = "ferrisjo";
         String firstName = "Joshua";
         String lastName = "Ferris";
-        String email = "ferrisjo@utoronto.ca";
+        String email = "ferrisjo@mail.utoronto.ca";
         String password = "password";
         return new Student(userId, email, password, firstName, lastName);
     }

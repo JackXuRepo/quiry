@@ -59,7 +59,7 @@
 						<span class="error-message" ng-show="(registrationForm.username.$touched || submit == true) && registrationForm.username.$invalid && userExists == false">The UTORID is required.<br/></span>
 						<span class="error-message" ng-show="userExists != false">The UTORID already exist.<br/></span>
 						<label for="email">E-mail:</label>
-						<input id="email" name="email" type="email" class="form-control" placeholder="Please enter a valid E-mail address" ng-model="email" ng-pattern="/^[a-z|A-Z|\.|0-9]+@mail\.utoronto\.ca$/" required/>
+						<input id="email" name="email" type="email" class="form-control" placeholder="Please enter a valid E-mail address" ng-model="email" ng-pattern="/^[a-z|A-Z|\.|0-9]+@([a-z|A-Z|0-9]+\.)*(utoronto\.ca|toronto\.edu)$/" required/>
 						<span class="error-message" ng-show="(registrationForm.email.$touched || submit == true) && registrationForm.email.$invalid">The email must be a valid U of T email.</span>
 						<br/>
 						<div class="centered-body">

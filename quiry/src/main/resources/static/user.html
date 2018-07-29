@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" ng-app="quiryApp">
-<div ng-controller="userController">
+<div ng-controller="userController" class="ng-cloak">
 
 <head>
 	<title>User</title>
@@ -56,7 +56,7 @@
 	</script>
 </head>
 
-<body onload="MM_preloadImages('icon/User_info_flash.png','icon/User_mail_flash.png','icon/User_name_flash.png','icon/User_password_flash.png','icon/User_courses_flash.png','icon/User_file_flash.png','icon/Confirm_flash.png')">
+<body onload="MM_preloadImages('icon/User_info_flash.png','icon/User_mail_flash.png','icon/User_name_flash.png','icon/User_password_flash.png','icon/User_courses_flash.png','icon/User_file_flash.png','icon/Confirm_flash.png')" class="ng-cloak">
 	<p><a href="index.html"><img src="Resources/logo.png" width="150" height="40" alt="" longdesc="logo" /></a></p>
     
 	<div id="Accordion1" class="Accordion" tabindex="0">
@@ -67,7 +67,7 @@
 	    </div>
 	    <div class="AccordionPanelContent">
         	<div align="center">
-          		<h2>Utroid: {{ userData.userId }}</h2>
+            	<h2>UTORid: {{ userData.userId }}</h2>
             	<h2>Email Address: {{ userData.email }}</h2>
             	<h2>Name: {{ userData.firstName + " " + userData.lastName }}</h2>
             	<h2>Status: {{ getAccountType(userData.accessLevel) }}</h2>
@@ -88,10 +88,10 @@
 	   	</div>
 	   	<div class="AccordionPanelContent">
 	      	<div align="center">
-          		<h2>Current Email: {{ userData.email }}}</h2>
+          		<h2>Current Email: {{ userData.email }}</h2>
           		<h2>Password: <input name="email_password_1" type="password" style="width:300px" placeholder="Please Enter your password" ng-model="emailPassword"/> </h2>
-          		<h2>New Email: <textarea name="new_email_1" cols="35" rows="" wrap="off"; style="height:20px"; placeholder="Please Enter a new email" ng-model="newEmail"></textarea>@mail.utoronto.ca</h2>
-          		<h2>Confirm Email: <textarea name="new_email_2" cols="30" rows="" wrap="off"; style="height:20px"; placeholder="Please Enter a new email" ng-model="newEmailConf"></textarea>@mail.utoronto.ca</h2>
+          		<h2>New Email: <input name="new_email_1" style="width:300px" placeholder="Please Enter a new email" ng-model="newEmail"/></h2>
+          		<h2>Confirm Email: <input name="new_email_2" style="width:300px" placeholder="Please confirm your email" ng-model="newEmailConf"/></h2>
           		<a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image8','','icon/Confirm_flash.png',1)"><img src="icon/Confirm.png" width="241" height="90" id="Image8" ng-click="changeEmail(emailPassword, newEmail, newEmailConf)"/></a>
             </div>
 	    </div>
@@ -105,11 +105,11 @@
 	    </div>
 	    <div class="AccordionPanelContent">
 			<div align="center">
-          		<h2>Current Name: Kin He</h2>
+          		<h2>Current Name: {{ userData.firstName + " " + userData.lastName }}</h2>
           		<h2>Password: <input name="name_password_1" type="password" style="width:300px" placeholder="Please Enter your password" /> </h2>
-          		<h2>First Name: <textarea name="first_name_1" cols="30" rows="" wrap="off"; style="height:20px"; placeholder="Please Enter a new first name"></textarea></h2>
-          		<h2>Last Name: <textarea name="last_name_1" cols="30" rows="" wrap="off"; style="height:20px"; placeholder="Please Enter a new last name"></textarea></h2>
-          		<a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image9','','icon/Confirm_flash.png',1)"><img src="icon/Confirm.png" width="241" height="90" id="Image9" /></a>
+          		<h2>First Name: <input name="first_name_1" style="width:300px" placeholder="Please Enter a new first name"/></h2>
+          		<h2>Last Name: <input name="last_name_1" style="width:300px" placeholder="Please Enter a new last name"/></h2>
+          		<a href="#" ng-click="changeName()" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image9','','icon/Confirm_flash.png',1)"><img src="icon/Confirm.png" width="241" height="90" id="Image9" /></a>
           	</div>
 	    </div>
 	</div>
@@ -122,10 +122,10 @@
 		</div>
 	    <div class="AccordionPanelContent">
 			<div align="center">
-				<h2>Old Password: <input name="password_old_password_1" type="password" style="width:310px" placeholder="Please Enter your current password" /> </h2>
-          		<h2>New Password: <textarea name="password_new_password_1" cols="35" rows="" wrap="off"; style="height:20px"; placeholder="Please Enter a new password"></textarea></h2>
-          		<h2>Confirm Password: <textarea name="password_new_password_2" cols="30" rows="" wrap="off"; style="height:20px"; placeholder="Please Enter a new password"></textarea></h2>
-          		<a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image10','','icon/Confirm_flash.png',1)"><img src="icon/Confirm.png" width="241" height="90" id="Image10" /></a>
+          		<h2>Old Password: <input name="password_old_password_1" type="password" style="width:310px" placeholder="Please Enter your current password" /></h2>
+          		<h2>New Password: <input name="password_new_password_1" type="password" style="width:310px" placeholder="Please Enter a new password" /></h2>
+          		<h2>Confirm Password: <input name="password_new_password_2" type="password" style="width:310px" placeholder="Please confirm your password" /></h2>
+          		<a href="#" ng-click="changePassword()" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image10','','icon/Confirm_flash.png',1)"><img src="icon/Confirm.png" width="241" height="90" id="Image10" /></a>
           	</div>
 		</div>
 	</div>
