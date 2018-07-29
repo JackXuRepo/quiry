@@ -21,10 +21,12 @@
 			$scope.txtType = true;
 			$scope.htmlType = true;
 			$scope.coursesSelected = [];
+			$scope.loadBar = false;
 
 
 			$scope.search = function(){
 				// Need to call back-end
+				$scope.loadBar = true;
 				console.log($scope.userId);
 				console.log(StorageService.getValue("userId"));
 				StorageService.removeValue("results");
@@ -60,6 +62,7 @@
 					 })
 					.catch(function(response){
 						console.log(response.data);
+						$scope.loadBar = false;
 					 	//$window.location.href = "./results.html";
 					});
 			}

@@ -14,6 +14,7 @@
 
 			<!-- ng-tag CSS -->
 			<link rel="stylesheet" href="http://mbenford.github.io/ngTagsInput/css/ng-tags-input.min.css" />
+			<link rel = "stylesheet" href = "https://ajax.googleapis.com/ajax/libs/angular_material/1.1.10/angular-material.min.css">
 
 			<link rel="icon" href="./Resources/favicon.ico" type="image/x-icon"/>
 			<a href="./index.html"><img src="./Resources/logo.png" alt="Quiry Search Engine" style="width:100px;height:40px;"></img></a>
@@ -27,10 +28,9 @@
 				<div class="row">
 					<div class="col">
 						<label style="font-family: Calibri" for="contentType">Content Type:</label>
-						<label for="courseNoteType" class="radio-inline" style="font-weight:normal"><input id="courseNoteType" type="radio" name="courseNoteType" ng-model="contentType" ng-value="1" required/>Course Notes</label>
+						<label for="courseNoteType" class="radio-inline" style="font-weight:normal"><input id="courseNoteType" type="radio" name="courseNoteType" ng-model="contentType" ng-value="1"/>Course Notes</label>
 						<label for="pastExamType" class="radio-inline" style="font-weight:normal"><input id="pastExamType" type="radio" name="pastExamType" ng-model="contentType" ng-value="2"/>Past Exam</label>
 						<label for="journalType" class="radio-inline" style="font-weight:normal"><input id="journalType" type="radio" name="journalType" ng-model="contentType" ng-value="3"/>Journal</label>
-						<span class="error-message" ng-show="(uploadForm.contentType.$touched || submit == true) && registrationForm.contentType.$invalid">You must select one.</span>
 					</div>
 				</div>
 
@@ -49,7 +49,7 @@
 					<div class="col">
 						<div class="form-group">
 							<label for="description">Description:
-								<textarea rows="5" style="min-width: 240%; max-width: 300%" id="uploadDescription" name="description" ng-model="description"></textarea>
+								<textarea rows="5" style="min-width: 240%; max-width: 300%" id="uploadDescription" placeholder="Please include a short description of your file" name="description" ng-model="description"></textarea>
 							</label>
 						</div>
 
@@ -67,7 +67,7 @@
 			</div>
 			<br/>
 			<div class="container centered-body">
-				<button class="resetbutton" type="submit" ng-disabled="file == null" ng-click="uploadDocument(uploadForm)"> Upload </button>
+				<md-button class="md-raised md-primary" type="submit" ng-disabled="file == null || fileTitle == null" ng-click="uploadDocument(uploadForm)"> Upload </md-button>
 			</div>
 		</form>
 		<div ng-show="userId == null" class="centered-body">
@@ -75,12 +75,18 @@
 			<a href="./login.html"><br/> Sign in Here</a>
 			<a href="./registration.html"><br/>or Sign up for an Account Here</a>
 		</div>
+	    <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="!activateLoading">
+	      <md-progress-circular md-mode="indeterminate" ng-disabled="!activateLoading"></md-progress-circular>
+	    </div>
 		</body>
 	</div>
 	<!-- AngularJS libraries -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-aria.js"></script>
+  	<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.10/angular-material.min.js"></script>
+
 
 	<!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
