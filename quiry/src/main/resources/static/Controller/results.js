@@ -1,4 +1,4 @@
-  angular.module('quiryApp').controller('resultsController', function($scope, $log, StorageService) {
+  angular.module('quiryApp').controller('resultsController', function($http, $scope, $log, StorageService) {
       $scope.currentPage = 1;
       $scope.userId = StorageService.getValue("userId");
       $scope.results = StorageService.getValue("results");
@@ -55,8 +55,26 @@
             return map[input];
       };
 
-      $scope.download = function(fileId){
-            return;
+      $scope.download = function(idFile){
+          $http.get('/file/download', {
+            responseType: 'arraybuffer',
+            params: { fileId: idFile }
+          })
+          .then(
+            function(response) {
+              console.log(response);
+              console.log(response.headers('Content-Type'));
+              console.log(response.headers('File-Name'));
+              
+              var blob = new Blob([response.data], {type: response.headers('Content-Type')});
+              saveAs(blob, response.headers('File-Name'));
+            }
+          )
+          .catch(
+            function(response) {
+              alert("error");
+            }
+          );
       }
 
       $scope.signOut = function(){
