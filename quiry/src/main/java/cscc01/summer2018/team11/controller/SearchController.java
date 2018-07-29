@@ -2,13 +2,11 @@ package cscc01.summer2018.team11.controller;
 
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+import java.util.Map;
 
 import org.apache.lucene.queryparser.classic.ParseException;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,7 +39,7 @@ public class SearchController {
 			@RequestParam(value="courses", required = false) String[] courses)
 	{
 		ArrayList<HashMap<String, String>> results = new ArrayList<HashMap<String, String>>();
-		List<String> resultIdList;
+		Map<String, String> resultMap;
 
 		System.out.println(searchText);
 		System.out.println(author);
@@ -67,22 +65,20 @@ public class SearchController {
 			// max number of search results
 			System.out.println(search.search(100));
 
-			resultIdList = search.getResults();
+			resultMap = search.getResults();
 		} catch (ParseException | IOException ex) {
 			// TODO Auto-generated catch block
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 		}
 
-		System.out.println("File ID Results: "+ resultIdList);
-		for(String fileId : resultIdList) {
-			FileInfo tempFileInfo = FileService.getFileInfo(fileId);
-			try {
-				results.add(FileService.parseFileInfo(tempFileInfo));
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-			}
+		System.out.println("File ID Results: " + resultMap);
+		for (Map.Entry<String, String> entry : resultMap.entrySet()) {
+		    String fileId = entry.getKey();
+		    String preview = entry.getValue();
+
+		    FileInfo tempFileInfo = FileService.getFileInfo(fileId);
+		    HashMap<String, String> result = FileService.parseFileInfo(tempFileInfo, preview);
+		    results.add(result);
 		}
 
 		return ResponseEntity.status(HttpStatus.OK).body(results);

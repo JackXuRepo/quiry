@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import cscc01.summer2018.team11.database.UserDAO;
 
+
 @Service
 public class UserService {
 

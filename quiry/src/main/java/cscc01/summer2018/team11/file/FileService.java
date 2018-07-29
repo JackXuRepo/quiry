@@ -8,9 +8,9 @@ import java.util.HashMap;
 import org.springframework.stereotype.Service;
 
 import cscc01.summer2018.team11.database.FileDAO;
-import cscc01.summer2018.team11.database.UserDAO;
 import cscc01.summer2018.team11.lucene.Index;
 import cscc01.summer2018.team11.user.User;
+import cscc01.summer2018.team11.user.UserService;
 
 
 @Service
@@ -91,10 +91,9 @@ public class FileService {
         return exist;
     }
 
-    public static HashMap<String, String> parseFileInfo(FileInfo fileInfo) throws SQLException {
+    public static HashMap<String, String> parseFileInfo(FileInfo fileInfo, String preview) {
         HashMap<String, String> fileInfoMap = new HashMap<String, String>();
-        UserDAO userDao = new UserDAO();
-        User author = userDao.getUserByUserId(fileInfo.getAuthor());
+        User author = UserService.getUser(fileInfo.getAuthor());
 
         fileInfoMap.put("fileId", fileInfo.getFileId());
         fileInfoMap.put("title", fileInfo.getTitle());
@@ -105,7 +104,7 @@ public class FileService {
         fileInfoMap.put("course", fileInfo.getCourse());
         fileInfoMap.put("uploadDate", fileInfo.getUploadDate().toString());
         fileInfoMap.put("description", fileInfo.getDescription());
-        fileInfoMap.put("preview", "...is the difference between VALIDATION and ver... ...compare the following SPRINT burndown cha...");
+        fileInfoMap.put("preview", preview);
 
         System.out.println(fileInfoMap);
         return fileInfoMap;

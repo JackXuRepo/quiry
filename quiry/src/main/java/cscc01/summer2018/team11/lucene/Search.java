@@ -3,10 +3,14 @@ package cscc01.summer2018.team11.lucene;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.document.Document;
 import org.apache.lucene.document.IntPoint;
 import org.apache.lucene.document.LongPoint;
 import org.apache.lucene.index.DirectoryReader;
@@ -22,6 +26,9 @@ import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.search.TopDocs;
+import org.apache.lucene.search.highlight.Highlighter;
+import org.apache.lucene.search.highlight.InvalidTokenOffsetsException;
+import org.apache.lucene.search.highlight.QueryScorer;
 import org.apache.lucene.store.Directory;
 
 import cscc01.summer2018.team11.file.ContentType;
@@ -32,14 +39,17 @@ import cscc01.summer2018.team11.user.AccessLevel;
 public class Search {
 
     private IndexSearcher indexSearcher;
+    private Analyzer analyzer;
     private Query query;
     private TopDocs hits;
 
-    private Search(Query query) throws IOException {
+    private Search(Query query, Analyzer analyzer) throws IOException {
         Directory index = Index.getIndex();
         IndexReader indexReader = DirectoryReader.open(index);
         indexSearcher = new IndexSearcher(indexReader);
+
         this.query = query;
+        this.analyzer = analyzer;
     }
 
     public int search(int maxResults) throws IOException {
@@ -57,6 +67,7 @@ public class Search {
         }
     }
 
+    @Deprecated
     public int search(String searchText, int contentType, int fileType,
             int daysPassed, String authorName, String[] courseArr)
                     throws ParseException, IOException
@@ -97,6 +108,7 @@ public class Search {
         return hits.scoreDocs.length;
     }
 
+    @Deprecated
     public int search(String field, String searchQuery) throws ParseException, IOException {
         QueryParser queryParser = new QueryParser(field, new StandardAnalyzer());
         Query query = queryParser.parse(searchQuery);
@@ -104,12 +116,32 @@ public class Search {
         return hits.scoreDocs.length;
     }
 
-    public List<String> getResults() throws IOException {
-        List<String> results = new ArrayList<>();
+    public Map<String, String> getResults() {
+        Map<String, String> results = new HashMap<>(hits.scoreDocs.length);
+        Highlighter highlighter = new Highlighter(new QueryScorer(query));
+
         for (ScoreDoc scoreDoc : hits.scoreDocs) {
-            String fileId = indexSearcher.doc(scoreDoc.doc).get("id");
-            results.add(fileId);
+            Document doc;
+            try {
+                doc = indexSearcher.doc(scoreDoc.doc);
+            } catch (IOException ex) {
+                // TODO Auto-generated catch block
+                ex.printStackTrace();
+                continue;
+            }
+            String fileId = doc.get("id");
+            String text = doc.get("content");
+
+            try {
+                String preview = highlighter.getBestFragment(analyzer, "content", text);
+                results.put(fileId, preview);
+            } catch (IOException | InvalidTokenOffsetsException ex) {
+                // TODO Auto-generated catch block
+                ex.printStackTrace();
+                continue;
+            }
         }
+
         return results;
     }
 
@@ -124,7 +156,7 @@ public class Search {
         StandardAnalyzer analyzer = new StandardAnalyzer();
 
         public Search build() throws IOException {
-            return new Search(b.build());
+            return new Search(b.build(), analyzer);
         }
 
         public Builder searchText(String searchText) throws ParseException {

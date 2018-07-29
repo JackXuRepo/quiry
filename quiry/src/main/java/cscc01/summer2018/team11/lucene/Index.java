@@ -63,7 +63,7 @@ public class Index {
         Field idField = new StringField("id", file.getFileId(), Field.Store.YES);
         Field titleField = new StringField("title", file.getTitle(), Field.Store.NO);
         Field descriptionField = new TextField("description", file.getDescription(), Field.Store.NO);
-        Field contentField = new TextField("content", file.getContent(), Field.Store.NO);
+        Field contentField = new TextField("content", file.getContent(), Field.Store.YES);
         Field courseField = new StringField("course", file.getCourse(), Field.Store.NO);
 
         Field fileTField = new IntPoint("fileType", file.getFileType());

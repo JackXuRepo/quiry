@@ -2,6 +2,7 @@ package cscc01.summer2018.team11;
 
 
 import java.io.IOException;
+import java.util.Map;
 
 import org.apache.lucene.queryparser.classic.ParseException;
 
@@ -34,10 +35,12 @@ public class SearchTest {
             // max number of search results to return
             System.out.println("found: " + search.search(100));
 
-            for (String id : search.getResults()) {
+            for (Map.Entry<String, String> entry : search.getResults().entrySet()) {
+                String id = entry.getKey();
                 User user = UserService.getUser(FileService.getFileInfo(id).getAuthor());
-                System.out.println(id +  " : " + user.getFirstName() + " " + user.getLastName());
+                System.out.println(id +  " : " + user.getFirstName() + " " + user.getLastName() + "\t" + entry.getValue());
             }
+
         } catch (ParseException | IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
