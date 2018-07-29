@@ -57,7 +57,7 @@
 				)
 				.catch(
 					function(response) {
-						$window.location.href = "./index.html";
+						alert("error: " + response.data);
 					}
 				);
 /*

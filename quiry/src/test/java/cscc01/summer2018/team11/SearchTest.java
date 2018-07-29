@@ -24,10 +24,10 @@ public class SearchTest {
         try {
             Search search = new Search.Builder()
                     .searchText("you")
-//                    .accessLevel(true, true)
+                    .accessLevel(true, true)
+                    .contentType(true, true, true)
+                    .fileType(true, true, true)
 //                    .author("David Ferris")
-//                    .contentType(false, false, true)
-//                    .fileType(false, false, true)
 //                    .courses( new String[] {"cscc01", "cscc02"} )
 //                    .daysPassed(364)
                     .build();

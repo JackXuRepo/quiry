@@ -72,6 +72,7 @@ public class MockUsers {
         for (String id : userDao.getAllUserIds()) {
             System.out.println(id + " : " + userDao.getUserByUserId(id));
         }
+        userDao.close();
     }
 
 }

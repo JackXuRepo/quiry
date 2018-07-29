@@ -235,6 +235,7 @@ public class MockFiles {
         for (int id : fileDao.getAllFileIds()) {
             System.out.println(id + " : " + fileDao.getFileByFileId(id));
         }
+        fileDao.close();
     }
 
 }
