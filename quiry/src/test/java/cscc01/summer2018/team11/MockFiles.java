@@ -10,6 +10,7 @@ import cscc01.summer2018.team11.database.FileDAO;
 import cscc01.summer2018.team11.file.ContentType;
 import cscc01.summer2018.team11.file.FileInfo;
 import cscc01.summer2018.team11.file.FileType;
+import cscc01.summer2018.team11.lucene.Index;
 import cscc01.summer2018.team11.user.AccessLevel;
 
 
@@ -208,20 +209,17 @@ public class MockFiles {
     }
 
     public static void main(String[] args) throws SQLException, IOException {
-//        UserStorage.initialize();
-//        FileStorage.initialize();
-//
-//        Index.initialize();
-//        Index.indexFile( file1() );
-//        Index.indexFile( file2() );
-//        Index.indexFile( file3() );
-//        Index.indexFile( file4() );
-//        Index.indexFile( file5() );
-//        Index.indexFile( file6() );
-//        Index.indexFile( file7() );
-//        Index.indexFile( file8() );
-//        Index.indexFile( file9() );
-//        Index.close();
+        Index.initialize();
+        Index.indexFile( file1() );
+        Index.indexFile( file2() );
+        Index.indexFile( file3() );
+        Index.indexFile( file4() );
+        Index.indexFile( file5() );
+        Index.indexFile( file6() );
+        Index.indexFile( file7() );
+        Index.indexFile( file8() );
+        Index.indexFile( file9() );
+        Index.close();
 
         FileDAO fileDao = new FileDAO();
         fileDao.updateFile( file1() );

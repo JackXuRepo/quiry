@@ -27,6 +27,7 @@ public class FileType {
 		case "txt":
 			return FileType.TEXT;
 		case "html":
+		case "htm" :
 			return FileType.HTML;
 		default:
 			return FileType.NONE;

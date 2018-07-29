@@ -14,10 +14,9 @@ import cscc01.summer2018.team11.lucene.Index;
  * Main class for Quiry project.
  */
 @SpringBootApplication
-public class App
-{
-    public static void main( String[] args )
-    {
+public class App {
+
+    public static void main(String[] args) {
         // start spring framework
         SpringApplication.run(App.class, args);
     }

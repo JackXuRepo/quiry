@@ -130,13 +130,13 @@ public class Search {
         public Builder searchText(String searchText) throws ParseException {
             MultiFieldQueryParser searchTextParser = new MultiFieldQueryParser(
                     new String[] {"title", "description", "content"}, analyzer);
-            b.add(searchTextParser.parse(searchText), BooleanClause.Occur.MUST); // MUST
+            b.add(searchTextParser.parse(searchText), BooleanClause.Occur.MUST);
             return this;
         }
 
         public Builder author(String author) throws ParseException {
             // manually split the search term
-            String[] words = author.split("[^a-zA-Z0-9']+");
+            String[] words = author.split("[^a-zA-Z0-9]+");
 
             BooleanQuery.Builder authorQuery = new BooleanQuery.Builder();
             for (String str : words) {
