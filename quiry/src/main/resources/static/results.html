@@ -107,7 +107,7 @@
 				        <tr ng-if="toggle[$index] || expandAll" style="background-color: #f3f9f8;">
 				        	<td></td>
 				        	<td><label>Search Preview: </label></td>
-				        	<td colspan="6">{{result.preview}}</td>
+				        	<td colspan="6"><p ng-bind-html="result.preview"></p></td>
 				        </tr>
 				    </tbody>
 				</table>
