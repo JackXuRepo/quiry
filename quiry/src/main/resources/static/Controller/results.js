@@ -6,6 +6,8 @@
       $scope.sortKey;
       $scope.reverse;
       $scope.expandAll = false;
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(setChartData);
 
       $scope.clearSort = function() {
           $scope.sortKey = '';
@@ -80,5 +82,65 @@
       $scope.signOut = function(){
         StorageService.removeValue("userId");
         $scope.userId = null;
+      }
+
+      function setChartData(){
+
+        var results = StorageService.getValue("results");
+
+        accountTypeHeaders = ['Student', 'Instructor'];
+        accountTypeNumbers = [0, 0];
+        fileTypeHeaders = ['PDF', 'TXT', 'HTML'];
+        fileTypeNumbers = [0, 0, 0];
+        contentTypeHeaders = ['Past Exams', 'Course Notes', 'Journals'];
+        contentTypeNumbers = [0, 0, 0];
+        console.log(results);
+
+        for(result in results){
+          console.log("AUTHOR-TYPE" + result.authorType-1);
+          console.log("FILE-TYPE" + result.fileType);
+          console.log("CONTENT-TYPE" + result.contentType);
+          accountTypeNumbers[results[result].authorType - 1]++;
+          fileTypeNumbers[results[result].fileType]++;
+          contentTypeNumbers[results[result].contentType]++;
+        }
+
+        var accountTypeArray = new Array();
+        accountTypeArray.push(["Account Type", "Number of documents found"]);
+        accountTypeArray.push([accountTypeHeaders[0], accountTypeNumbers[0]]);
+        accountTypeArray.push([accountTypeHeaders[1], accountTypeNumbers[1]]);
+
+        var fileTypeArray = new Array();
+        fileTypeArray.push(["File Type", "Number of documents found"]);
+        fileTypeArray.push([fileTypeHeaders[0], fileTypeNumbers[0]]);
+        fileTypeArray.push([fileTypeHeaders[1], fileTypeNumbers[1]]);
+        fileTypeArray.push([fileTypeHeaders[2], fileTypeNumbers[2]]);
+
+        var contentTypeArray = new Array();
+        contentTypeArray.push(["Content Type", "Number of documents found"]);
+        contentTypeArray.push([contentTypeHeaders[0], contentTypeNumbers[0]]);
+        contentTypeArray.push([contentTypeHeaders[1], contentTypeNumbers[1]]);
+        contentTypeArray.push([contentTypeHeaders[2], contentTypeNumbers[2]]);
+
+        // console.log(accountTypeArray);
+        // console.log(fileTypeArray);
+        // console.log(contentTypeArray);
+
+        drawChart(accountTypeArray, "Results by Account Types", "piechartAccount");
+        drawChart(fileTypeArray, "Results by File Types", "piechartFile");
+        drawChart(contentTypeArray, "Results by Content Types", "piechartContent");
+
+      }
+
+      function drawChart(array, chartTitle, elementId) {
+        var data = google.visualization.arrayToDataTable(array);
+
+        var options = {
+          title: chartTitle
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById(elementId));
+
+        chart.draw(data, options);
       }
   });

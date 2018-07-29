@@ -1,10 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="quiryApp">
+<div ng-controller="userController">
 
 <head>
 	<title>User</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link href="SpryAssets/SpryAccordion.css" rel="stylesheet" type="text/css" />
+	<link rel = "stylesheet" href = "https://ajax.googleapis.com/ajax/libs/angular_material/1.1.10/angular-material.min.css">
     
 	<style type="text/css">
 	body {
@@ -65,13 +67,15 @@
 	    </div>
 	    <div class="AccordionPanelContent">
         	<div align="center">
-          		<h2>Utroid: heweijia</h2>
-            	<h2>Email Address: kin-he@hotmail.com</h2>
-            	<h2>Name: Kin He</h2>
-            	<h2>Status: Student</h2>
+          		<h2>Utroid: {{ userData.userId }}</h2>
+            	<h2>Email Address: {{ userData.email }}</h2>
+            	<h2>Name: {{ userData.firstName + " " + userData.lastName }}</h2>
+            	<h2>Status: {{ getAccountType(userData.accessLevel) }}</h2>
+            	<!--
             	<h2>Courses: CSCC01 STAB52</h2>
             	<h2>File Uploaded: CSCC01_Midterm_Study_Note.pdf CSCC01_Final_Study_Note.pdf</h2>
             	<h2>Date Access: 2018/07/27 02:30:51 | 2018/07/20 22:11:25 | 2018/07/17 15:57:33</h2> 
+            -->
             </div>
 	    </div>
     </div>
@@ -84,11 +88,11 @@
 	   	</div>
 	   	<div class="AccordionPanelContent">
 	      	<div align="center">
-          		<h2>Current Email: kin-he@hotmail.com</h2>
-          		<h2>Password: <input name="email_password_1" type="password" style="width:300px" placeholder="Please Enter your password" /> </h2>
-          		<h2>New Email: <textarea name="new_email_1" cols="35" rows="" wrap="off"; style="height:20px"; placeholder="Please Enter a new email"></textarea>@mail.utoronto.ca</h2>
-          		<h2>Confirm Email: <textarea name="new_email_2" cols="30" rows="" wrap="off"; style="height:20px"; placeholder="Please Enter a new email"></textarea>@mail.utoronto.ca</h2>
-          		<a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image8','','icon/Confirm_flash.png',1)"><img src="icon/Confirm.png" width="241" height="90" id="Image8" /></a>
+          		<h2>Current Email: {{ userData.email }}}</h2>
+          		<h2>Password: <input name="email_password_1" type="password" style="width:300px" placeholder="Please Enter your password" ng-model="emailPassword"/> </h2>
+          		<h2>New Email: <textarea name="new_email_1" cols="35" rows="" wrap="off"; style="height:20px"; placeholder="Please Enter a new email" ng-model="newEmail"></textarea>@mail.utoronto.ca</h2>
+          		<h2>Confirm Email: <textarea name="new_email_2" cols="30" rows="" wrap="off"; style="height:20px"; placeholder="Please Enter a new email" ng-model="newEmailConf"></textarea>@mail.utoronto.ca</h2>
+          		<a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image8','','icon/Confirm_flash.png',1)"><img src="icon/Confirm.png" width="241" height="90" id="Image8" ng-click="changeEmail(emailPassword, newEmail, newEmailConf)"/></a>
             </div>
 	    </div>
 	</div>
@@ -125,7 +129,8 @@
           	</div>
 		</div>
 	</div>
-      
+
+<!--
 	<div class="AccordionPanel">
 		<div class="AccordionPanelTab">
 			<div align="center" style="font-size:30px" >
@@ -142,6 +147,7 @@
           	</div>
 		</div>
 	</div>
+--->
       
 	<div class="AccordionPanel">
 		<div class="AccordionPanelTab">
@@ -161,7 +167,30 @@
 		</div>
 	</div>
 </body>
+</div>
 <script type="text/javascript">
 	var Accordion1 = new Spry.Widget.Accordion("Accordion1");
 </script>
+<!-- AngularJS libraries -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-aria.js"></script>
+  	<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.10/angular-material.min.js"></script>
+
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Bootstrap -- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+
+<!-- ng-tag dependency -->
+<script src="http://mbenford.github.io/ngTagsInput/js/ng-tags-input.min.js"></script>
+
+<script src="./route.js"></script>
+<script src="./Service/storage.js"></script>
+<script src="./Controller/user.js"></script>
 </html>

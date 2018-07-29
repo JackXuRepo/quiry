@@ -21,7 +21,7 @@
             </div>
          </div>
       </div>
-      <div ng-show="advancedSearchOn">
+      <div ng-show="advancedSearchOn" class="show-element animate-show-hide">
          <div class="container">
             <div class="row">
                <div class="col-sm-4">
@@ -99,5 +99,8 @@
       </div>
    </div>
    <br/>
+   <div class="container">
+   <md-progress-linear md-mode="indeterminate" ng-disabled="!loadBar" ng-show="loadBar"></md-progress-linear>
+   </div>
    </body>
 </html>
