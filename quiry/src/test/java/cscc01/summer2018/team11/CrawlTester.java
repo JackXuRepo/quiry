@@ -10,7 +10,7 @@ public class CrawlTester {
 
 	@Test
 	public void testMain() throws Exception {
-		CrawlControl.main(new String[] {"https://www.researchgate.net/publication/44982277_System_development_life_cycle"});
+		CrawlControl.Crawl("https://www.researchgate.net/publication/44982277_System_development_life_cycle");
 		
 		
 	}
