@@ -3,7 +3,7 @@ package cscc01.summer2018.team11.user;
 import java.io.File;
 
 import cscc01.summer2018.team11.file.FileInfo;
-import cscc01.summer2018.team11.file.FileStorage;
+import cscc01.summer2018.team11.file.FileService;
 
 /**
  * TODO: REVISE
@@ -85,6 +85,6 @@ public abstract class User {
     }
 
     public FileInfo getFileInfo(int fileId) {
-        return FileStorage.getFileInfo(fileId);
+        return FileService.getFileInfo(fileId);
     }
 }

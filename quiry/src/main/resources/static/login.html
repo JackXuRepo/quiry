@@ -14,6 +14,7 @@
 
 		<!-- ng-tag CSS -->
 		<link rel="stylesheet" href="http://mbenford.github.io/ngTagsInput/css/ng-tags-input.min.css" />
+		<link rel = "stylesheet" href = "https://ajax.googleapis.com/ajax/libs/angular_material/1.1.10/angular-material.min.css">
 
 		<link rel="icon" href="./Resources/favicon.ico" type="image/x-icon"/>
 		<a href="./index.html"><img src="./Resources/logo.png" alt="Quiry Search Engine" style="width:100px;height:40px;"></img></a>
@@ -30,7 +31,7 @@
 	<input id="password" type="password" ng-model="password" style="width: 240px"/>
         <br/>
 	<span id="statusMessage">{{ message }}</span><br/>
-	<button class="resetbutton" ng-click="loginUser()">Login</button><br/>
+	<md-button class="md-raised md-primary" ng-click="loginUser()">Login</md-button><br/>
 	<a href="./registration.html">Don't have an account?<br/> Sign up Here</a>
 	</div>
 	<br/>
@@ -42,16 +43,20 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-aria.js"></script>
+  	<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.10/angular-material.min.js"></script>
+
 
 	<!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+	<!-- Bootstrap -- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
 
 	<!-- ng-tag dependency -->
 	<script src="http://mbenford.github.io/ngTagsInput/js/ng-tags-input.min.js"></script>
-
-	<!-- Bootstrap -- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<script src="./route.js"></script>
 	<script src="./Controller/login.js"></script>
 	<script src="./Service/storage.js"></script>

@@ -1,0 +1,156 @@
+<!doctype html>
+<html ng-app="quiryApp">
+<div ng-controller="resultsController">
+  <head>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-sanitize.js"></script>
+   	<script src="http://mbenford.github.io/ngTagsInput/js/ng-tags-input.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-aria.js"></script>
+  	<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.10/angular-material.min.js"></script>
+
+
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script src="./route.js"></script>
+    <script src="./Service/storage.js"></script>
+    <script src="./Controller/results.js"></script>
+    <script src="./Controller/search.js"></script>
+    	<!-- Latest compiled and minified CSS -->
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"/>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- fontAwesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
+	<!-- ng-tag CSS -->
+	<link rel="stylesheet" href="http://mbenford.github.io/ngTagsInput/css/ng-tags-input.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.10/angular-material.min.css" />
+	<link rel="stylesheet" href="./css/styles.css">
+	<link rel="icon" href="./Resources/favicon.ico" type="image/x-icon"/>
+	<title>Search</title>
+
+	<div ng-show="!userId" class="ng-cloak" align="right">
+		<a href="./login.html" style="padding-right: 30px"><i class="fas fa-sign-in-alt"></i> Sign in </a>
+		<a href="./registration.html" style="padding-right: 30px"><i class="fas fa-plus-square"></i> Register </a>
+	</div>
+
+	<div ng-show="userId" class="ng-cloak" align="right">
+		<a href="./user.html" style="padding-right: 30px"><i class="fas fa-id-card"></i> {{ userId }} </a>
+		<a href="./upload.html" style="color:green;padding-right: 30px"><i class="fas fa-upload"></i> Upload </a>
+		<a href="#" style="color:red;padding-right: 30px" ng-click="signOut()">
+			<i class="fas fa-sign-out-alt"></i> Sign out </a>
+	</div>
+		<a href="./index.html"><img src="./Resources/logo.png" alt="Quiry Search Engine" style="width:100px;height:40px;"></img></a>
+  </head>
+
+  <body>
+  	<h1 class="header">Search Results</h1>
+  	<div ng-include src="'./search.html'"></div>
+  	<div ng-cloak>
+	  <md-content>
+	    <md-tabs md-dynamic-height md-border-bottom>
+	      <md-tab label="Results">
+	        <md-content class="md-padding">
+	        		<div class="container">
+						<div class="row">
+							<div class="col-sm-4">
+								<label for="maxSize">Results to Show:</label>
+								<input name="maxSize" ng-model="maxSize"></input>
+							</div>
+							<div class="col-sm-3">
+								<button class="btn btn-default btn-sm" ng-click="clearSort()">Clear Sorting</button>
+							</div>
+							<div class="col-sm-2">
+								<button class="btn btn-default btn-sm" ng-click="expandAll = !expandAll">Expand All</button>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col result-text">
+								{{ results.length }} results found.
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								<table class="table table-hover">
+									<thead>
+										<th ng-click="sort('fileType')">File Type
+										<span class="glyphicon sort-icon" ng-show="sortKey=='fileType'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+										<th ng-click="sort('title')">File Name
+										<span class="glyphicon sort-icon" ng-show="sortKey=='title'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+										<th ng-click="sort('author')">Author
+										<span class="glyphicon sort-icon" ng-show="sortKey=='author'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+										<th ng-click="sort('contentType')">Content Type
+										<span class="glyphicon sort-icon" ng-show="sortKey=='contentType'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+										<th ng-click="sort('course')">Course
+										<span class="glyphicon sort-icon" ng-show="sortKey=='course'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+										<th ng-click="sort('uploadDate')">Upload Date
+										<span class="glyphicon sort-icon" ng-show="sortKey=='uploadDate'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+										<th>Download Link</th>
+										<th></th>
+									</thead>
+									<tbody ng-repeat="result in results | orderBy:sortKey:reverse | limitTo: ((currentPage-1)*maxSize - results.length) | limitTo : maxSize">
+										<tr>
+											<td><i class="{{ getIcon(result.fileType) }}"></i></td>
+											<td>{{ result.title }}</td>
+											<td>{{ result.author }}<i class="{{ isInstructor(result.authorType) }}"></i></td>
+											<td>{{ filterContentType(result.contentType) }}</td>
+											<td>{{ result.course  | uppercase }}</td>
+											<td>{{ result.uploadDate | date }}</td>
+											<td><a href="#" ng-click="download(result.fileId)">Download File</a></td>
+											<td>
+											<a class="btn btn-link" ng-init="toggle[$index] = false" ng-click="toggle[$index] = !toggle[$index]">
+											  <span class="glyphicon glyphicon-plus-sign" ng-if="!toggle[$index]"></span>
+											  <span class="glyphicon glyphicon-minus-sign" ng-if="toggle[$index]"></span>
+											</a>
+											</td>
+										</tr>
+										<tr ng-show="toggle[$index] || expandAll" class="show-element animate-show-hide" style="background-color: #f3f9f8;">
+											<td></td>
+											<td><label>Description: </label></td>
+											<td colspan="6">{{result.description}}</td>
+								        </tr>
+								        <tr ng-show="toggle[$index] || expandAll" class="show-element animate-show-hide" style="background-color: #f3f9f8;">
+								        	<td></td>
+								        	<td><label>Search Preview: </label></td>
+								        	<td colspan="6"><p ng-bind-html="result.preview"></p></td>
+								        </tr>
+								    </tbody>
+								</table>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col centered-body">
+								<ul uib-pagination total-items="results.length" items-per-page="maxSize" ng-model="currentPage" ng-change="pageChanged()"></ul>
+							</div>
+						</div>
+					</div>
+	        </md-content>
+	      </md-tab>
+	      <md-tab label="Analytics">
+	        <md-content class="md-padding">
+	        	<div class="container-fluid">
+	        		<div class="row">
+	        			<div class="col">
+	        				<div id="piechartAccount" style="width: 530px; height: 285px;"></div>
+	        			</div>
+	        			<div class="col">
+	        				<div id="piechartFile" style="width: 530px; height: 285px;"></div>
+	        			</div>
+	        			<div class="col">
+	        				<div id="piechartContent" style="width: 530px; height: 285px;"></div>
+	        			</div>
+	        		</div>
+	        	</div>
+	        </md-content>
+	      </md-tab>
+	    </md-tabs>
+	  </md-content>
+	</div>
+  </body>
+</div>
+</html>

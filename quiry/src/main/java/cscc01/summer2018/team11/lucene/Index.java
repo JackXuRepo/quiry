@@ -2,9 +2,8 @@ package cscc01.summer2018.team11.lucene;
 
 
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
@@ -17,22 +16,26 @@ import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.store.Directory;
-import org.apache.lucene.store.RAMDirectory;
+import org.apache.lucene.store.FSDirectory;
 
 import cscc01.summer2018.team11.file.FileInfo;
 import cscc01.summer2018.team11.user.User;
+import cscc01.summer2018.team11.user.UserService;
 
 
 public class Index {
-
-    public static Map<String, User> userStorage = new HashMap<>();
 
     private static IndexWriter writer;
     private static Directory index;
 
     public static void initialize() {
-        // this directory will contain the indexes
-        index = new RAMDirectory();
+        try {
+            // this directory will contain the indexes
+            index = FSDirectory.open(Paths.get("lucene"));
+        } catch (IOException ex) {
+            // TODO Auto-generated catch block
+            ex.printStackTrace();
+        }
 
         // create the index writer
         StandardAnalyzer analyzer = new StandardAnalyzer();
@@ -40,9 +43,9 @@ public class Index {
 
         try {
             writer = new IndexWriter(index, config);
-        } catch (IOException e) {
+        } catch (IOException ex) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            ex.printStackTrace();
         }
     }
 
@@ -60,16 +63,17 @@ public class Index {
         Field idField = new StringField("id", file.getFileId(), Field.Store.YES);
         Field titleField = new StringField("title", file.getTitle(), Field.Store.NO);
         Field descriptionField = new TextField("description", file.getDescription(), Field.Store.NO);
-        Field contentField = new TextField("content", file.getContent(), Field.Store.NO);
+        Field contentField = new TextField("content", file.getContent(), Field.Store.YES);
         Field courseField = new StringField("course", file.getCourse(), Field.Store.NO);
 
         Field fileTField = new IntPoint("fileType", file.getFileType());
         Field contentTField = new IntPoint("contentType", file.getContentType());
+        Field accessField = new IntPoint("accessLevel", file.getAccessLevel());
 
         Field dateField = new LongPoint("date", file.getUploadMs());
 
         String author = file.getAuthor();
-        User user = userStorage.get(author); // TODO: UserStorage.getUser(author);
+        User user = UserService.getUser(author);
         Field authorField = new StringField("author", author, Field.Store.NO);
         Field firstNField = new StringField("firstName", user.getFirstName(), Field.Store.NO);
         Field lastNField = new StringField("lastName", user.getLastName(), Field.Store.NO);
@@ -82,6 +86,7 @@ public class Index {
 
         document.add(fileTField);
         document.add(contentTField);
+        document.add(accessField);
         document.add(dateField);
 
         document.add(authorField);
@@ -90,6 +95,8 @@ public class Index {
 
         writer.addDocument(document);
         writer.commit();
+
+        System.out.println("indexed " + file.getId());
     }
 
     public static void removeFile(int fileId) throws IOException {

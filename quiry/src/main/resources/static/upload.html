@@ -14,6 +14,7 @@
 
 			<!-- ng-tag CSS -->
 			<link rel="stylesheet" href="http://mbenford.github.io/ngTagsInput/css/ng-tags-input.min.css" />
+			<link rel = "stylesheet" href = "https://ajax.googleapis.com/ajax/libs/angular_material/1.1.10/angular-material.min.css">
 
 			<link rel="icon" href="./Resources/favicon.ico" type="image/x-icon"/>
 			<a href="./index.html"><img src="./Resources/logo.png" alt="Quiry Search Engine" style="width:100px;height:40px;"></img></a>
@@ -23,15 +24,16 @@
 		<body>
 		<form name="uploadForm" id="uploadForm" ng-show="userId != null">
 			<div class="container border border-info rounded padded-light ng-cloak">
+
 				<div class="row">
 					<div class="col">
 						<label style="font-family: Calibri" for="contentType">Content Type:</label>
-						<label for="courseNoteType" class="radio-inline" style="font-weight:normal"><input id="courseNoteType" type="radio" name="contentType" ng-model="contentType" ng-value="Course Notes" required/>Course Notes</label>
-						<label for="pastExamType" class="radio-inline" style="font-weight:normal"><input id="pastExamType" type="radio" name="contentType" ng-model="contentType" ng-value="Past Exam"/>Past Exam</label>
-						<label for="journalType" class="radio-inline" style="font-weight:normal"><input id="journalType" type="radio" name="contentType" ng-model="contentType" ng-value="Journal"/>Journal</label>
-						<span class="error-message" ng-show="(uploadForm.contentType.$touched || submit == true) && registrationForm.contentType.$invalid">You must select one.</span>
+						<label for="courseNoteType" class="radio-inline" style="font-weight:normal"><input id="courseNoteType" type="radio" name="courseNoteType" ng-model="contentType" ng-value="1"/>Course Notes</label>
+						<label for="pastExamType" class="radio-inline" style="font-weight:normal"><input id="pastExamType" type="radio" name="pastExamType" ng-model="contentType" ng-value="2"/>Past Exam</label>
+						<label for="journalType" class="radio-inline" style="font-weight:normal"><input id="journalType" type="radio" name="journalType" ng-model="contentType" ng-value="3"/>Journal</label>
 					</div>
 				</div>
+
 				<div class="row">
 					<div class="col-md-8">
 						<label for="fileName">Title:</label>
@@ -47,47 +49,64 @@
 					<div class="col">
 						<div class="form-group">
 							<label for="description">Description:
-								<textarea rows="5" style="min-width: 240%; max-width: 300%" id="uploadDescription" ng-model="description"></textarea>
+								<textarea rows="5" style="min-width: 240%; max-width: 300%" id="uploadDescription" placeholder="Please include a short description of your file" name="description" ng-model="description"></textarea>
 							</label>
 						</div>
 					</div>
+
 					<div class="col" style="text-align: right">
 						<br/>
-						<input type="file" name="file" ng-model="file"/>
+						<input type="file" name="file" file-model="file"/>
 						<br/>
-						<label style="font-family: Calibri" for="fileType">Visibility:</label>
-						<label for="courseOnlyType" class="radio-inline" style="font-weight:normal"><input id="courseOnlyType" type="radio" name="fileType" ng-model="visibility" ng-value="Course Only"/>Course Only</label>
-						<label for="publicType" class="radio-inline" style="font-weight:normal"><input id="publicType" type="radio" name="fileType" ng-model="visibility" ng-value="Public"/>Public</label>
+<!--
+						<label for="courseOnlyType" class="radio-inline" style="font-weight:normal"><input id="courseOnlyType" type="radio" name="courseOnlyType" ng-model="visibility" ng-value="1" required/>Course Only</label>
+						<label for="publicType" class="radio-inline" style="font-weight:normal"><input id="publicType" type="radio" name="journalType" ng-model="visibility" ng-value="2" />Public</label>
 						<br/>
+-->
 					</div>
 				</div>
 			</div>
 			<br/>
 			<div class="container centered-body">
-				<button class="resetbutton" type="submit" ng-click="uploadDocument(uploadForm)"> Upload </button>
+				<md-button class="md-raised md-primary" type="submit" ng-disabled="file == null || fileTitle == null" ng-click="uploadDocument(uploadForm)"> Upload </md-button>
 			</div>
 		</form>
 		<div ng-show="userId == null" class="centered-body">
 			You must be signed in to access this Feature.
 			<a href="./login.html"><br/> Sign in Here</a>
 			<a href="./registration.html"><br/>or Sign up for an Account Here</a>
-		</div>	
+		</div>
+	    <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="!activateLoading">
+	      <md-progress-circular md-mode="indeterminate" ng-disabled="!activateLoading"></md-progress-circular>
+	    </div>
 		</body>
 	</div>
 	<!-- AngularJS libraries -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-aria.js"></script>
+  	<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.10/angular-material.min.js"></script>
+
 
 	<!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+	<!-- Bootstrap -- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
 
 	<!-- ng-tag dependency -->
 	<script src="http://mbenford.github.io/ngTagsInput/js/ng-tags-input.min.js"></script>
 
+	<!-- file download library
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
+	-->
+
 	<!-- Bootstrap -- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 	<script src="./route.js"></script>
 	<script src="./Controller/upload.js"></script>
 	<script src="./Service/storage.js"></script>

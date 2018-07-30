@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
+import org.jsoup.Jsoup;
 
 
 public class Parser {
@@ -15,66 +16,67 @@ public class Parser {
     public static int getFileType(String fileName) {
         String extension = "";
         int i = fileName.lastIndexOf('.');
-        if (i >= 0) {
-            extension = fileName.substring(i+1);
+        if (i > 0) {
+            extension = fileName.substring(i + 1);
         }
         return FileType.toFileType(extension);
     }
 
-    public static String getContent(String fileName) {
+    public static String getContent(String filePath) {
         String fileContent;
-        if (getFileType(fileName) == FileType.PDF) {
-            fileContent = pdfFileContent(fileName);
-        } else {
-            fileContent = fileContent(fileName);
+        File file = new File(filePath);
+
+        switch (getFileType(file.getName())) {
+        case FileType.HTML:
+            fileContent = htmlContent(file);
+            break;
+        case FileType.PDF:
+            fileContent = pdfContent(file);
+            break;
+        default:
+            fileContent = fileContent(file);
         }
+
         return fileContent;
     }
 
-    public static String fileContent(String fileName) {
-        BufferedReader br = null;
-        FileReader fr = null;
-        String fileContents = "";
+    public static String fileContent(File file) {
+        StringBuilder fileContent = new StringBuilder();
 
-        try {
-            fr = new FileReader(fileName);
-            br = new BufferedReader(fr);
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String currentLine;
-
             while ((currentLine = br.readLine()) != null) {
-                fileContents = fileContents + currentLine + "\n";
+                fileContent.append(currentLine).append("\n");
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (br != null) br.close();
-                if (fr != null) fr.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
-        return fileContents;
+        return fileContent.toString();
     }
 
-    public static String pdfFileContent(String fileName) {
-        PDDocument pdDoc = null;
-        File file = new File(fileName);
+    public static String pdfContent(File file) {
         String parsedText = "";
 
-        try {
-            pdDoc = PDDocument.load(file);
-            parsedText = new PDFTextStripper().getText(pdDoc);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (pdDoc != null) pdDoc.close();
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
+        try (PDDocument doc = PDDocument.load(file)) {
+            parsedText = new PDFTextStripper().getText(doc);
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
         return parsedText;
+    }
+
+    public static String htmlContent(File file) {
+        String fileContent = "";
+
+        try {
+            fileContent = Jsoup.parse(file, null).text();
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return fileContent;
     }
 
 }

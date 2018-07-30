@@ -5,7 +5,6 @@ import java.sql.SQLException;
 
 import cscc01.summer2018.team11.database.FileDAO;
 import cscc01.summer2018.team11.file.FileInfo;
-import cscc01.summer2018.team11.file.FileStorage;
 
 
 /**
@@ -14,7 +13,6 @@ import cscc01.summer2018.team11.file.FileStorage;
 public class FileDAOTest {
 
 	public static void main(String[] args) throws SQLException {
-		FileStorage.initialize();
 
 		int fileId = FileInfo.generateId();
 		String userId = "xuhaosen";
@@ -28,11 +26,11 @@ public class FileDAOTest {
 		boolean courseRestricted = true;
 		long uploadMs = System.currentTimeMillis();
 
-		FileInfo fileData = new FileInfo(userId, title, description, contentType,
-				accessLevel, filePath, course, courseRestricted, fileType, uploadMs, fileId);
+//		FileInfo fileData = new FileInfo(userId, title, description, contentType,
+//				accessLevel, filePath, course, courseRestricted, fileType, uploadMs, fileId);
 
 		FileDAO fileDatabase = new FileDAO();
-		fileDatabase.updateFile(fileData);
+//		fileDatabase.updateFile(fileData);
 
 		FileInfo file = fileDatabase.getFileByFileId(fileId);
 		System.out.println(file.getId());

@@ -3,10 +3,14 @@ package cscc01.summer2018.team11.lucene;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.document.Document;
 import org.apache.lucene.document.IntPoint;
 import org.apache.lucene.document.LongPoint;
 import org.apache.lucene.index.DirectoryReader;
@@ -22,16 +26,36 @@ import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.search.TopDocs;
+import org.apache.lucene.search.highlight.Highlighter;
+import org.apache.lucene.search.highlight.InvalidTokenOffsetsException;
+import org.apache.lucene.search.highlight.QueryScorer;
 import org.apache.lucene.store.Directory;
 
 import cscc01.summer2018.team11.file.ContentType;
 import cscc01.summer2018.team11.file.FileType;
+import cscc01.summer2018.team11.user.AccessLevel;
 
 
 public class Search {
 
     private IndexSearcher indexSearcher;
+    private Analyzer analyzer;
+    private Query query;
     private TopDocs hits;
+
+    private Search(Query query, Analyzer analyzer) throws IOException {
+        Directory index = Index.getIndex();
+        IndexReader indexReader = DirectoryReader.open(index);
+        indexSearcher = new IndexSearcher(indexReader);
+
+        this.query = query;
+        this.analyzer = analyzer;
+    }
+
+    public int search(int maxResults) throws IOException {
+        hits = indexSearcher.search(query, maxResults);
+        return hits.scoreDocs.length;
+    }
 
     public Search(Directory index) {
         try {
@@ -43,6 +67,7 @@ public class Search {
         }
     }
 
+    @Deprecated
     public int search(String searchText, int contentType, int fileType,
             int daysPassed, String authorName, String[] courseArr)
                     throws ParseException, IOException
@@ -83,6 +108,7 @@ public class Search {
         return hits.scoreDocs.length;
     }
 
+    @Deprecated
     public int search(String field, String searchQuery) throws ParseException, IOException {
         QueryParser queryParser = new QueryParser(field, new StandardAnalyzer());
         Query query = queryParser.parse(searchQuery);
@@ -90,17 +116,134 @@ public class Search {
         return hits.scoreDocs.length;
     }
 
-    public List<String> getResults() throws IOException {
-        List<String> results = new ArrayList<>();
+    public Map<String, String> getResults() {
+        Map<String, String> results = new HashMap<>(hits.scoreDocs.length);
+        Highlighter highlighter = new Highlighter(new QueryScorer(query));
+
         for (ScoreDoc scoreDoc : hits.scoreDocs) {
-            String fileId = indexSearcher.doc(scoreDoc.doc).get("id");
-            results.add(fileId);
+            Document doc;
+            try {
+                doc = indexSearcher.doc(scoreDoc.doc);
+            } catch (IOException ex) {
+                // TODO Auto-generated catch block
+                ex.printStackTrace();
+                continue;
+            }
+            String fileId = doc.get("id");
+            String text = doc.get("content");
+
+            try {
+                String preview = highlighter.getBestFragment(analyzer, "content", text);
+                results.put(fileId, preview);
+            } catch (IOException | InvalidTokenOffsetsException ex) {
+                // TODO Auto-generated catch block
+                ex.printStackTrace();
+                continue;
+            }
         }
+
         return results;
     }
 
     public TopDocs getRawResults() {
         return hits;
+    }
+
+
+    public static class Builder {
+
+        BooleanQuery.Builder b = new BooleanQuery.Builder();
+        StandardAnalyzer analyzer = new StandardAnalyzer();
+
+        public Search build() throws IOException {
+            return new Search(b.build(), analyzer);
+        }
+
+        public Builder searchText(String searchText) throws ParseException {
+            MultiFieldQueryParser searchTextParser = new MultiFieldQueryParser(
+                    new String[] {"title", "description", "content"}, analyzer);
+            b.add(searchTextParser.parse(searchText), BooleanClause.Occur.MUST);
+            return this;
+        }
+
+        public Builder author(String author) throws ParseException {
+            // manually split the search term
+            String[] words = author.split("[^a-zA-Z0-9]+");
+
+            BooleanQuery.Builder authorQuery = new BooleanQuery.Builder();
+            for (String str : words) {
+//                    .add(new QueryParser("author", analyzer).parse(author), BooleanClause.Occur.SHOULD)
+//                    .add(new QueryParser("firstName", analyzer).parse(author), BooleanClause.Occur.SHOULD)
+//                    .add(new QueryParser("lastName", analyzer).parse(author), BooleanClause.Occur.SHOULD)
+                authorQuery.add(new TermQuery(new Term("author", str)), BooleanClause.Occur.SHOULD)
+                    .add(new TermQuery(new Term("firstName", str)), BooleanClause.Occur.SHOULD)
+                    .add(new TermQuery(new Term("lastName", str)), BooleanClause.Occur.SHOULD);
+            }
+            b.add(authorQuery.build(), BooleanClause.Occur.MUST);
+//            MultiFieldQueryParser authorParser = new MultiFieldQueryParser(
+//                    new String[] {"author", "firstName", "lastName"}, analyzer);
+//            b.add(authorParser.parse(author), BooleanClause.Occur.MUST);
+            return this;
+        }
+
+        public Builder courses(String[] courseArr) {
+            BooleanQuery.Builder courseQuery = new BooleanQuery.Builder();
+            for (String course : courseArr) {
+                courseQuery.add(new TermQuery(new Term("course", course.toLowerCase())), BooleanClause.Occur.SHOULD);
+            }
+            b.add(courseQuery.build(), BooleanClause.Occur.MUST);
+            return this;
+        }
+
+        public Builder fileType(boolean pdf, boolean txt, boolean html) {
+            List<Integer> values = new ArrayList<>(3);
+            if (pdf) {
+                values.add(FileType.PDF);
+            }
+            if (txt) {
+                values.add(FileType.TEXT);
+            }
+            if (html) {
+                values.add(FileType.HTML);
+            }
+            b.add(IntPoint.newSetQuery("fileType", values), BooleanClause.Occur.MUST);
+            return this;
+        }
+
+        public Builder contentType(boolean exam, boolean notes, boolean journal) {
+            List<Integer> values = new ArrayList<>(3);
+            if (exam) {
+                values.add(ContentType.EXAM);
+            }
+            if (notes) {
+                values.add(ContentType.NOTES);
+            }
+            if (journal) {
+                values.add(ContentType.JOURNAL);
+            }
+            b.add(IntPoint.newSetQuery("contentType", values), BooleanClause.Occur.MUST);
+            return this;
+        }
+
+        public Builder daysPassed(int days) {
+            long currentMs = System.currentTimeMillis();
+            long pastMs = currentMs - TimeUnit.DAYS.toMillis(days);
+            b.add(LongPoint.newRangeQuery("date", pastMs , currentMs), BooleanClause.Occur.MUST);
+            return this;
+        }
+
+        public Builder accessLevel(boolean student, boolean instructor) {
+            List<Integer> values = new ArrayList<>(3);
+            if (student) {
+                values.add(AccessLevel.STUDENT);
+            }
+            if (instructor) {
+                values.add(AccessLevel.INSTRUCTOR);
+            }
+            b.add(IntPoint.newSetQuery("accessLevel", values), BooleanClause.Occur.MUST);
+            return this;
+        }
+
     }
 
 }
