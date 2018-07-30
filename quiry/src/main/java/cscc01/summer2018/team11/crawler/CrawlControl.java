@@ -7,13 +7,15 @@ import edu.uci.ics.crawler4j.robotstxt.RobotstxtConfig;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
 
 public class CrawlControl {
-	public static void main(String[] args) throws Exception {
+	@SuppressWarnings("deprecation")
+	public static void Crawl(String URL) throws Exception {
         String crawlStorageFolder = "C:data";
         int numberOfCrawlers = 1;
 
         CrawlConfig config = new CrawlConfig();
         config.setCrawlStorageFolder(crawlStorageFolder);
-        config.setMaxDepthOfCrawling(1);
+        config.setMaxDepthOfCrawling(3);
+        config.setPolitenessDelay(1000);
 
         /*
          * Instantiate the controller for this crawl.
@@ -28,12 +30,8 @@ public class CrawlControl {
          * URLs that are fetched and then the crawler starts following links
          * which are found in these pages
          */
-        int i=0;
-        while(i<args.length){
-      
-        	controller.addSeed(args[i]);
-        	i++;
-        }
+        controller.setCustomData(URL);
+        controller.addSeed(URL);
         /*
          * Start the crawl. This is a blocking operation, meaning that your code
          * will reach the line after this only when crawling is finished.
