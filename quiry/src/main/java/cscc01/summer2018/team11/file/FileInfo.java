@@ -4,6 +4,8 @@ package cscc01.summer2018.team11.file;
 import java.security.SecureRandom;
 import java.util.Date;
 
+import cscc01.summer2018.team11.user.AccessLevel;
+
 
 public class FileInfo {
 
@@ -13,7 +15,7 @@ public class FileInfo {
     private String userId;
     private int fileType;
     private int contentType;
-    private int accessLv;
+    private int accessLevel;
     private String title;
     private String description;
     private String course;
@@ -25,55 +27,23 @@ public class FileInfo {
         int n;
         do {
             n = rand.nextInt(8999) + 1000;
-        } while ( FileStorage.existFile(n) );
+        } while ( FileService.existFile(n) );
         return n;
     }
 
-    public FileInfo(String userId, String title, String description,
-            int contentType, int accessLv, String absPath, String course,
-            boolean courseRestricted, int fileType, long uploadMs, int fileId)
-    {
-        this.fileId = fileId;
-        this.userId = userId;
-        this.title = title;
-        this.description = description;
-        this.contentType = contentType;
-        this.accessLv = accessLv;
-        this.path = absPath;
-        this.course = course.toLowerCase();
-        this.courseRestricted = courseRestricted;
-        this.fileType = fileType;
-        this.uploadMs = uploadMs;
-    }
-
-    public FileInfo(String userId, String title, String description,
-            int contentType, int accessLv, String absPath, String course,
-            boolean courseRestricted, int fileType, long uploadMs)
-    {
-        this(userId, title, description, contentType, accessLv, absPath,
-                course, courseRestricted, fileType, uploadMs, generateId());
-    }
-
-    public FileInfo(String userId, String title, String description,
-            int contentType, int accessLv, String absPath, String course,
-            boolean courseRestricted, int fileType)
-    {
-        this(userId, title, description, contentType, accessLv, absPath,
-                course, courseRestricted, fileType, System.currentTimeMillis());
-    }
-
-    public FileInfo(String userId, String title, String description,
-            int contentType, int accessLv, String absPath,
-            String course, boolean courseRestricted) {
-        /* get file type based on file path */
-        this(userId, title, description, contentType, accessLv, absPath,
-                course, courseRestricted, Parser.getFileType(absPath));
-    }
-
-    public FileInfo(String userId, String title, String description,
-            int contentType, int accessLv, String absPath) {
-        /* no course set */
-        this(userId, title, description, contentType, accessLv, absPath, null, false);
+    private FileInfo(Builder builder) {
+        this.fileId = builder.fileId == 0 ? generateId() : builder.fileId;
+        this.userId = builder.userId;
+        this.title = builder.title;
+        this.description = builder.description;
+        this.contentType = builder.contentType;
+        this.accessLevel = builder.accessLevel;
+        this.path = builder.path;
+        this.course = builder.course;
+        this.courseRestricted = builder.courseRestricted;
+        this.fileType = builder.fileType;
+        this.uploadMs = builder.uploadMs == 0 ?
+                System.currentTimeMillis() : builder.uploadMs;
     }
 
     public String getContent() {
@@ -104,12 +74,12 @@ public class FileInfo {
         this.contentType = contentType;
     }
 
-    public int getAccessLv() {
-        return accessLv;
+    public int getAccessLevel() {
+        return accessLevel;
     }
 
-    public void setAccessLv(int accessLv) {
-        this.accessLv = accessLv;
+    public void setAccessLevel(int accessLevel) {
+        this.accessLevel = accessLevel;
     }
 
     public String getTitle() {
@@ -166,6 +136,86 @@ public class FileInfo {
 
     public Date getUploadDate() {
         return new Date(uploadMs);
+    }
+
+    public static class Builder {
+
+        private int fileId = 0;
+        private String userId = "";
+        private int fileType = FileType.TEXT;
+        private int contentType = ContentType.NOTES;
+        private int accessLevel = AccessLevel.GUEST;
+        private String title = "";
+        private String description = "";
+        private String course = "";
+        private boolean courseRestricted = false;
+        private String path = "";
+        private long uploadMs = 0;
+
+        public FileInfo build() {
+            return new FileInfo(this);
+        }
+
+        public Builder fileId(int fileId) {
+            this.fileId = fileId;
+            return this;
+        }
+
+        public Builder fileId(String fileId) {
+            this.fileId = Integer.parseInt(fileId);
+            return this;
+        }
+
+        public Builder userId(String userId) {
+            this.userId = userId;
+            return this;
+        }
+
+        public Builder fileType(int fileType) {
+            this.fileType = fileType;
+            return this;
+        }
+
+        public Builder contentType(int contentType) {
+            this.contentType = contentType;
+            return this;
+        }
+
+        public Builder accessLevel(int accessLevel) {
+            this.accessLevel = accessLevel;
+            return this;
+        }
+
+        public Builder title(String title) {
+            this.title = title;
+            return this;
+        }
+
+        public Builder description(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public Builder course(String course) {
+            this.course = course.toLowerCase();
+            return this;
+        }
+
+        public Builder courseRestricted(boolean courseRestricted) {
+            this.courseRestricted = courseRestricted;
+            return this;
+        }
+
+        public Builder path(String path) {
+            this.path = path;
+            return this;
+        }
+
+        public Builder uploadMs(long uploadMs) {
+            this.uploadMs = uploadMs;
+            return this;
+        }
+
     }
 
 }
