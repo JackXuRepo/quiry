@@ -63,15 +63,13 @@
 			);
 		}
 
-
 		$scope.showToast = function(textContent, type) {
-
 			var toast = $mdToast.simple()
 				.textContent(textContent)
 				.action('Return to Home')
-				.hideDelay(7000)
+				.hideDelay(2000)
 				.position('bottom right')
-				.highlightAction(true);                     
+				.highlightAction(true);
 
 			$mdToast.show(toast).then(function(response) {
 				if ( response == 'ok' || (response == null && type == "success")) {
@@ -79,7 +77,7 @@
 					$window.location.href = "./index.html";
 				}
 			});
-		}	
+		}
 
 	}
 

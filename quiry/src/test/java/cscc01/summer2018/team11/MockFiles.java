@@ -211,7 +211,7 @@ public class MockFiles {
     public static void main(String[] args) throws SQLException, IOException {
         Index.initialize();
         Index.indexFile( file1() );
-        Index.indexFile( file2() );
+//        Index.indexFile( file2() );
         Index.indexFile( file3() );
         Index.indexFile( file4() );
         Index.indexFile( file5() );
@@ -223,7 +223,7 @@ public class MockFiles {
 
         FileDAO fileDao = new FileDAO();
         fileDao.updateFile( file1() );
-        fileDao.updateFile( file2() );
+//        fileDao.updateFile( file2() );
         fileDao.updateFile( file3() );
         fileDao.updateFile( file4() );
         fileDao.updateFile( file5() );
