@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import cscc01.summer2018.team11.crawler.CrawlControl;
 import cscc01.summer2018.team11.file.ContentType;
 import cscc01.summer2018.team11.file.FileGetter;
 import cscc01.summer2018.team11.file.FileInfo;
@@ -100,10 +101,9 @@ public class FileController {
         // attempt upload
         String response = "size mismatch";
 
-        try {
-            FileOutputStream fos = new FileOutputStream(localFile);
+        try (FileOutputStream fos = new FileOutputStream(localFile)) {
             fos.write(remoteFile.getBytes());
-            fos.close();
+
         } catch (Exception ex) {
             FileGetter.deleteFile(fileInfo.getFileId());
             // respond error message
@@ -161,6 +161,39 @@ public class FileController {
         }
 
         return ResponseEntity.ok().headers(headers).body(content);
+    }
+
+    @RequestMapping(value = "/crawl", method = RequestMethod.POST)
+    public ResponseEntity<String> uploadFile(
+            @RequestParam("url") String url,
+            @RequestParam("userId") String userId,
+            @RequestParam("course") String course,
+            @RequestParam("contentType") int contentType,
+            @RequestParam("domainRestricted") boolean domainRestricted)
+    {
+        // TODO: content type workaround
+        switch (contentType) {
+        case 1:
+            contentType = ContentType.NOTES;
+            break;
+        case 2:
+            contentType = ContentType.EXAM;
+            break;
+        case 3:
+            contentType = ContentType.JOURNAL;
+            break;
+        default:
+            return ResponseEntity.badRequest().body("illegal content type");
+        }
+
+        try {
+            CrawlControl.crawl(url, domainRestricted, userId, course, contentType);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body("failed");
+        }
+        return ResponseEntity.ok().body("success");
     }
 
 }
