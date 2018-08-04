@@ -1,0 +1,4 @@
+plans.html -> seach.html
+services.html -> user.html
+blog.html ->forum.html
+mail.html -D
