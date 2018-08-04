@@ -20,6 +20,7 @@
 <script src="js/jquery-1.11.1.min.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="js/SmoothScroll.min.js"></script>
+<script src="js/user.js"></script>
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
 		$(".scroll").click(function(event){		
@@ -83,14 +84,26 @@
 				<div class="signin-form profile">
 					<div class="login-form">
 						<form action="#" method="post">
-							UTORid:<input type=text name=utorid>
-							Email Address:<input type=email name=email>
-							First Name:<input type=text name=fname>
-							Last Name:<input type=text name=lname>
-							Status:<input type=text name=lname>
-							Course(s):<input type=text name=course>
+							<strong>UTORid:</strong><input type=text name=utorid disabled="false" value="heweijia" id="utorid">
+							<strong>Status:</strong><input type=text name=status disabled="true" value="Student" id="status">
+							<strong>Email Address:</strong><input type=email name=email disabled="true" value="kin.he@mail.utoronto.ca" id="email">
+							<strong>First Name:</strong><input type=text name=fname disabled="true" value="Kin" id="fname">
+							<strong>Last Name:</strong><input type=text name=lname disabled="true" value="He" id="lname">
+							<div id=password style="display:none;"> 
+								<!-- Only change password need to enter old password -->
+								<strong>Old Password:</strong><input type=password name=old_p id="old_p">
+								<strong>New Password:</strong><input type=password name=new_p1 id="new_p1">
+								<strong>Confirm Password:</strong><input type=password name=new_p2 id="new_p2">
+							</div>
+							<strong>Course(s):</strong><input type=text name=course disabled="true" value="CSCC01 STAB52 MATB41" id="course">
+							<strong>File(s) Uploaded:</strong>
+							<div style="border: double 4px black;">
+								<textarea style="overflow:auto;resize:none" disabled="true" id="file">CSCC01 Midterm Note.pdf&#13;&#10;CSCC01 Final Note.pdf</textarea>
+							</div>
 							<div class="tp">
-								<input type="submit" value="Edit">
+								<input type="submit" value="Edit" id="editB" style="display: all;" onfocus="edit()">
+								<input type="submit" value="Submit" id="subB" style="display: none;" onfocus="sub()">
+								<input type="submit" value="Cancel" id="canB" style="display: none;" onfocus="can()">
 							</div>
 						</form>
 					</div>

@@ -1928,6 +1928,13 @@ a.pa_italic:focus {
      background: none;
     display: block;
 }
+.signin-form textarea {
+    height: 150px;
+}
+.signin-form textarea[id="file"] {
+    border: none;
+    border-bottom: 0px solid #212121;
+}
 ::-webkit-input-placeholder{
 	color:#212121 !important;
 }
@@ -1953,6 +1960,9 @@ a.pa_italic:focus {
     -moz-transition: .5s all;
     -o-transition: .5s all;
     -ms-transition: .5s all;
+}
+.signin-form input[id="canB"] {
+  background-color: #BB0000;
 }
 .signin-form p a {
     font-size: 0.875em;
