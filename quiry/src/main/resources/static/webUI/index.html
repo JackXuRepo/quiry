@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="quiryApp">
+<div ng-controller="homeController">
 <head>
 <title>Home</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,6 +9,9 @@
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- bootstrap-css -->
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
 <!--// bootstrap-css -->
 <!-- css -->
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
@@ -17,6 +21,11 @@
 <!-- //font-awesome icons -->
 <link href="http://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
 <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700italic,700,400italic,300italic,300' rel='stylesheet' type='text/css'>
+
+<!-- ng-tag CSS -->
+<link rel="stylesheet" href="http://mbenford.github.io/ngTagsInput/css/ng-tags-input.min.css" />
+<link rel = "stylesheet" href = "https://ajax.googleapis.com/ajax/libs/angular_material/1.1.10/angular-material.min.css">
+
 <script src="js/jquery-1.11.1.min.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="js/SmoothScroll.min.js"></script>
@@ -127,25 +136,9 @@
 
 	</script>
 	<!-- //banner -->
-	<div class="domain">
-		<div class="container">
-			<form class="search-form domain-search" action="#" method="post">
-				<div class="two-fifth column first">
-					<h2 style="color: white">search your <span>File Here:</span></h2>
-				</div>
-				<div class="three-fifth column first">
-					<input type="text" class="text" name="Name" placeholder="Enter the file name you want to search" required="">               
-				</div>
-				<div class="one-fifth column">
-					<a align="center"> Advance Search </a> 
-				</div>
-				<div class="one-fifth column">
-					<input type="submit" value="Search">
-				</div>
-				<div class="clearfix"> </div>
-			</form>
-		</div>
-	</div>
+
+				<div ng-include="'search.html'"></div>
+
 	<!-- banner-bottom -->
 	<div class="banner-bottom">
 		<div class="container">
@@ -239,14 +232,29 @@
 	</script>
 	<!-- //here ends scrolling icon -->
 	<script>
-	<!--
-		
-		$(function(){ $(".flipster").flipster({ style: 'carousel', start: 0 }); });
-
-	-->
+	<!-- //$(function(){ $(".flipster").flipster({ style: 'carousel', start: 0 }); });-->
 	</script>
 	<!-- slider -->
 	<script type="text/javascript" src="js/jquery.immersive-slider.js"></script>
 	<!-- //slider -->
 </body>	
+</div>
+	<!-- AngularJS libraries -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-aria.js"></script>
+  	<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.10/angular-material.min.js"></script>
+
+	<!-- Bootstrap -- Latest compiled and minified JavaScript -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+
+	<!-- ng-tag dependency -->
+	<script src="http://mbenford.github.io/ngTagsInput/js/ng-tags-input.min.js"></script>
+
+	<script src="./route.js"></script>
+	<script src="./Controller/home.js"></script>
+	<script src="./Service/storage.js"></script>
+	<script src="./Controller/search.js"></script>
 </html>

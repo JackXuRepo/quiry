@@ -1,122 +1,101 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>Search</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- bootstrap-css -->
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<!--// bootstrap-css -->
-<!-- css -->
-<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
-<!--// css -->
-<!-- font-awesome icons -->
-<link href="css/font-awesome.css" rel="stylesheet"> 
-<!-- //font-awesome icons -->
-<!--<link href="http://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
-<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700italic,700,400italic,300italic,300' rel='stylesheet' type='text/css'>-->
-<script src="js/jquery-1.11.1.min.js"></script>
-<script src="js/bootstrap.js"></script>
-<script src="js/SmoothScroll.min.js"></script>
-<script type="text/javascript">
-	jQuery(document).ready(function($) {
-		$(".scroll").click(function(event){		
-			event.preventDefault();
-			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-		});
-	});
-</script>
-</head>
-<body>
-	<!-- header -->
-	<div class="header">
-			<div class="container">
-				<nav class="navbar navbar-default">
-					<!-- Brand and toggle get grouped for better mobile display -->
-					<div class="navbar-header">
-					  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					  </button>
-						<div class="w3layouts-logo">
-							<h1><a href="index.html">Q<span>uiry</span></a></h1>
-						</div>
-					</div>
-
-					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
-						<nav>
-							<ul class="nav navbar-nav">
-								<li><a href="index.html" class="hvr-sweep-to-bottom">Home</a></li>
-								<li><a href="about.html" class="hvr-sweep-to-bottom">About</a></li>
-								<li class="active"><a href="search.html" class="hvr-sweep-to-bottom">Search</a></li>
-								<li><a href="#" class="dropdown-toggle hvr-sweep-to-bottom" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account<span class="caret"></span></a>
-									<ul class="dropdown-menu">
-										<li><a class="hvr-sweep-to-bottom" href="user.html">Profile</a></li>
-										<li><a class="hvr-sweep-to-bottom" href="login.html">Login</a></li>
-										<li><a class="hvr-sweep-to-bottom" href="registration.html">Registration</a></li>
-										<li><a class="hvr-sweep-to-bottom" href="upload.html">Upload</a></li>
-									</ul>
-								</li>
-								<li><a href="faq.html" class="hvr-sweep-to-bottom">FAQs</a></li>
-							</ul>
-						</nav>
-					</div>
-					<!-- /.navbar-collapse -->
-				</nav>
-			</div>
-	</div>
-	<!-- //header -->
-	<!-- about-heading -->
-	<div class="about-heading">
-		<h2>Quiry <span>Search</span></h2>
-	</div>
-	<!-- //about-heading -->
-	<!-- search -->
-	<div class="searching">
-		
-	</div>
-	<!-- //search -->
-	<!-- footer -->
-	<div class="footer">
-		<div class="container">
-			<div class="agile-footer-grids">
-				<div class="clearfix"> </div>
-			</div>
-		</div>
-	</div>
-	<!-- //footer -->
-	<script src="js/jarallax.js"></script>
-	<script type="text/javascript">
-		/* init Jarallax */
-		$('.jarallax').jarallax({
-			speed: 0.5,
-			imgWidth: 1366,
-			imgHeight: 768
-		})
-	</script>
-	<script type="text/javascript" src="js/move-top.js"></script>
-	<script type="text/javascript" src="js/easing.js"></script>
-	<!-- here stars scrolling icon -->
-	<script type="text/javascript">
-		$(document).ready(function() {
-			/*
-				var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 1200,
-				easingType: 'linear' 
-				};
-			*/
-								
-			$().UItoTop({ easingType: 'easeOutQuart' });
-								
-			});
-	</script>
-	<!-- //here ends scrolling icon -->
-</body>	
+<!doctype html>
+<html ng-app="quiryApp">
+   <header>
+   </header>
+   <body>
+      <div ng-controller="searchController" class="domain">
+         <div class="container">
+            <div class="container">
+               <form class="search-form domain-search" action="#" method="post">
+                  <div class="two-fifth column first">
+                     <h2 style="color: white">search your <span>File Here:</span></h2>
+                  </div>
+                  <div class="full-fifth column first">
+                     <input type="text" class="text" name="Name" ng-model="searchText" placeholder="Enter the file name you want to search" required="">               
+                  </div>
+                  <div class="one-fifth column">
+                     <input type="submit" value="Search">
+                  </div>
+                  <div class="clearfix"> </div>
+               </form>
+            </div>
+            <div class="row">
+               <div class="col">
+                  <a href="#" ng-click="toggleAdvancedSearch()">{{ advancedSearchText }}</a>
+               </div>
+            </div>
+         </div>
+         <div ng-show="advancedSearchOn" class="show-element animate-show-hide">
+            <div class="container-fluid to-center">
+               <div class="row">
+                  <div class="col-sm-4">
+                     <label>Uploaded by</label><br/>
+                     <div class="btn-group">
+                        <label id="instructorSearch" class="button-green" ng-model="instructorSearch" ng-click="toggleButton('instructorSearch', instructorSearch)" uib-btn-checkbox>Instructor</label>
+                        <label id="studentSearch" class="button-green" ng-model="studentSearch" ng-click="toggleButton('studentSearch', studentSearch)"  uib-btn-checkbox>Student</label>
+                     </div>
+                  </div>
+                  <div class="col-sm-4">
+                     <label>Content Type</label><br/>
+                     <div class="btn-group">
+                        <label id="pastExams" class="button-green" ng-model="pastExams" ng-click="toggleButton('pastExams', pastExams)" uib-btn-checkbox>Past Exams</label>
+                        <label id="notes" class="button-green" ng-model="notes" ng-click="toggleButton('notes', notes)" uib-btn-checkbox>Notes</label>
+                        <label id="journals" class="button-green" ng-model="journals" ng-click="toggleButton('journals', journals)"  uib-btn-checkbox>Journals</label>
+                     </div>
+                  </div>
+                  <div class="col-sm-4">
+                     <label>File Type</label><br/>
+                     <div class="btn-group">
+                        <label id="pdfType" class="button-green" ng-model="pdfType" ng-click="toggleButton('pdfType', pdfType)" uib-btn-checkbox>PDF</label>
+                        <label id="htmlType" class="button-green" ng-model="htmlType" ng-click="toggleButton('htmlType', htmlType)"uib-btn-checkbox>HTML</label>
+                        <label id="txtType" class="button-green" ng-model="txtType" ng-click="toggleButton('txtType', txtType)" uib-btn-checkbox>TXT</label>
+                     </div>
+                  </div>
+               </div>
+               <br/>
+               <div class="row">
+                  <div class="one-fifth column">
+                     <label>Author Name:</label>
+                     <input type="text" class="text" ng-model="author" placeholder="Firstname Lastname"></input>
+                  </div>
+                  <div class="one-fifth column">
+                     <label>Date Uploaded:</label><br/>
+                     <span class="selection-box">
+                        <select class="domains valid" ng-model="dateUploaded" ng-options="y for y in timeOptions">
+                        </select>
+                     </span>
+                  </div>
+                  <div class="full-fifth column">
+                     <label>Courses</label><br/>
+                     <tags-input ng-model="coursesSelected" 
+                        add-on-paste="true"
+                        placeholder="Add a course code" 
+                        min-length="6"
+                        max-length="6"
+                        allowed-tags-pattern="^(?:[A-Z]{4}|[a-z]{4})[0-9]{2}$">
+                        <auto-complete source="loadOptions($query, './json/courses.json')"
+                           load-on-focus="true"
+                           load-on-empty="true"
+                           min-length="0"
+                           max-results-to-show="10">
+                        </auto-complete>
+                     </tags-input>
+                  </div>
+               </div>
+               <br/>
+               <div class="row">
+                  <div class="col">
+                     <br/>
+                     <button class="button-reset" style="width:320px;" ng-click="resetAdvancedSearch()">Reset Advanced Search Options</button>
+                     <br/>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <br/>
+      <div class="container">
+         <md-progress-linear md-mode="indeterminate" ng-disabled="!loadBar" ng-show="loadBar"></md-progress-linear>
+      </div>
+   </body>
 </html>

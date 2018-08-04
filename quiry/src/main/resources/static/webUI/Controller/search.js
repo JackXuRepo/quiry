@@ -5,7 +5,7 @@
 	angular.module("quiryApp")
 		.controller('searchController', searchController);
 		
-		function searchController($scope, $http, StorageService, $window){
+		function searchController($scope, $http, StorageService, $window, uibButtonConfig){
 			$scope.searchText = StorageService.getValue("searchText");
 			$scope.author = "";
 			$scope.timeOptions = ["Today", "This Week", "This Month", "This Year", "Anytime"];
@@ -22,7 +22,7 @@
 			$scope.htmlType = true;
 			$scope.coursesSelected = [];
 			$scope.loadBar = false;
-
+			uibButtonConfig.activeClass = "button-green";
 
 			$scope.search = function(){
 				// Need to call back-end
@@ -90,16 +90,6 @@
 				$scope.userId = null;
 			}
 
-			 $scope.query = function(searchText) {
-			 	return [
-						  "CSCA01 Winter 2016 Final Exam",
-						  "Journals on Artificial Intelligence",
-						  "PSYA01 Lecture 11 Notes",
-						  "Calculus Formula Sheet",
-						  "Statistics - Distributions",
-						  "PSYA01 Midterm Fall 2017"
-						]
-			}
 
 			$scope.loadOptions = function(query, path) {
     			return $http.get(path, { cache: true}).then(function(response) {
@@ -115,6 +105,17 @@
 				$scope.advancedSearchOn = !$scope.advancedSearchOn;
 				showAdvancedSearchText();
 			}
+
+			$scope.toggleButton = function(id, value){
+				if(value == true){
+					document.getElementById(id).className = "button-green";
+				}
+				else{
+					document.getElementById(id).className = "button-black";
+				}
+
+			}
+
 
 			function showAdvancedSearchText(){
 				if($scope.advancedSearchOn == false){
