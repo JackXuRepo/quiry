@@ -1,4 +1,4 @@
-// Find angular module module 
+// Find angular module module
 // This is the controller for the login page
 //                   controller name , function(dependency, ....)
 (function(){
@@ -39,7 +39,7 @@
 				      	})
 				      .catch(
 				      	function(){
-				      		$scope.message = "The password entered is incorrect. Please try again.";
+				      		$scope.message = "The username or password entered is incorrect. Please try again.";
 							document.getElementById("password").className = "input-error";
 							document.getElementById("username").className = "input-error";
 							document.getElementById("statusMessage").style = "color:red";

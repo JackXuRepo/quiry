@@ -114,7 +114,7 @@ public class UserService {
 
     public static User loginUser(HashMap<String, String> userData) {
         User currUser = getUser(userData.get("userId"));
-        if(currUser == null || !userData.get("password").equals(currUser.getPassword())) {
+        if (currUser == null || !userData.get("password").equals(currUser.getPassword())) {
             return null;
         }
 
@@ -123,8 +123,6 @@ public class UserService {
 
 
     public static HashMap<String, String> parseUser(User userData){
-        System.out.println(userData);
-
         HashMap<String, String> userMap = new HashMap<String, String>();
         userMap.put("userId", userData.getUserId());
         userMap.put("firstName", userData.getFirstName());
@@ -132,6 +130,7 @@ public class UserService {
         userMap.put("email", userData.getEmail());
         userMap.put("accessLevel", userData.getAccessLv()+"");
 
+        System.out.println(userMap);
         return userMap;
     }
 

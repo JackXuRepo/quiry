@@ -1,4 +1,4 @@
-// Find angular module module 
+// Find angular module module
 // This is the controller for the login page
 //                   controller name , function(dependency, ....)
 (function(){
@@ -8,11 +8,20 @@
 	function UserController($scope, $window, StorageService, $http){
 		// $scope is provided by angular so that the view can refer to
 		// the controller scope values
-		$scope.userData = StorageService.getValue("userData");
-		$scope.emailPassword;
-		$scope.newEmail;
-		$scope.newEmailConf;
 
+		// to be consistent with other pages
+		$scope.userId = StorageService.getValue("userId");
+
+		$scope.editing = false;
+		$scope.message = "";
+		$scope.userData = StorageService.getValue("userData");
+
+		$scope.firstName;
+		$scope.lastName;
+		$scope.email;
+		$scope.oldPassword;
+		$scope.newPassword;
+		$scope.confirmPassword;
 
 		$scope.getAccountType = function(type){
 			var map = {
@@ -22,29 +31,60 @@
 			return map[type];
 		}
 
-		$scope.changeEmail = function(password, newEmail, newEmailConf) {
-			alert("Email successfully changed");
-			return
+		$scope.edit = function() {
+			$scope.message = null;
+			$scope.firstName = $scope.userData.firstName;
+			$scope.lastName = $scope.userData.lastName;
+			$scope.email = $scope.userData.email;
+			$scope.oldPassword = null;
+			$scope.newPassword = null;
+			$scope.confirmPassword = null;
+			$scope.editing = true;
 		}
 
-		$scope.changePassword = function(oldPassword, newPassword, newPasswordConf) {
-			alert("Password successfully changed");
-			return
+		$scope.modify = function() {
+			$http.post('/user/modify', JSON.stringify($scope.parseData()))
+				.then(
+					function(response) {
+						console.log(response);
+						$scope.userData = response.data;
+						$scope.userId = $scope.userData.userId;
+
+						StorageService.setValue("userId", $scope.userId);
+						StorageService.setValue("userData", $scope.userData);
+
+						$scope.editing = false;
+					}
+				)
+				.catch(
+					function(response) {
+						console.log(response);
+						$scope.message = "Wrong Password?";
+					}
+				);
+
 		}
 
-		$scope.changeName = function() {
-			alert("Name successfully changed");
-			return
+		$scope.cancel = function() {
+			$scope.editing = false;
 		}
 
 		$scope.parseData = function(){
 			return (
 				{
-					'userId' : $scope.username,
-					'password' : $scope.password
+					'userId' : $scope.userData.userId,
+					'password' : $scope.oldPassword,
+					'firstName' : $scope.firstName,
+					'lastName' : $scope.lastName,
+					'email' : $scope.email,
+					'newPassword' : $scope.newPassword
 				}
 			);
 		}
 
+		$scope.signOut = function(){;
+			StorageService.removeValue("userId");
+			$scope.userId = null;
+		}
 	}
 })();

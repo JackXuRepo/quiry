@@ -80,7 +80,6 @@
 	font-weight: normal;
 }
 
-
 .ng-cloak {
 	display: none !important;
 }
@@ -106,9 +105,9 @@
 }
 
 .result-text {
-	font-style: italic;    
+	font-style: italic;
 	text-decoration-color: steelblue;
-	color: steelblue; 
+	color: steelblue;
 }
 
 select.form-control:not([size]):not([multiple]) {
@@ -118,8 +117,6 @@ select.form-control:not([size]):not([multiple]) {
 .ng-disabled {
 	background: grey;
 }
-
-
 
 .animate-show-hide.ng-hide {
   opacity: 0;
@@ -134,8 +131,6 @@ select.form-control:not([size]):not([multiple]) {
   opacity: 1;
   padding: 10px;
 }
-
-
 
 /**
 .center .clickableExpandable {
