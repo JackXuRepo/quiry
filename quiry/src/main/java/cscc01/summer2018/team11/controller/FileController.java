@@ -4,6 +4,9 @@ package cscc01.summer2018.team11.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -162,5 +165,23 @@ public class FileController {
 
         return ResponseEntity.ok().headers(headers).body(content);
     }
+
+	@RequestMapping(value = "/user", method = RequestMethod.GET)
+	public ResponseEntity<ArrayList<HashMap<String,String>>> userFiles(
+			@RequestParam(value="userId") String userId)
+	{
+		ArrayList<HashMap<String, String>> results = new ArrayList<HashMap<String, String>>();
+
+		List<FileInfo> list = FileService.getUserFiles(userId);
+		if (list == null) {
+			return ResponseEntity.badRequest().body(null);
+		}
+
+		for (FileInfo info : list) {
+		    HashMap<String, String> result = FileService.parseFileInfo(info, null);
+		    results.add(result);
+		}
+		return ResponseEntity.ok().body(results);
+	}
 
 }
