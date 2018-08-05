@@ -132,6 +132,34 @@ select.form-control:not([size]):not([multiple]) {
   padding: 10px;
 }
 
+ul.pagination > li > a
+{
+    background-color: white;
+    color: darkgrey;
+}
+
+ul.pagination > li > a:focus,
+ul.pagination > li > a:hover,
+ul.pagination > li > span:focus,
+ul.pagination > li > span:hover {
+    background-color: lightblue;
+}
+
+ul.pagination > .active > a,
+ul.pagination > .active > a:hover
+{
+    color: white;
+    background-color: blue;
+}
+
+ul.pagination > .disabled > a,
+ul.pagination > .disabled > a:hover,
+ul.pagination > .disabled > a:focus
+{
+    color: grey;
+    background-color: darkgrey;
+}
+
 /**
 .center .clickableExpandable {
 

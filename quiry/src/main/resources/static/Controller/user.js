@@ -28,6 +28,7 @@
       $scope.maxSize = 10;
       $scope.sortKey;
       $scope.reverse;
+      $scope.Math = window.Math;
 
       $scope.clearSort = function() {
           $scope.sortKey = '';
@@ -53,11 +54,6 @@
             return iconMap[type];
 
       }
-
-      $scope.pageChanged = function() {
-          $log.log('Page changed to: ' + $scope.currentPage);
-          $log.log($scope.results);
-      };
 
       $scope.filterContentType = function(input) {
             var map = {
@@ -136,6 +132,15 @@
 			$scope.editing = false;
 		}
 
+
+		$scope.pageChanged = function(page) {
+			// document.getElementById("page"+ ($scope.currentPage - 1)).classList.remove("active");
+			$scope.currentPage = page;
+			// document.getElementById("page"+ ($scope.currentPage - 1)).classList.add("active");
+			console.log($scope.currentPage);
+	        console.log(Math.ceil($scope.results.length / $scope.maxSize));
+	      }
+
 		$scope.parseData = function(){
 			return (
 				{
@@ -211,6 +216,10 @@
 			});
 		};
 		init();
+		
+		$('#page1').ready(function() {
+			$scope.pageChanged(1);
+		});
 
 		// load google charts
 		google.charts.load('current', {'packages':['corechart']});

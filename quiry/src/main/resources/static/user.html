@@ -1,186 +1,180 @@
 <!doctype html>
 <html  ng-app="quiryApp">
-<div ng-controller="userController">
-	<head>
-
-	<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
-
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-	<!-- Latest compiled and minified CSS -->
-	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"/>
-
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
-
-	<!-- fontAwesome -->
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous"/>
-
-	<!-- ng-tag CSS -->
-	<link rel="stylesheet" href="http://mbenford.github.io/ngTagsInput/css/ng-tags-input.min.css" />
-	<link rel = "stylesheet" href = "https://ajax.googleapis.com/ajax/libs/angular_material/1.1.10/angular-material.min.css">
-
-	<link rel="stylesheet" href="./css/styles.css"/>
-	<link rel="icon" href="./Resources/favicon.ico" type="image/x-icon"/>
-	<title>User Profile</title>
-
-	<div ng-show="!userId" class="ng-cloak" align="right">
-		<a href="./login.html" style="padding-right: 30px"><i class="fas fa-sign-in-alt"></i> Sign in </a>
-		<a href="./registration.html" style="padding-right: 30px"><i class="fas fa-plus-square"></i> Register </a>
-	</div>
-
-	<div ng-show="userId" class="ng-cloak" align="right">
-		<a href="./user.html" style="padding-right: 30px"><i class="fas fa-id-card"></i> {{ userData.userId }} </a>
-		<a href="./upload.html" style="color:green;padding-right: 30px"><i class="fas fa-upload"></i> Upload </a>
-		<a href="#" style="color:red;padding-right: 30px" ng-click="signOut()">
-		<i class="fas fa-sign-out-alt"></i> Sign out </a>
-	</div>
-	<a href="./index.html"><img src="./Resources/logo.png" alt="Quiry Search Engine" style="width:100px;height:40px;"></img></a>
-	</head>
-	<body>
-	<div ng-cloak ng-hide="userId == null">
-		<h1 class="header">Hello, {{ userData.firstName + " " + userData.lastName }}</h1>
-		<br/>
-		<div class="container ng-cloak">
-			<div class="row">
-				<div class="col-md-4">
-					<div class="container border border-info rounded padded-light ng-cloak">
-						<div class="row">
-							<div class="col text-center" style="padding: 25px;">
-								<i class="fas fa-user-circle fa-10x"></i>
-							</div>
-						</div>
-						<div ng-show="!editing" class="row">
-							<div class="col" style="padding: 25px;">
-								<label style="width: 20%">UTORid:</label>
-								<label style="width: 75%">{{ userData.userId }}</label>
-								<br/>
-								<label style="width: 20%">Status:</label>
-								<label style="width: 75%">{{ getAccountType(userData.accessLevel) }}</label>
-								<br/>
-								<label style="width: 20%">Email:</label>
-								<label style="width: 75% word-wrap: break-word">{{ userData.email }}</label>
-							</div>
-						</div>
-						<div ng-show="!editing" class="row">
-							<div class="col text-center">
-								<md-button class="md-raised md-primary" type="submit" ng-click="edit()"> Modify </md-button>
-							</div>
-						</div>
-						<div ng-show="editing" class="row">
-							<div class="col" style="padding: 25px;">
-								<label for="firstName">First Name:</label>
-								<input type="text" style="width: 100%" name="firstName" ng-model="firstName"/>
-								<br/>
-								<label for="lastName">Last Name:</label>
-								<input type="text" style="width: 100%" name="lastName" ng-model="lastName"/>
-								<br/>
-								<label for="email">Email:</label>
-								<input type="text" style="width: 100%" name="email" ng-model="email"/>
-								<br/>
-								<label for="oldPassword">Old Password:</label>
-								<input type="password" style="width: 100%" name="oldPssword" ng-model="oldPassword" placeholder="Enter password to confirm changes"/>
-								<br/>
-								<label for="newPassword">New Password:</label>
-								<input type="password" style="width: 100%" name="newPassword" ng-model="newPassword" placeholder="(optional)"/>
-								<br/>
-								<label for="confirmPassword">Confirm New Password:</label>
-								<input type="password" style="width: 100%" name="confirmPassword" ng-model="confirmPassword" placeholder="(optional)"/>
-							</div>
-						</div>
-						<div ng-show="editing" class="row">
-							<div class="col text-center">
-								<span ng-show="message.length" id="statusMessage" style="color:red">{{ message }}<br/></span>
-								<md-button class="md-raised md-primary" type="submit" ng-click="cancel()"> Cancel </md-button>
-								<md-button class="md-raised md-primary" type="submit" ng-disabled="!oldPassword.length || newPassword != confirmPassword" ng-click="modify()"> Submit </md-button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-8">
-					<div class="row">
-						<div class="col">
-							<div id="piechartFile" style="width: 350px; height: 250px;"></div>
-						</div>
-						<div class="col">
-							<div id="piechartContent" style="width: 350px; height: 250px;"></div>
-						</div>
-					</div>
-					<div class="row" style="padding: 25px;">
-						<table class="table table-hover">
-							<thead>
-								<th ng-click="sort('fileType')">File
-								<span class="glyphicon sort-icon" ng-show="sortKey=='fileType'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
-								<th ng-click="sort('title')">Name
-								<span class="glyphicon sort-icon" ng-show="sortKey=='title'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
-<!--							<th ng-click="sort('contentType')">Content Type
-								<span class="glyphicon sort-icon" ng-show="sortKey=='contentType'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
--->
-								<th ng-click="sort('course')">Course
-								<span class="glyphicon sort-icon" ng-show="sortKey=='course'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
-<!--							<th ng-click="sort('uploadDate')">Upload Date
-								<span class="glyphicon sort-icon" ng-show="sortKey=='uploadDate'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
--->
-								<th></th>
-							</thead>
-							<tbody ng-repeat="result in results | orderBy:sortKey:reverse | limitTo: ((currentPage-1)*maxSize - results.length) | limitTo : maxSize">
-								<tr>
-									<td><i class="{{ getIcon(result.fileType) }}"></i></td>
-									<td>{{ result.title }}</td>
-<!--								<td>{{ filterContentType(result.contentType) }}</td>
--->
-									<td>{{ result.course  | uppercase }}</td>
-<!--								<td>{{ result.uploadDate | date }}</td>
--->
-									<td><a href="#" ng-click="download(result.fileId)"><i class="fas fa-download"></i></a></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<br/>
-					<div class="row">
-						<div class="col centered-body">
-							<ul uib-pagination total-items="results.length" items-per-page="maxSize" ng-model="currentPage" ng-change="pageChanged()"></ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div ng-show="userId == null" class="centered-body">
-		<h1 class="header">User Profile</h1>
-		You must be signed in to access this Feature.
-		<a href="./login.html"><br/> Sign in Here</a>
-		<a href="./registration.html"><br/>or Sign up for an Account Here</a>
-	</div>
-	<br/>
-	<br/>
-	<br/>
-	</body>
-	<!-- AngularJS libraries -->
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-aria.js"></script>
-  	<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.10/angular-material.min.js"></script>
-
-
-	<!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-	<!-- Bootstrap -- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
-
-	<!-- ng-tag dependency -->
-	<script src="http://mbenford.github.io/ngTagsInput/js/ng-tags-input.min.js"></script>
-
-	<!-- Bootstrap -- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-	<script src="./route.js"></script>
-	<script src="./Controller/user.js"></script>
-	<script src="./Service/storage.js"></script>
+   <div ng-controller="userController">
+   <head>
+      <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      <!-- Latest compiled and minified CSS -->
+      <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"/>
+      <!-- Optional theme -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
+      <!-- fontAwesome -->
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous"/>
+      <!-- ng-tag CSS -->
+      <link rel="stylesheet" href="http://mbenford.github.io/ngTagsInput/css/ng-tags-input.min.css" />
+      <link rel = "stylesheet" href = "https://ajax.googleapis.com/ajax/libs/angular_material/1.1.10/angular-material.min.css">
+      <link rel="stylesheet" href="./css/styles.css"/>
+      <link rel="icon" href="./Resources/favicon.ico" type="image/x-icon"/>
+      <title>User Profile</title>
+      <div ng-show="!userId" class="ng-cloak" align="right">
+         <a href="./login.html" style="padding-right: 30px"><i class="fas fa-sign-in-alt"></i> Sign in </a>
+         <a href="./registration.html" style="padding-right: 30px"><i class="fas fa-plus-square"></i> Register </a>
+      </div>
+      <div ng-show="userId" class="ng-cloak" align="right">
+         <a href="./user.html" style="padding-right: 30px"><i class="fas fa-id-card"></i> {{ userData.userId }} </a>
+         <a href="./upload.html" style="color:green;padding-right: 30px"><i class="fas fa-upload"></i> Upload </a>
+         <a href="#" style="color:red;padding-right: 30px" ng-click="signOut()">
+         <i class="fas fa-sign-out-alt"></i> Sign out </a>
+      </div>
+      <a href="./index.html"><img src="./Resources/logo.png" alt="Quiry Search Engine" style="width:100px;height:40px;"></img></a>
+   </head>
+   <body>
+      <div ng-cloak ng-hide="userId == null">
+         <h1 class="header">Hello, {{ userData.firstName + " " + userData.lastName }}</h1>
+         <br/>
+         <div class="container ng-cloak">
+            <div class="row">
+               <div class="col-md-4">
+                  <div class="container border border-info rounded padded-light ng-cloak">
+                     <div class="row">
+                        <div class="col text-center" style="padding: 25px;">
+                           <i class="fas fa-user-circle fa-10x"></i>
+                        </div>
+                     </div>
+                     <div ng-show="!editing" class="row">
+                        <div class="col" style="padding: 25px;">
+                           <label style="width: 20%">UTORid:</label>
+                           <label style="width: 75%">{{ userData.userId }}</label>
+                           <br/>
+                           <label style="width: 20%">Status:</label>
+                           <label style="width: 75%">{{ getAccountType(userData.accessLevel) }}</label>
+                           <br/>
+                           <label style="width: 20%">Email:</label>
+                           <label style="width: 75% word-wrap: break-word">{{ userData.email }}</label>
+                        </div>
+                     </div>
+                     <div ng-show="!editing" class="row">
+                        <div class="col text-center">
+                           <md-button class="md-raised md-primary" type="submit" ng-click="edit()"> Modify </md-button>
+                        </div>
+                     </div>
+                     <div ng-show="editing" class="row">
+                        <div class="col" style="padding: 25px;">
+                           <label for="firstName">First Name:</label>
+                           <input type="text" style="width: 100%" name="firstName" ng-model="firstName"/>
+                           <br/>
+                           <label for="lastName">Last Name:</label>
+                           <input type="text" style="width: 100%" name="lastName" ng-model="lastName"/>
+                           <br/>
+                           <label for="email">Email:</label>
+                           <input type="text" style="width: 100%" name="email" ng-model="email"/>
+                           <br/>
+                           <label for="oldPassword">Old Password:</label>
+                           <input type="password" style="width: 100%" name="oldPssword" ng-model="oldPassword" placeholder="Enter password to confirm changes"/>
+                           <br/>
+                           <label for="newPassword">New Password:</label>
+                           <input type="password" style="width: 100%" name="newPassword" ng-model="newPassword" placeholder="(optional)"/>
+                           <br/>
+                           <label for="confirmPassword">Confirm New Password:</label>
+                           <input type="password" style="width: 100%" name="confirmPassword" ng-model="confirmPassword" placeholder="(optional)"/>
+                        </div>
+                     </div>
+                     <div ng-show="editing" class="row">
+                        <div class="col text-center">
+                           <span ng-show="message.length" id="statusMessage" style="color:red">{{ message }}<br/></span>
+                           <md-button class="md-raised md-primary" type="submit" ng-click="cancel()"> Cancel </md-button>
+                           <md-button class="md-raised md-primary" type="submit" ng-disabled="!oldPassword.length || newPassword != confirmPassword" ng-click="modify()"> Submit </md-button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-8">
+                  <div class="row">
+                     <div class="col">
+                        <div id="piechartFile" style="width: 350px; height: 250px;"></div>
+                     </div>
+                     <div class="col">
+                        <div id="piechartContent" style="width: 350px; height: 250px;"></div>
+                     </div>
+                  </div>
+                  <div class="row" style="padding: 25px;">
+                     <table class="table table-hover">
+                        <thead>
+                           <th ng-click="sort('fileType')">File
+                              <span class="glyphicon sort-icon" ng-show="sortKey=='fileType'" ng-class="{'fas fa-sort-up':!reverse,'fas fa-sort-down':reverse}"></span>
+                           </th>
+                           <th ng-click="sort('title')">Name
+                              <span class="glyphicon sort-icon" ng-show="sortKey=='title'" ng-class="{'fas fa-sort-up':!reverse,'fas fa-sort-down':reverse}"></span>
+                           </th>
+                           <!--							<th ng-click="sort('contentType')">Content Type
+                              <span class="glyphicon sort-icon" ng-show="sortKey=='contentType'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+                              -->
+                           <th ng-click="sort('course')">Course
+                              <span class="glyphicon sort-icon" ng-show="sortKey=='course'" ng-class="{'fas fa-sort-up':!reverse,'fas fa-sort-down':reverse}"></span>
+                           </th>
+                           <!--							<th ng-click="sort('uploadDate')">Upload Date
+                              <span class="glyphicon sort-icon" ng-show="sortKey=='uploadDate'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+                              -->
+                           <th></th>
+                        </thead>
+                        <tbody ng-repeat="result in results | orderBy:sortKey:reverse | limitTo: ((currentPage-1)*maxSize - results.length) | limitTo : maxSize">
+                           <tr>
+                              <td><i class="{{ getIcon(result.fileType) }}"></i></td>
+                              <td>{{ result.title }}</td>
+                              <!--								<td>{{ filterContentType(result.contentType) }}</td>
+                                 -->
+                              <td>{{ result.course  | uppercase }}</td>
+                              <!--								<td>{{ result.uploadDate | date }}</td>
+                                 -->
+                              <td><a href="#" ng-click="download(result.fileId)"><i class="fas fa-download"></i></a></td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <br/>
+                  <div class="row">
+                     <div class="col centered-body">
+                        <nav aria-label="Page navigation">
+						  <ul class="pagination">
+						    <li class="page-item" ng-repeat="result in results | limitTo: (currentPage - 1)"><a class="page-link" href="#" ng-click="$parent.pageChanged($index + 1)">{{ $index + 1}}</a></li>
+						    <li class="page-item active"><a class="page-link active" href="#">{{ currentPage }}</a></li>
+						    <li class="page-item" ng-repeat="result in results | limitTo: (Math.ceil(results.length / maxSize) - currentPage)"><a class="page-link" href="#" ng-click="$parent.pageChanged($parent.currentPage + $index + 1)">{{ $parent.currentPage + $index + 1}}</a></li>
+						  </ul>
+						</nav>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div ng-show="userId == null" class="centered-body">
+         <h1 class="header">User Profile</h1>
+         You must be signed in to access this Feature.
+         <a href="./login.html"><br/> Sign in Here</a>
+         <a href="./registration.html"><br/>or Sign up for an Account Here</a>
+      </div>
+      <br/>
+      <br/>
+      <br/>
+   </body>
+   <!-- AngularJS libraries -->
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-aria.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.10/angular-material.min.js"></script>
+   <!-- jQuery library -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <!-- Bootstrap -- Latest compiled and minified JavaScript -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+   <!-- ng-tag dependency -->
+   <script src="http://mbenford.github.io/ngTagsInput/js/ng-tags-input.min.js"></script>
+   <!-- Bootstrap -- Latest compiled and minified JavaScript -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+   <script src="./route.js"></script>
+   <script src="./Controller/user.js"></script>
+   <script src="./Service/storage.js"></script>
 </html>
