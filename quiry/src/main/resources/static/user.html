@@ -96,7 +96,7 @@
                      </div>
                   </div>
                </div>
-               <div class="col-md-8">
+               <div class="col-md-8" ng-show="results && results.length">
                   <div class="row">
                      <div class="col">
                         <div id="piechartFile" style="width: 350px; height: 250px;"></div>
@@ -114,34 +114,36 @@
                            <th ng-click="sort('title')">Name
                               <span class="glyphicon sort-icon" ng-show="sortKey=='title'" ng-class="{'fas fa-sort-up':!reverse,'fas fa-sort-down':reverse}"></span>
                            </th>
-                           <!--							<th ng-click="sort('contentType')">Content Type
+                           <!-- <th ng-click="sort('contentType')">Content Type
                               <span class="glyphicon sort-icon" ng-show="sortKey=='contentType'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
-                              -->
+                           -->
                            <th ng-click="sort('course')">Course
                               <span class="glyphicon sort-icon" ng-show="sortKey=='course'" ng-class="{'fas fa-sort-up':!reverse,'fas fa-sort-down':reverse}"></span>
                            </th>
-                           <!--							<th ng-click="sort('uploadDate')">Upload Date
+                           <!-- <th ng-click="sort('uploadDate')">Upload Date
                               <span class="glyphicon sort-icon" ng-show="sortKey=='uploadDate'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
-                              -->
+                           -->
+                           <th></th>
                            <th></th>
                         </thead>
                         <tbody ng-repeat="result in results | orderBy:sortKey:reverse | limitTo: ((currentPage-1)*maxSize - results.length) | limitTo : maxSize">
                            <tr>
                               <td><i class="{{ getIcon(result.fileType) }}"></i></td>
                               <td>{{ result.title }}</td>
-                              <!--								<td>{{ filterContentType(result.contentType) }}</td>
-                                 -->
+                              <!-- <td>{{ filterContentType(result.contentType) }}</td>
+                              -->
                               <td>{{ result.course  | uppercase }}</td>
-                              <!--								<td>{{ result.uploadDate | date }}</td>
-                                 -->
+                              <!-- <td>{{ result.uploadDate | date }}</td>
+                              -->
                               <td><a href="#" ng-click="download(result.fileId)"><i class="fas fa-download"></i></a></td>
+                              <td><a href="#" ng-click="remove(result.fileId, $index)"><i class="far fa-times-circle" style="color:red;"></i></a></td>
                            </tr>
                         </tbody>
                      </table>
                   </div>
                   <br/>
                   <div class="row">
-                     <div class="col centered-body">
+                     <div class="col text-center">
                         <nav aria-label="Page navigation">
 						  <ul class="pagination">
 						    <li class="page-item" ng-repeat="result in results | limitTo: (currentPage - 1)"><a class="page-link" href="#" ng-click="$parent.pageChanged($index + 1)">{{ $index + 1}}</a></li>
@@ -151,6 +153,9 @@
 						</nav>
                      </div>
                   </div>
+               </div>
+               <div class="col-md-8 text-center" ng-hide="results && results.length">
+                   <b>No files uploaded.</b>
                </div>
             </div>
          </div>

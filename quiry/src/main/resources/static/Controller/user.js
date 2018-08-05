@@ -86,6 +86,27 @@
           );
       }
 
+		$scope.remove = function(idFile, index){
+			if (!confirm("Confirm deletion?")) {
+				return;
+			}
+
+			$http.get('/file/delete', {
+				transformResponse: angular.identity,
+				params: { fileId: idFile }
+			})
+			.then(
+				function(response) {
+					$scope.results.splice(index, 1);
+					setChartData();
+				}
+			)
+			.catch(
+				function(response) {
+				}
+			);
+		}
+
 		$scope.getAccountType = function(type){
 			var map = {
 				"1": "Student",
@@ -106,6 +127,19 @@
 		}
 
 		$scope.modify = function() {
+			var passwordRegex = /^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])([a-zA-Z0-9]+)$/
+			if ($scope.newPassword != null && $scope.newPassword.length
+					&& !passwordRegex.test($scope.newPassword)) {
+				$scope.message = "Password must meet complexity requirements";
+				return;
+			}
+
+			var emailRegex = /^[a-z|A-Z|\.|0-9]+@([a-z|A-Z|0-9]+\.)*(utoronto\.ca|toronto\.edu)$/
+			if (!emailRegex.test($scope.email)) {
+				$scope.message = "Not a valid UofT email";
+				return;
+			}
+
 			$http.post('/user/modify', JSON.stringify($scope.parseData()))
 				.then(
 					function(response) {

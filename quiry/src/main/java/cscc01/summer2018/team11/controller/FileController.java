@@ -184,4 +184,12 @@ public class FileController {
 		return ResponseEntity.ok().body(results);
 	}
 
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public ResponseEntity<String> deleteFile(@RequestParam("fileId") int fileId) {
+		if (!FileService.deleteFile(fileId)) {
+			return ResponseEntity.badRequest().body("failed");
+		}
+		return ResponseEntity.ok().body("success");
+	}
+
 }
