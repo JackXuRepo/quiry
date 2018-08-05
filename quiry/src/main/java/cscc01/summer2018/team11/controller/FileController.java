@@ -50,14 +50,19 @@ public class FileController {
         // TODO: access level workaround
         User user = UserService.getUser(userId);
         if (user == null) {
-            return ResponseEntity.badRequest().body("illegal user");
+            return ResponseEntity.badRequest().body("Illegal User");
+        }
+
+        // set title
+        String fileName = remoteFile.getOriginalFilename();
+        if (title.equals("undefined")) {
+            title = fileName;
         }
 
         // TODO: file type workaround
-        String fileName = remoteFile.getOriginalFilename();
         int fileType = Parser.getFileType(fileName);
         if (fileType == FileType.NONE) {
-            return ResponseEntity.badRequest().body("illegal file type");
+            return ResponseEntity.badRequest().body("Illegal File Type");
         }
 
         // TODO: content type workaround
@@ -72,7 +77,7 @@ public class FileController {
             contentType = ContentType.JOURNAL;
             break;
         default:
-            return ResponseEntity.badRequest().body("illegal content type");
+            return ResponseEntity.badRequest().body("Illegal Content Type");
         }
 
         FileInfo fileInfo = new FileInfo.Builder()
@@ -163,7 +168,7 @@ public class FileController {
         return ResponseEntity.ok().headers(headers).body(content);
     }
 
-    @RequestMapping(value = "/crawl", method = RequestMethod.POST)
+    @RequestMapping(value = "/crawl", method = RequestMethod.GET)
     public ResponseEntity<String> uploadFile(
             @RequestParam("url") String url,
             @RequestParam("userId") String userId,
@@ -183,7 +188,7 @@ public class FileController {
             contentType = ContentType.JOURNAL;
             break;
         default:
-            return ResponseEntity.badRequest().body("illegal content type");
+            return ResponseEntity.badRequest().body("Illegal Content Type");
         }
 
         try {
@@ -193,7 +198,7 @@ public class FileController {
             e.printStackTrace();
             return ResponseEntity.badRequest().body("failed");
         }
-        return ResponseEntity.ok().body("success");
+        return ResponseEntity.ok("success");
     }
 
 }

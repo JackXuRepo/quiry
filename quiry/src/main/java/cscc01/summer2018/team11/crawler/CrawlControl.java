@@ -10,9 +10,9 @@ import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
 
 public class CrawlControl {
 
-    public static void crawl(String url, boolean domainRestricted, String userId,
-            String course, int contentType) throws Exception {
-
+    public static CrawlController crawl(String url, boolean domainRestricted,
+            String userId, String course, int contentType) throws Exception
+    {
         CrawlConfig config = new CrawlConfig();
         config.setCrawlStorageFolder("crawl");
         config.setUserAgentString("Mozilla/5.0 (crawler4j)");
@@ -45,8 +45,7 @@ public class CrawlControl {
         CrawlFactory factory = new CrawlFactory(url, domainRestricted, userId, course, contentType);
         controller.startNonBlocking(factory, 1);
 
-        // TODO: do not wait
-        controller.waitUntilFinish();
+        return controller;
     }
 
 }
