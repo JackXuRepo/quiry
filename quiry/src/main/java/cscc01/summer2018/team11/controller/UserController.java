@@ -54,22 +54,22 @@ public class UserController {
 		}
 
 		String firstName = body.get("firstName");
-		if (firstName != null) {
+		if (firstName != null && !firstName.isEmpty()) {
 			userData.setFirstName(firstName);
 		}
 
 		String lastName = body.get("lastName");
-		if (lastName != null) {
+		if (lastName != null && !lastName.isEmpty()) {
 			userData.setLastName(lastName);
 		}
 
 		String email = body.get("email");
-		if (email != null) {
+		if (email != null && !lastName.isEmpty()) {
 			userData.setEmail(email);
 		}
 
 		String password = body.get("newPassword");
-		if (password != null) {
+		if (password != null && !password.isEmpty()) {
 			userData.setPassword(password);
 		}
 
