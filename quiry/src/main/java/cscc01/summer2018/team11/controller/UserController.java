@@ -53,17 +53,24 @@ public class UserController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 		}
 
-		if (body.containsKey("firstName")) {
-			userData.setFirstName(body.get("firstName"));
+		String firstName = body.get("firstName");
+		if (firstName != null) {
+			userData.setFirstName(firstName);
 		}
-		if (body.containsKey("lastName")) {
-			userData.setLastName(body.get("lastName"));
+
+		String lastName = body.get("lastName");
+		if (lastName != null) {
+			userData.setLastName(lastName);
 		}
-		if (body.containsKey("email")) {
-			userData.setEmail(body.get("email"));
+
+		String email = body.get("email");
+		if (email != null) {
+			userData.setEmail(email);
 		}
-		if (body.containsKey("newPassword")) {
-			userData.setPassword(body.get("newPassword"));
+
+		String password = body.get("newPassword");
+		if (password != null) {
+			userData.setPassword(password);
 		}
 
 		if (!UserService.updateUser(userData)) {
