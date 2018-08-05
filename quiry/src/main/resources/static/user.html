@@ -61,6 +61,7 @@
                      </div>
                      <div ng-show="editing" class="row">
                         <div class="col" style="padding: 25px;">
+                        	<form id="registrationForm" name="registrationForm" ng-submit="modify()">
                            <label for="firstName">First Name:</label>
                            <input type="text" style="width: 100%" name="firstName" ng-model="firstName"/>
                            <br/>
@@ -68,23 +69,29 @@
                            <input type="text" style="width: 100%" name="lastName" ng-model="lastName"/>
                            <br/>
                            <label for="email">Email:</label>
-                           <input type="text" style="width: 100%" name="email" ng-model="email"/>
-                           <br/>
+                           <input type="text" ng-pattern="/^[a-z|A-Z|\.|0-9]+@([a-z|A-Z|0-9]+\.)*(utoronto\.ca|toronto\.edu)$/" style="width: 100%" name="email" ng-model="email" required/><br/>
+                           <span class="error-message" ng-show="registrationForm.email.$dirty && registrationForm.email.$invalid">The email must be a valid U of T email.<br/></span>
                            <label for="oldPassword">Old Password:</label>
                            <input type="password" style="width: 100%" name="oldPssword" ng-model="oldPassword" placeholder="Enter password to confirm changes"/>
                            <br/>
                            <label for="newPassword">New Password:</label>
-                           <input type="password" style="width: 100%" name="newPassword" ng-model="newPassword" placeholder="(optional)"/>
+                           <input type="password" matTooltip="Password must be at least 8 characters long. It must include at least one of each: an Uppercase Character, a Lowercase Character, Numerical Character. It must not include any special characters." style="width: 100%" name="newPassword" ng-model="newPassword" ng-minlength="8" ng-pattern="/^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])([a-zA-Z0-9]+)$/" name="password" id="newPassword" type="password" placeholder="(optional)"/>
                            <br/>
+                           <span class="error-message" ng-show="registrationForm.newPassword.$dirty && registrationForm.newPassword.$invalid">The password must be a valid one.<br/></span>
+						   <span class="valid-message" ng-show="registrationForm.newPassword.$touched && registrationForm.newPassword.$valid && newPassword">The password entered is valid.<br/></span>
                            <label for="confirmPassword">Confirm New Password:</label>
-                           <input type="password" style="width: 100%" name="confirmPassword" ng-model="confirmPassword" placeholder="(optional)"/>
+                           <input type="password" style="width: 100%" name="confirmPassword" id="confirmPassword" ng-model="confirmPassword" placeholder="(optional)"/>
+                           <span class="valid-message" ng-show="registrationForm.confirmPassword.$touched && registrationForm.newPassword.$viewValue == registrationForm.confirmPassword.$viewValue && confirmPassword">The password confirmation matches your new password.</span>
+                          <span class="error-message" ng-show="registrationForm.confirmPassword.$dirty && registrationForm.newPassword.$viewValue != registrationForm.confirmPassword.$viewValue && confirmPassword">The password confirmation must match your new password.</span>
+                       	   </form>
                         </div>
                      </div>
                      <div ng-show="editing" class="row">
                         <div class="col text-center">
+                        	<span ng-show="registrationForm.newPassword.$dirty && registrationForm.newPassword.$invalid" style="font-style: italic; color: steelblue">Password must be at least 8 characters long. It must include at least one of each: an Uppercase Character, a Lowercase Character, Numerical Character. It must not include any special characters.<br/></span>
                            <span ng-show="message.length" id="statusMessage" style="color:red">{{ message }}<br/></span>
                            <md-button class="md-raised md-primary" type="submit" ng-click="cancel()"> Cancel </md-button>
-                           <md-button class="md-raised md-primary" type="submit" ng-disabled="!oldPassword.length || newPassword != confirmPassword" ng-click="modify()"> Submit </md-button>
+                           <md-button class="md-raised md-primary" type="submit" ng-disabled="!oldPassword.length || newPassword != confirmPassword || !firstName.length || !lastName.length || !email.length || registrationForm.$invalid" ng-click="modify()"> Submit </md-button>
                         </div>
                      </div>
                   </div>
