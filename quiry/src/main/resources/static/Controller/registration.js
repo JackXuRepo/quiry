@@ -1,4 +1,4 @@
-// Find angular module module 
+// Find angular module module
 // This is the controller for the login page
 //                   controller name , function(dependency, ....)
 (function(){

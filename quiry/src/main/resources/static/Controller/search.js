@@ -1,10 +1,10 @@
-// Find angular module module 
+// Find angular module module
 // This is the controller for the login page
 //                   controller name , function(dependency, ....)
 (function(){
 	angular.module("quiryApp")
 		.controller('searchController', searchController);
-		
+
 		function searchController($scope, $http, StorageService, $window){
 			$scope.searchText = StorageService.getValue("searchText");
 			$scope.author = "";
@@ -38,7 +38,7 @@
 				// 		StorageService.setValue("searchText", $scope.searchText);
 				// 		$window.location.href = "./results.html";
 				// 	});
-				var paramConfig = {params: {   
+				var paramConfig = { params: {
 									searchText: $scope.searchText,
 									author: $scope.author,
 						    		dateUploaded: parseTimeOptions($scope.dateUploaded),

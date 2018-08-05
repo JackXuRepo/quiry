@@ -19,7 +19,7 @@
 // For now we only have ngRoute which handles routing of urls
 (function(){
     angular.module("quiryApp", ["ngAnimate", "ngTagsInput", "ngSanitize", "ui.bootstrap", "ngAria", "ngMaterial"]);
-    // Whenever u see "$something", those are AngularJS services 
+    // Whenever u see "$something", those are AngularJS services
     // Any service that is provided by the angularJS framework
     // has the prefix "$".
     // We are using the default router the is provided by Angular
@@ -49,7 +49,7 @@
         .otherwise({
             redirectTo:"/"
         });
-        
+
         // Usually this would be a 404 error
         // redirectTo:"/404", but lets just return to main
     });*/
