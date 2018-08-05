@@ -180,6 +180,15 @@
 }
 /* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
    readers do not read off random characters that represent icons */
+.fa-file-pdf:before {
+  content: "\f1c1";
+}
+.fa-file-txt:before {
+  content: "\f15c";
+}
+.fa-file-html:before {
+  content: "\f26b";
+}
 .fa-glass:before {
   content: "\f000";
 }

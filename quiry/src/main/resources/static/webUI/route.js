@@ -18,7 +18,15 @@
 // module names (ie services, other API names) we will inject for our front-end
 // For now we only have ngRoute which handles routing of urls
 (function(){
-    angular.module("quiryApp", ["ngAnimate", "ngTagsInput", "ngSanitize", "ui.bootstrap", "ngAria", "ngMaterial"]);
+    angular.module("quiryApp", ["ngAnimate", "ngTagsInput", "ngSanitize", "ui.bootstrap", "ngAria", "ngMaterial"])
+    .config(function($mdThemingProvider) {
+      $mdThemingProvider.theme('dark-green').backgroundPalette('green').dark();
+      $mdThemingProvider.theme('dark-grey').backgroundPalette('grey').dark();
+      $mdThemingProvider.theme('tabs')
+        .backgroundPalette('grey')
+        .primaryPalette('teal')
+        .accentPalette('lime');
+    });
     // Whenever u see "$something", those are AngularJS services 
     // Any service that is provided by the angularJS framework
     // has the prefix "$".

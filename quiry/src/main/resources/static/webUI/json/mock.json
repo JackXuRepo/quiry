@@ -7,7 +7,7 @@
       "authorType":"2",
       "course": "CSC01",
       "fileId":"1123",
-      "description": "I haven't written this exam yet.",
+      "description": "This is the exam for software engineering, 2017",
       "uploadDate":"2018-07-27 15:30:00",
       "preview":"...is the difference between <b>VALIDATION</b> and <B>ver</B>... ...compare the following <b>SPRINT</b> burndown cha..."
    },
@@ -19,9 +19,9 @@
       "authorType":"1",
       "course": "CSC24",
       "fileId":"1123",
-      "description": "I haven't written this exam yet.",
+      "description": "A role is not necessary when the card is used as a purely decorative container that does not convey a meaningful grouping of related content for a single subject. In these cases, the content of the card should follow standard practices for document content.",
       "uploadDate":"2018-07-27 15:30:00",
-      "preview":"...is the difference between VALIDATION and ver... ...compare the following SPRINT burndown cha..."
+      "preview":"Haskell is very hard to <b>learn</b>, and hard to understand as <b>well</b>"
    },
    {
       "title": "A Study of Text Files",
@@ -31,9 +31,9 @@
       "course": "CSC01",
       "authorType":"2",
       "fileId":"1123",
-      "description": "I haven't written this exam yet.",
+      "description": "This tutorial assumes you have a basic knowledge of socket programming, i.e you are familiar with basic server and client model. In the basic model, server handles only one client at a time, which is a big assumption if you want to develop any scalable server model. The simple way to handle multiple clients would be to spawn new thread for every new client connected to the server. This method is strongly not recommended because of various disadvantages",
       "uploadDate":"2018-07-27 15:30:00",
-      "preview":"...is the difference between VALIDATION and ver... ...compare the following SPRINT burndown cha..."
+      "preview":" Text is a human-readable sequence of <b>characters</b> and the words they form that can be encoded into computer-readable formats"
    },
    {
       "title": "How to Program",

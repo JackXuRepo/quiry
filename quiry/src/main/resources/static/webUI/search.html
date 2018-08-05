@@ -6,7 +6,7 @@
       <div ng-controller="searchController" class="domain">
          <div class="container">
             <div class="container">
-               <form class="search-form domain-search" action="#" method="post">
+               <form class="search-form domain-search">
                   <div class="two-fifth column first">
                      <h2 style="color: white">search your <span>File Here:</span></h2>
                   </div>
@@ -14,7 +14,7 @@
                      <input type="text" class="text" name="Name" ng-model="searchText" placeholder="Enter the file name you want to search" required="">               
                   </div>
                   <div class="one-fifth column">
-                     <input type="submit" value="Search">
+                     <input type="submit" value="Search" ng-click="search()">
                   </div>
                   <div class="clearfix"> </div>
                </form>

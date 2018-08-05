@@ -12,6 +12,30 @@ html, body{
 body{
 	background:#FFFFFF;
 }
+.result-text {
+  font-style: italic;
+  font-size: 1.25em;   
+  text-decoration-color: green;
+  color: green; 
+}
+
+.result-card {
+  min-width: 1120px;
+  max-width: 1120px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.centered-body{
+  text-align: center;
+  font-family: Calibri;
+}
+
+.file-type-icon {
+  height: 40px;
+  width: 40px;
+  padding-top: 10px;
+  padding-left: 10px;
+}
 /*-- header-top --*/
 .to-center {
   display: block;
@@ -2489,9 +2513,60 @@ h2.typoh2{
     text-align: center;
     padding: 1.6em 0 0 0;
 }
+.pdf-bg {
+    background: darkred !important;
+}
+.txt-bg {
+    background: orange !important;
+}
+.html-bg {
+    background: steelblue !important;
+}
+
+ul.pagination > li > a
+{
+    background-color: black;
+    color: lightgreen;
+}
+
+ul.pagination > li > a:focus,
+ul.pagination > li > a:hover,
+ul.pagination > li > span:focus,
+ul.pagination > li > span:hover {
+    background-color: lightgreen;
+}
+
+ul.pagination > .active > a,
+ul.pagination > .active > a:hover
+{
+    color: white;
+    background-color: green;
+}
+
+ul.pagination > .disabled > a,
+ul.pagination > .disabled > a:hover,
+ul.pagination > .disabled > a:focus
+{
+    color: grey;
+    background-color: darkgrey;
+}
+
+
 i.fa.fa-pencil{
 	color:#FFFFFF;
 	font-size:2.5em;
+}
+i.fa.fa-file-pdf{
+  color:#FFFFFF;
+  font-size:2.5em;
+}
+i.fa.fa-file-html{
+  color:#FFFFFF;
+  font-size:2.5em;
+}
+i.fa.fa-file-txt{
+  color:#FFFFFF;
+  font-size:2.5em;
 }
 .blog-left-right {
     float: left;
