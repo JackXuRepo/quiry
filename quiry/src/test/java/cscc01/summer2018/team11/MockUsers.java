@@ -21,7 +21,8 @@ public class MockUsers {
         String lastName = "Hall";
         String email = "hallsara@mail.utoronto.ca";
         String password = "password";
-        return new Admin(userId, email, password, firstName, lastName);
+        String verification = "verified";
+        return new Admin(userId, email, password, firstName, lastName, verification);
     }
 
     public static Instructor user2() {
@@ -30,7 +31,8 @@ public class MockUsers {
         String lastName = "Houellebecq";
         String email = "houelleb@mail.utoronto.ca";
         String password = "password";
-        return new Instructor(userId, email, password, firstName, lastName);
+        String verification = "verified";
+        return new Instructor(userId, email, password, firstName, lastName, verification);
     }
 
 
@@ -40,7 +42,8 @@ public class MockUsers {
         String lastName = "Mitchell";
         String email = "mitchell@mail.utoronto.ca";
         String password = "password";
-        return new Instructor(userId, email, password, firstName, lastName);
+        String verification = "verified";
+        return new Instructor(userId, email, password, firstName, lastName, verification);
     }
 
     public static Student user4() {
@@ -49,7 +52,8 @@ public class MockUsers {
         String lastName = "Mantel";
         String email = "mantelhi@mail.utoronto.ca";
         String password = "password";
-        return new Student(userId, email, password, firstName, lastName);
+        String verification = "verified";
+        return new Student(userId, email, password, firstName, lastName, verification);
     }
 
     public static Student user5() {
@@ -58,7 +62,8 @@ public class MockUsers {
         String lastName = "Ferris";
         String email = "ferrisjo@mail.utoronto.ca";
         String password = "password";
-        return new Student(userId, email, password, firstName, lastName);
+        String verification = "verified";
+        return new Student(userId, email, password, firstName, lastName, verification);
     }
 
     public static void main(String[] args) throws SQLException {

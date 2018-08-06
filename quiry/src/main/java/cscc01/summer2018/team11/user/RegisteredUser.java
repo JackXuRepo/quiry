@@ -2,6 +2,8 @@ package cscc01.summer2018.team11.user;
 
 import java.util.HashSet;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import cscc01.summer2018.team11.file.FileInfo;
 import cscc01.summer2018.team11.file.FileService;
 
@@ -9,10 +11,12 @@ public abstract class RegisteredUser extends User {
 
 	private HashSet<Integer> userFiles = new HashSet<Integer>();
 	private HashSet<String> courses = new HashSet<String>();
+	@Autowired
+	private FileService fileService;
 
 	public RegisteredUser(String userId, String email, String password,
-	        String firstName, String lastName, int accessLv) {
-		super(userId, email, password, firstName, lastName, accessLv);
+	        String firstName, String lastName, int accessLv, String verification) {
+		super(userId, email, password, firstName, lastName, accessLv, verification);
 		this.userFiles = null;
 		this.courses = null;
 	}
@@ -26,7 +30,7 @@ public abstract class RegisteredUser extends User {
 	}
 
 	public boolean deleteFile(int fileId) {
-		return FileService.deleteFile(fileId);
+		return fileService.deleteFile(fileId);
 	}
 
 	public boolean addFileId(int fileId) {

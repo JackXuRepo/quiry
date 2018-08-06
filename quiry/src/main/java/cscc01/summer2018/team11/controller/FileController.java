@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +32,9 @@ import cscc01.summer2018.team11.user.UserService;
 @RestController
 @RequestMapping(value = "/file")
 public class FileController {
+	
+	@Autowired
+	UserService userService;
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public ResponseEntity<String> uploadFile(
@@ -50,7 +54,7 @@ public class FileController {
         System.out.println(course);
 
         // TODO: access level workaround
-        User user = UserService.getUser(userId);
+        User user = userService.getUser(userId);
         if (user == null) {
             return ResponseEntity.badRequest().body("illegal user");
         }

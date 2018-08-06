@@ -37,7 +37,7 @@
 
           var map = {
                   "1": "",
-                  "2": "fas fa-graduation-cap"
+                  "2": "fas fa-user-graduate"
                 };
             return map[type];
       }
