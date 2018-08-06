@@ -1,45 +1,21 @@
 <!DOCTYPE html>
 <html ng-app="quiryApp">
-<div ng-controller="homeController">
-<!-- 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark" data-spy="affix" data-offset-top="197">
-			<div class="navbar-header">
-			    <a class="navbar-brand" href="./index.html">Quiry</a>
+	<div ng-controller="homeController">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<head>
+		</head>
+		<body class="navigation">
+			<div class="topnav" ng-show="userId" id="myTopnav">
+			  <a class="logo" href="#" ng-click="index()" class="active"><img src="./Resources/quiry.png" alt="Quiry Search Engine" style="width:100px;height:30px;"></img></a>
+			  <a href="#" ng-click="signOut()"  style="color:red"><i class="fas fa-sign-out-alt"></i>Sign out</a>
+			  <a href="#" ng-click="upload()" ng-show="activePage != 'upload'" style="color:green"><i class="fas fa-upload"></i>Upload</a>
+			  <a href="#" ng-click="user()" ng-show="activePage != 'user'" style="color:steelblue"><i class="fas fa-id-card"></i>{{ userId }}</a>
 			</div>
-				<ul ng-show="!userId" class="nav navbar-nav ml-auto w-100 justify-content-end">
-				<li class="nav-item">
-				<a class="nav-link" href="./login.html" style="padding-right: 30px"><i class="fas fa-sign-in-alt"></i> Sign in </a>
-				</li>
-				<li class="nav-item">
-				<a class="nav-link" href="./registration.html" style="padding-right: 30px"><i class="fas fa-plus-square"></i> Register </a>
-				</li>
-				</ul>
-
-				<ul ng-show="userId" class="nav navbar-nav ml-auto w-100 justify-content-end">
-				<li class="nav-item">
-				<a class="nav-link" href="./user.html" style="color:lightblue;padding-right: 30px"><i class="fas fa-id-card"></i> {{ userId }} </a>
-				</li>
-				<li class="nav-item">
-				<a class="nav-link" href="./upload.html" style="color:lightgreen;padding-right: 30px"><i class="fas fa-upload"></i> Upload </a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#" style="color:red;padding-right: 30px" ng-click="signOut()">
-					<i class="fas fa-sign-out-alt"></i> Sign out </a>
-				</li>
-				</ul>
-	</nav> -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body class="navigation">
-<div class="topnav" ng-show="userId" id="myTopnav">
-  <a class="logo" href="#=./index.html" class="active"><img src="./Resources/quiry.png" alt="Quiry Search Engine" style="width:100px;height:30px;"></img></a>
-  <a href="./signOut.html" style="color:red"><i class="fas fa-sign-out-alt"></i>Sign out</a>
-  <a href="./upload.html" ng-show="activePage != 'upload'" style="color:green"><i class="fas fa-upload"></i>Upload</a>
-  <a href="./user.html" ng-show="activePage != 'user'" style="color:lightblue"><i class="fas fa-id-card"></i>{{ userId }}</a>
-</div>
-<div class="topnav" ng-show="!userId" id="myTopnav">
-  <a class="logo" href="#=./index.html" class="active"><img src="./Resources/quiry.png" alt="Quiry Search Engine" style="width:100px;height:30px;"></img></a>
-  <a href="./signOut.html"><i class="fas fa-plus-square"></i>Register</a>
-  <a href="./upload.html"><i class="fas fa-sign-in-alt"></i>Sign in</a>
-</div>
-</body>
+			<div class="topnav" ng-show="!userId" id="myTopnav">
+			  <a class="logo" href="#" ng-click="index()" class="active"><img src="./Resources/quiry.png" alt="Quiry Search Engine" style="width:100px;height:30px;"></img></a>
+			  <a href="#"  ng-show="activePage != 'register'" ng-click="register()"><i class="fas fa-plus-square"></i>Register</a>
+			  <a href="#"  ng-show="activePage != 'login'" ng-click="signIn()"><i class="fas fa-sign-in-alt"></i>Sign in</a>
+			</div>
+		</body>
+	</div>
 </html>

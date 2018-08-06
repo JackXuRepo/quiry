@@ -4,6 +4,10 @@ h1 {
 	margin: 10px;
 }
 
+.label-badge {
+    border-radius: 5em !important;
+}
+
 
 .home{ 
     background: url("../background/pt2.jpg") no-repeat top center fixed;
