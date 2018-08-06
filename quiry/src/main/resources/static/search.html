@@ -3,7 +3,7 @@
    <header>
    </header>
    <body>
-   <div ng-controller="searchController" class="border border-light rounded padded-light">
+   <div ng-controller="searchController">
       <div class="container">
          <div class="row">
             <div class="col-lg-11">
@@ -11,18 +11,14 @@
                  <input id="search" name="search" type="text" class="form-control mr-sm-2" placeholder="Please enter a new search here" aria-label="Search" aria-describedby="basic-addon2" ng-model="searchText" ng-keydown="$event.keyCode === 13 && search()">
                  <div class="input-group-append">
                    <button class="btn btn-primary" type="button" ng-click="search()">Search</button>
+                   <a href="#" class="btn btn-secondary" ng-click="toggleAdvancedSearch()">{{ advancedSearchText }}</a>
                  </div>
                </div>
             </div>
          </div>
-         <div class="row">
-            <div class="col">
-               <a href="#" ng-click="toggleAdvancedSearch()">{{ advancedSearchText }}</a>
-            </div>
-         </div>
       </div>
       <div ng-show="advancedSearchOn" class="show-element animate-show-hide">
-         <div class="container">
+         <div class="container" style="background:rgba(255,255,255, 0.4);border-radius: 15px;">
             <div class="row">
                <div class="col-sm-4">
                   <label>Uploaded by</label><br/>
@@ -92,6 +88,7 @@
                <div class="col">
                   <br/>
                   <button class="btn" ng-click="resetAdvancedSearch()">Reset Advanced Search Options</button>
+                  <br/>
                   <br/>
                </div>
             </div>

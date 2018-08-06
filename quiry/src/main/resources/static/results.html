@@ -27,6 +27,8 @@
     <!-- fontAwesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 
+	<link rel="stylesheet" href="https://bootswatch.com/4/lumen/bootstrap.min.css">
+
 	<!-- ng-tag CSS -->
 	<link rel="stylesheet" href="http://mbenford.github.io/ngTagsInput/css/ng-tags-input.min.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.10/angular-material.min.css" />
@@ -34,20 +36,9 @@
 	<link rel="icon" href="./Resources/favicon.ico" type="image/x-icon"/>
 	<title>Search</title>
 
-	<div ng-show="!userId" class="ng-cloak" align="right">
-		<a href="./login.html" style="padding-right: 30px"><i class="fas fa-sign-in-alt"></i> Sign in </a>
-		<a href="./registration.html" style="padding-right: 30px"><i class="fas fa-plus-square"></i> Register </a>
-	</div>
+	<div ng-include="'navigation.html'"></div>
 
-	<div ng-show="userId" class="ng-cloak" align="right">
-		<a href="./user.html" style="padding-right: 30px"><i class="fas fa-id-card"></i> {{ userId }} </a>
-		<a href="./upload.html" style="color:green;padding-right: 30px"><i class="fas fa-upload"></i> Upload </a>
-		<a href="#" style="color:red;padding-right: 30px" ng-click="signOut()">
-			<i class="fas fa-sign-out-alt"></i> Sign out </a>
-	</div>
-		<a href="./index.html"><img src="./Resources/logo.png" alt="Quiry Search Engine" style="width:100px;height:40px;"></img></a>
-  </head>
-
+  </head>	
   <body>
   	<h1 class="header">Search Results</h1>
   	<div ng-include src="'./search.html'"></div>

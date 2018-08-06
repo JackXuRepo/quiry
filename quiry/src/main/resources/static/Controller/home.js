@@ -9,8 +9,6 @@
 			$scope.userId = StorageService.getValue("userId");
 			StorageService.setValue("searchText", "");
 
-
-
 			$scope.signOut = function(){
 				StorageService.removeValue("userId");
 				$scope.userId = null;
