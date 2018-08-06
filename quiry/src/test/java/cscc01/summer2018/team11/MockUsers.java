@@ -21,7 +21,7 @@ public class MockUsers {
         String lastName = "Hall";
         String email = "hallsara@mail.utoronto.ca";
         String password = "password";
-        String verification = "verified";
+        String verification = "activated";
         return new Admin(userId, email, password, firstName, lastName, verification);
     }
 
@@ -31,7 +31,7 @@ public class MockUsers {
         String lastName = "Houellebecq";
         String email = "houelleb@mail.utoronto.ca";
         String password = "password";
-        String verification = "verified";
+        String verification = "activated";
         return new Instructor(userId, email, password, firstName, lastName, verification);
     }
 
@@ -42,7 +42,7 @@ public class MockUsers {
         String lastName = "Mitchell";
         String email = "mitchell@mail.utoronto.ca";
         String password = "password";
-        String verification = "verified";
+        String verification = "activated";
         return new Instructor(userId, email, password, firstName, lastName, verification);
     }
 
@@ -52,7 +52,7 @@ public class MockUsers {
         String lastName = "Mantel";
         String email = "mantelhi@mail.utoronto.ca";
         String password = "password";
-        String verification = "verified";
+        String verification = "activated";
         return new Student(userId, email, password, firstName, lastName, verification);
     }
 
@@ -62,7 +62,7 @@ public class MockUsers {
         String lastName = "Ferris";
         String email = "ferrisjo@mail.utoronto.ca";
         String password = "password";
-        String verification = "verified";
+        String verification = "activated";
         return new Student(userId, email, password, firstName, lastName, verification);
     }
 

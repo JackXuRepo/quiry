@@ -1,7 +1,6 @@
 package cscc01.summer2018.team11.controller;
 
 
-import java.sql.SQLException;
 import java.util.HashMap;
 
 import javax.mail.MessagingException;
@@ -13,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import cscc01.summer2018.team11.activation.MailService;
-import cscc01.summer2018.team11.exception.UserExistsException;
 import cscc01.summer2018.team11.user.User;
 import cscc01.summer2018.team11.user.UserService;
 
@@ -25,49 +24,48 @@ import cscc01.summer2018.team11.user.UserService;
 @RestController
 @RequestMapping(value = "/user")
 public class UserController {
+
 	@Autowired
 	private MailService mailer;
-	
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ResponseEntity<HashMap<String, String>> registerUser(@RequestBody HashMap<String, String> body) {
 		body.put("verification", UserService.generateVerificationCode());
-		System.out.println(body);
-		boolean userExists = false;
-		try {
-			UserService.createUser(body);
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-		} catch (UserExistsException e) {
-			userExists = true;
-			e.printStackTrace();
-		}
-		System.out.println(userExists);
+		boolean userExists = !UserService.createUser(body);
+
 		if (!userExists) {
 			String userId = body.get("userId");
 			try {
 				mailer.sendActivationEmail(UserService.getUser(userId));
-				return ResponseEntity.status(HttpStatus.OK).body(null);
-			} catch (Exception e) {
+			} catch (MessagingException ex) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				ex.printStackTrace();
 			}
+			return ResponseEntity.status(HttpStatus.OK).body(null);
 		}
+
 		HashMap<String, String> response = new HashMap<String, String>();
 		response.put("userExists", (userExists ? "true" : "false"));
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
 	}
 
-
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ResponseEntity<HashMap<String, String>> loginUser(@RequestBody HashMap<String, String> body) {
-		System.out.println(body);
+		HashMap<String, String> response = new HashMap<String, String>();
 		User userData = UserService.loginUser(body);
-		if (userData != null) {
-			return ResponseEntity.status(HttpStatus.OK).body(UserService.parseUser(userData));
+
+		// login user
+		if (userData == null) {
+			response.put("error", "incorrect");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+
+		// check activation
+		} else if (!userData.getVerification().equals("activated")) {
+			response.put("error", "unactivated");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 		}
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+
+		return ResponseEntity.status(HttpStatus.OK).body(UserService.parseUser(userData));
 	}
 
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
@@ -104,10 +102,10 @@ public class UserController {
 		}
 		return ResponseEntity.status(HttpStatus.OK).body(UserService.parseUser(userData));
 	}
-	
+
 	@RequestMapping(value = "/activate", method = RequestMethod.GET)
 	public ModelAndView activateUser(@RequestParam("userId") String userId, @RequestParam("verification") String verification) {
-		
+
 		User user = UserService.getUser(userId);
 		if (user != null && verification.equals(user.getVerification())) {
 			user.setVerification("activated");
@@ -115,6 +113,19 @@ public class UserController {
 			return new ModelAndView("redirect:http://localhost:8080/activation-success.html");
 		}
 		return new ModelAndView("redirect:http://localhost:8080/activation-failure.html");
+	}
+
+	@RequestMapping(value = "/email", method = RequestMethod.GET)
+	@ResponseStatus(value = HttpStatus.OK)
+	public void emailUser(@RequestParam("userId") String userId) {
+		User user = UserService.getUser(userId);
+		if (user != null) {
+			try {
+				mailer.sendActivationEmail(user);
+			} catch (MessagingException e) {
+				// ignore
+			}
+		}
 	}
 
 }
