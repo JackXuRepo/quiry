@@ -70,17 +70,17 @@
 								<table class="table table-hover">
 									<thead>
 										<th ng-click="sort('fileType')">File Type
-										<span class="glyphicon sort-icon" ng-show="sortKey=='fileType'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+										<span class="glyphicon sort-icon" ng-show="sortKey=='fileType'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></span></th>
 										<th ng-click="sort('title')">File Name
-										<span class="glyphicon sort-icon" ng-show="sortKey=='title'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+										<span class="glyphicon sort-icon" ng-show="sortKey=='title'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></span></th>
 										<th ng-click="sort('author')">Author
-										<span class="glyphicon sort-icon" ng-show="sortKey=='author'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+										<span class="glyphicon sort-icon" ng-show="sortKey=='author'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></span></th>
 										<th ng-click="sort('contentType')">Content Type
-										<span class="glyphicon sort-icon" ng-show="sortKey=='contentType'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+										<span class="glyphicon sort-icon" ng-show="sortKey=='contentType'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></span></th>
 										<th ng-click="sort('course')">Course
-										<span class="glyphicon sort-icon" ng-show="sortKey=='course'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+										<span class="glyphicon sort-icon" ng-show="sortKey=='course'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></span></th>
 										<th ng-click="sort('uploadDate')">Upload Date
-										<span class="glyphicon sort-icon" ng-show="sortKey=='uploadDate'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+										<span class="glyphicon sort-icon" ng-show="sortKey=='uploadDate'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></span></th>
 										<th>Download Link</th>
 										<th></th>
 									</thead>
@@ -88,7 +88,7 @@
 										<tr>
 											<td><i class="{{ getIcon(result.fileType) }}"></i></td>
 											<td>{{ result.title }}</td>
-											<td>{{ result.author }}<i class="{{ isInstructor(result.authorType) }}"></i></td>
+											<td>{{ result.author }}<i class="{{ isInstructor(result.authorType) }}" style="background-color: green"></i></td>
 											<td>{{ filterContentType(result.contentType) }}</td>
 											<td>{{ result.course  | uppercase }}</td>
 											<td>{{ result.uploadDate | date }}</td>

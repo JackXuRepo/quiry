@@ -1,10 +1,10 @@
-// Find angular module module 
+// Find angular module module
 // This is the controller for the login page
 //                   controller name , function(dependency, ....)
 (function(){
 	angular.module("quiryApp")
 		.controller('searchController', searchController);
-		
+
 		function searchController($scope, $http, StorageService, $window){
 			$scope.searchText = StorageService.getValue("searchText");
 			$scope.author = "";
@@ -38,7 +38,7 @@
 				// 		StorageService.setValue("searchText", $scope.searchText);
 				// 		$window.location.href = "./results.html";
 				// 	});
-				var paramConfig = {params: {   
+				var paramConfig = { params: {
 									searchText: $scope.searchText,
 									author: $scope.author,
 						    		dateUploaded: parseTimeOptions($scope.dateUploaded),
@@ -68,6 +68,7 @@
 			}
 
 			$scope.resetAdvancedSearch = function(){
+				console.log($scope.studentSearch);
 				$scope.dateUploaded = "Anytime";
 				$scope.author = "";
 				$scope.studentSearch = true;
@@ -87,17 +88,6 @@
 			$scope.signOut = function(){
 				StorageService.removeValue("userId");
 				$scope.userId = null;
-			}
-
-			 $scope.query = function(searchText) {
-			 	return [
-						  "CSCA01 Winter 2016 Final Exam",
-						  "Journals on Artificial Intelligence",
-						  "PSYA01 Lecture 11 Notes",
-						  "Calculus Formula Sheet",
-						  "Statistics - Distributions",
-						  "PSYA01 Midterm Fall 2017"
-						]
 			}
 
 			$scope.loadOptions = function(query, path) {

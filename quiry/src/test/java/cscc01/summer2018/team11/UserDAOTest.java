@@ -34,8 +34,8 @@ public class UserDAOTest {
 		String email = "haosen.xu@mail.utoronto.ca";
 		String password = "password";
 
-		Student a = new Student(generateString(8), email, password, firstName, lastName);
-		Instructor b = new Instructor(generateString(8), email, password, firstName, lastName);
+		Student a = new Student(generateString(8), email, password, firstName, lastName, "verified");
+		Instructor b = new Instructor(generateString(8), email, password, firstName, lastName, "verified");
 
 		UserDAO userDatabase = new UserDAO();
 		userDatabase.updateUser(a);

@@ -30,14 +30,14 @@
                   "2":"fab fa-internet-explorer html-col"
                 };
             return iconMap[type];
-            
+
       }
 
       $scope.isInstructor = function(type){
 
           var map = {
                   "1": "",
-                  "2": "fas fa-graduation-cap"
+                  "2": "fas fa-user-graduate"
                 };
             return map[type];
       }
@@ -67,7 +67,7 @@
               console.log(response);
               console.log(response.headers('Content-Type'));
               console.log(response.headers('File-Name'));
-              
+
               var blob = new Blob([response.data], {type: response.headers('Content-Type')});
               saveAs(blob, response.headers('File-Name'));
             }

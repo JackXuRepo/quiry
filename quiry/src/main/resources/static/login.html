@@ -28,7 +28,7 @@
 	<input id="username" type="text" ng-model="username" style="width: 240px"/>
         <br/><br/>
         <span>Password:</span>
-	<input id="password" type="password" ng-model="password" style="width: 240px"/>
+	<input id="password" type="password" ng-keydown="$event.keyCode === 13 && loginUser()" ng-model="password" style="width: 240px"/>
         <br/>
 	<span id="statusMessage">{{ message }}</span><br/>
 	<md-button class="md-raised md-primary" ng-click="loginUser()">Login</md-button><br/>

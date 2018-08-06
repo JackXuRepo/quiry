@@ -97,7 +97,7 @@ public class FileDAO {
     }
 
     public List<FileInfo> getFilesByUserId(String idUser) throws SQLException {
-        ResultSet rs = stmt.executeQuery("SELECT * FROM File WHERE userId=" + idUser + ";");
+        ResultSet rs = stmt.executeQuery("SELECT * FROM File WHERE userId='" + idUser + "';");
         ArrayList<FileInfo> fileDataList = new ArrayList<>();
 
         while ( rs.next() ) {

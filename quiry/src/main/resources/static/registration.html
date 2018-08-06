@@ -71,8 +71,11 @@
 				</div>
 				<div class="row centered-body">
 					<div class="col">
-						<md-button class="md-raised md-primary" type="submit" ng-click="submitForm(registrationForm)">Submit</md-button>
+						<md-button class="md-raised md-primary" type="submit">Submit</md-button>
 					</div>
+				</div>
+				<div layout="row" layout-sm="column" layout-align="space-around" ng-hide="!activateLoading">
+				      <md-progress-circular md-mode="indeterminate" ng-disabled="!activateLoading"></md-progress-circular>
 				</div>
 			</div>
 			<br/>

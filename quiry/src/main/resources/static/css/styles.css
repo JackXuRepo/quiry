@@ -118,7 +118,6 @@ h1 {
 	font-weight: normal;
 }
 
-
 .ng-cloak {
 	display: none !important;
 }
@@ -144,9 +143,9 @@ h1 {
 }
 
 .result-text {
-	font-style: italic;    
+	font-style: italic;
 	text-decoration-color: steelblue;
-	color: steelblue; 
+	color: steelblue;
 }
 
 select.form-control:not([size]):not([multiple]) {
@@ -156,8 +155,6 @@ select.form-control:not([size]):not([multiple]) {
 .ng-disabled {
 	background: grey;
 }
-
-
 
 .animate-show-hide.ng-hide {
   opacity: 0;
@@ -173,6 +170,11 @@ select.form-control:not([size]):not([multiple]) {
   padding: 10px;
 }
 
+ul.pagination > li > a
+{
+    background-color: white;
+    color: darkgrey;
+}
 
 /*Navigation CSS*/
 .navigation body {
@@ -209,6 +211,27 @@ select.form-control:not([size]):not([multiple]) {
   color: black;
 }
 
+ul.pagination > li > a:focus,
+ul.pagination > li > a:hover,
+ul.pagination > li > span:focus,
+ul.pagination > li > span:hover {
+    background-color: lightblue;
+}
+
+ul.pagination > .active > a,
+ul.pagination > .active > a:hover
+{
+    color: white;
+    background-color: blue;
+}
+
+ul.pagination > .disabled > a,
+ul.pagination > .disabled > a:hover,
+ul.pagination > .disabled > a:focus
+{
+    color: grey;
+    background-color: darkgrey;
+}
 
 .topnav a:hover {
   color: black;
