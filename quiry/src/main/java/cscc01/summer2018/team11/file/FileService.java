@@ -65,6 +65,7 @@ public class FileService {
             FileDAO fileDb = new FileDAO();
             fileDb.deleteFile(fileId);
             Index.removeFile(fileId);
+            FileGetter.deleteFile(fileId);
 
         } catch (SQLException | IOException ex) {
             // TODO Auto-generated catch block

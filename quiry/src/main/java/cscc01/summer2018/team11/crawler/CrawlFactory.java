@@ -21,7 +21,7 @@ public class CrawlFactory implements WebCrawlerFactory<Crawler> {
 	public CrawlFactory(String url, boolean domainRestricted, String userId,
 			String course, int contentType) throws InvalidObjectException
 	{
-		this.domain = Crawler.removeProtocol(url);
+		this.domain = Crawler.removeProtocol(url).toLowerCase();
 		this.userId = userId;
 		this.course = course;
 		this.contentType = contentType;

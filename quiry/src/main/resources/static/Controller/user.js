@@ -87,7 +87,8 @@
 			})
 			.then(
 				function(response) {
-					$scope.results.splice(index, 1);
+					var i = $scope.maxSize * ($scope.currentPage - 1) + index;
+					$scope.results.splice(i, 1);
 					setChartData();
 				}
 			)
@@ -184,7 +185,7 @@
         contentTypeHeaders = ['Past Exams', 'Course Notes', 'Journals'];
         contentTypeNumbers = [0, 0, 0];
 
-        for(result in $scope.results){      	
+        for(result in $scope.results){
           fileTypeNumbers[$scope.results[result].fileType]++;
           contentTypeNumbers[$scope.results[result].contentType]++;
         }
@@ -230,7 +231,7 @@
 			});
 		};
 		init();
-		
+
 		$('#page1').ready(function() {
 			$scope.pageChanged(1);
 		});

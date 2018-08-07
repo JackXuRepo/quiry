@@ -8,7 +8,7 @@
    <div ng-controller="searchController">
       <div class="container">
          <div class="row">
-            <div class="col-lg-11">
+            <div class="col-lg-9">
                <div class="input-group">
                  <input id="search" name="search" type="text" class="form-control mr-sm-2" placeholder="Please enter a new search here" aria-label="Search" aria-describedby="basic-addon2" ng-model="searchText" ng-keydown="$event.keyCode === 13 && search()">
                  <div class="input-group-append">
@@ -21,6 +21,7 @@
       </div>
       <div ng-show="advancedSearchOn" class="show-element animate-show-hide">
          <div class="container" style="background:rgba(255,255,255, 0.7);border-radius: 15px;">
+            <br/>
             <div class="row">
                <div class="col-sm-4">
                   <label>Uploaded by</label><br/>

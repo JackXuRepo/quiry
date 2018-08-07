@@ -3,6 +3,8 @@ package cscc01.summer2018.team11.file;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+import org.springframework.util.FileSystemUtils;
+
 public class FileGetter {
 
 	// file storage root
@@ -26,8 +28,13 @@ public class FileGetter {
 		return new File(newFolderPath + "/" + fileName);
 	}
 
+	public static boolean deleteFile(int fileId) {
+		return deleteFile(Integer.toString(fileId));
+	}
+
 	public static boolean deleteFile(String fileId) {
-		return new File(root + "/" + fileId).delete();
+		File file = new File(root + "/" + fileId);
+		return FileSystemUtils.deleteRecursively(file);
 	}
 
 }

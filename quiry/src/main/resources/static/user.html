@@ -90,11 +90,11 @@
                </div>
                <div class="col-md-8" ng-show="results && results.length">
                   <div class="row">
-                     <div class="col">
-                        <div id="piechartFile" style="width: 350px; height: 250px;"></div>
+                     <div class="col-md-6">
+                        <div id="piechartFile" style="width: 100%; min-height: 250px;"></div>
                      </div>
-                     <div class="col">
-                        <div id="piechartContent" style="width: 350px; height: 250px;"></div>
+                     <div class="col-md-6">
+                        <div id="piechartContent" style="width: 100%; min-height: 250px;"></div>
                      </div>
                   </div>
                   <div class="row" style="padding: 25px;">
@@ -118,7 +118,7 @@
                               <td>{{ result.title }}</td>
                               <td>{{ result.course  | uppercase }}</td>
                               <td><a href="#" ng-click="download(result.fileId)"><i class="fas fa-download"></i></a></td>
-                              <td><a href="#" ng-click="remove(result.fileId, $index)"><i class="fas fa-times-circle" style="color:red;"></i></a></td>
+                              <td><a href="#" ng-click="remove(result.fileId, $index)"><i class="far fa-times-circle" style="color:red;"></i></a></td>
                            </tr>
                         </tbody>
                      </table>

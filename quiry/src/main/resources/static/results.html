@@ -3,11 +3,13 @@
 <html ng-app="quiryApp">
 	<div ng-controller="resultsController">
 	  <head>
-	    <!-- Latest compiled and minified CSS -->
+		<!-- Latest compiled and minified CSS -->
 		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"/>
-	    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://bootswatch.com/4/lumen/bootstrap.min.css">
 
-	    <!-- fontAwesome -->
+		<link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- fontAwesome -->
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 
 		<!-- ng-tag CSS -->
@@ -19,7 +21,7 @@
 
 		<div ng-include="'navigation.html'" ng-controller="homeController"></div>
 
-	  </head>	
+	  </head>
 	  <body>
 	  	<h1 class="header">Search Results</h1>
 	  	<div ng-include src="'./search.html'"></div>
@@ -107,14 +109,14 @@
 		        <md-content class="md-padding">
 		        	<div class="container-fluid">
 		        		<div class="row">
-		        			<div class="col">
-		        				<div id="piechartAccount" style="width: 530px; height: 285px;"></div>
+		        			<div class="col-md-4">
+		        				<div id="piechartAccount" style="width: 100%; min-height: 285px;"></div>
 		        			</div>
-		        			<div class="col">
-		        				<div id="piechartFile" style="width: 530px; height: 285px;"></div>
+		        			<div class="col-md-4">
+		        				<div id="piechartFile" style="width: 100%; min-height: 285px;"></div>
 		        			</div>
-		        			<div class="col">
-		        				<div id="piechartContent" style="width: 530px; height: 285px;"></div>
+		        			<div class="col-md-4">
+		        				<div id="piechartContent" style="width: 100%; min-height: 285px;"></div>
 		        			</div>
 		        		</div>
 		        	</div>
