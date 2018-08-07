@@ -29,9 +29,32 @@ The following documentation are written for each phase of the project. They will
 ## Development
 The Quiry project is developed using:
 
+Back-End Technologies:
 * [Java SE Development Kit 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) (Latest Update 181)
 * [Eclipse IDE for Java EE Developers](https://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/photonr) (Latest version Photon 4.8.0)
+* [Mockito](http://site.mockito.org) (Latest version 1.10.19)
+* [JUnit](https://junit.org/junit5)
 * [Maven](https://maven.apache.org/download.cgi) (Latest version 3.5.4)
+* [Spring Boot](https://spring.io/projects/spring-boot) (Latest version 2.0.3)
+* [Apache Tomcat](http://tomcat.apache.org) (Spring)
+* [Spring Mail](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-email.html) (Spring)
+* [Apache Lucene](http://lucene.apache.org) (Latest version 7.4.0)
+* [SQLite / JDBC](https://www.sqlite.org/index.html)
+* [JSoup](https://jsoup.org/) (Latest version 2.0.3)
+* [Crawler4J](https://github.com/yasserg/crawler4j) (Latest version 4.4.0)
+* [Apache PdfBox](https://pdfbox.apache.org) (Latest version 2.0.11)
+
+Front-End Technologies:
+* [Sublime Text](https://www.sublimetext.com) (Latest version 3)
+* [AngularJS](https://angularjs.org) (Latest version 1.6.9)
+* [Bootstrap CSS](https://getbootstrap.com) (Latest version 4.1.1)
+* [Angular Material](https://material.angular.io) (Latest version 1.1.10)
+* [Angular-UI](https://angular-ui.github.io) (Latest version 2.5.0)
+* [ngTagsInput](http://mbenford.github.io/ngTagsInput/) (Latest version 2.0.11)
+* [Font Awesome](https://fontawesome.com/) (Latest version 5.1.0)
+* [Google Charts](https://developers.google.com/chart)
+* [File Saver](https://github.com/eligrey/FileSaver.js) (Latest version 1.3.8)
+
 
 ### Build
 To build the project in the [quiry](quiry/) directory, run `mvn compile`, you may clean the build files with `mvn clean`. The main function is in the class `App`.
