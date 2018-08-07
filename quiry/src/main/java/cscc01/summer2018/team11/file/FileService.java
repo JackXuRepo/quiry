@@ -4,6 +4,7 @@ package cscc01.summer2018.team11.file;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -89,6 +90,19 @@ public class FileService {
             ex.printStackTrace();
         }
         return exist;
+    }
+
+    public static List<FileInfo> getUserFiles(String userId) {
+        List<FileInfo> results = null;
+        try {
+            FileDAO fileDb = new FileDAO();
+            results = fileDb.getFilesByUserId(userId);
+
+        } catch (SQLException ex) {
+            // TODO Auto-generated catch block
+            ex.printStackTrace();
+        }
+        return results;
     }
 
     public static HashMap<String, String> parseFileInfo(FileInfo fileInfo, String preview) {

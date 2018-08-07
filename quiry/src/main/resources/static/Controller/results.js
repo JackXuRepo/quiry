@@ -30,23 +30,18 @@
                   "2":"fab fa-internet-explorer html-col"
                 };
             return iconMap[type];
-            
+
       }
 
       $scope.isInstructor = function(type){
 
           var map = {
                   "1": "",
-                  "2": "fas fa-graduation-cap"
+                  "2": "fas fa-user-graduate"
                 };
             return map[type];
       }
 
-
-      $scope.pageChanged = function() {
-          $log.log('Page changed to: ' + $scope.currentPage);
-          $log.log($scope.results);
-      };
 
       $scope.filterContentType = function(input) {
             var map = {
@@ -64,10 +59,7 @@
           })
           .then(
             function(response) {
-              console.log(response);
-              console.log(response.headers('Content-Type'));
-              console.log(response.headers('File-Name'));
-              
+
               var blob = new Blob([response.data], {type: response.headers('Content-Type')});
               saveAs(blob, response.headers('File-Name'));
             }
@@ -94,12 +86,8 @@
         fileTypeNumbers = [0, 0, 0];
         contentTypeHeaders = ['Past Exams', 'Course Notes', 'Journals'];
         contentTypeNumbers = [0, 0, 0];
-        console.log(results);
 
         for(result in results){
-          console.log("AUTHOR-TYPE" + result.authorType-1);
-          console.log("FILE-TYPE" + result.fileType);
-          console.log("CONTENT-TYPE" + result.contentType);
           accountTypeNumbers[results[result].authorType - 1]++;
           fileTypeNumbers[results[result].fileType]++;
           contentTypeNumbers[results[result].contentType]++;
@@ -122,9 +110,6 @@
         contentTypeArray.push([contentTypeHeaders[1], contentTypeNumbers[1]]);
         contentTypeArray.push([contentTypeHeaders[2], contentTypeNumbers[2]]);
 
-        // console.log(accountTypeArray);
-        // console.log(fileTypeArray);
-        // console.log(contentTypeArray);
 
         drawChart(accountTypeArray, "Results by Account Types", "piechartAccount");
         drawChart(fileTypeArray, "Results by File Types", "piechartFile");

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="quiryApp">
+<div ng-controller="homeController">
+<head>
+<title>Home</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- bootstrap-css -->
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!--// bootstrap-css -->
+<!-- css -->
+<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+<!--// css -->
+<!-- font-awesome icons -->
+<link href="css/font-awesome.css" rel="stylesheet"> 
+<!-- //font-awesome icons -->
+<link href="http://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700italic,700,400italic,300italic,300' rel='stylesheet' type='text/css'>
+
+<!-- ng-tag CSS -->
+<link rel="stylesheet" href="http://mbenford.github.io/ngTagsInput/css/ng-tags-input.min.css" />
+<link rel = "stylesheet" href = "https://ajax.googleapis.com/ajax/libs/angular_material/1.1.10/angular-material.min.css">
+
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/SmoothScroll.min.js"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){		
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
+	});
+</script>
+<link href='css/immersive-slider.css' rel='stylesheet' type='text/css'>
+<!-- pricing -->
+<link rel="stylesheet" href="css/jquery.flipster.css">
+<!-- //pricing -->
+</head>
+<body>
+
+	<!-- header -->
+	<div class="header">
+			<div class="container">
+				<nav class="navbar navbar-default">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+					  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					  </button>
+						<div class="w3layouts-logo">
+							<h1><a href="index.html">Q<span>uiry</span></a></h1>
+						</div>
+					</div>
+
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+						<nav>
+							<ul class="nav navbar-nav">
+								<li class="active"><a href="index.html">Home</a></li>
+								<li><a href="about.html" class="hvr-sweep-to-bottom">About</a></li>
+								<li><a href="results.html" class="hvr-sweep-to-bottom">Search</a></li>
+								<li><a href="#" class="dropdown-toggle hvr-sweep-to-bottom" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account<span class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li><a class="hvr-sweep-to-bottom" href="user.html">Profile</a></li>
+										<li><a class="hvr-sweep-to-bottom" href="login.html">Login</a></li>
+										<li><a class="hvr-sweep-to-bottom" href="registration.html">Registration</a></li>
+										<li><a class="hvr-sweep-to-bottom" href="upload.html">Upload</a></li>
+										<li><a class="hvr-sweep-to-bottom" href="icons.html">Icons</a></li>
+										<li><a class="hvr-sweep-to-bottom" href="typography.html">Typography</a></li>
+									</ul>
+								</li>
+								<li><a href="faq.html" class="hvr-sweep-to-bottom">FAQs</a></li>
+							</ul>
+						</nav>
+					</div>
+					<!-- /.navbar-collapse -->
+				</nav>
+			</div>
+	</div>
+	<!-- //header -->
+	<!-- banner -->
+	<div class="main">
+		<div class="page_container">
+			<div id="immersive_slider">
+				  <div class="slide" data-blurred="">
+						<div class="col-md-6 image">
+							<img src="images/3a.png" alt="Slider 1" />
+						</div>
+						<div class="col-md-6 content">
+							<h3>University of <span>Toronto</span></h3>
+							<p>The University of Toronto is a public research university in Toronto, Ontario, Canada. It was founded by royal charter in 1827 as King's College, the first institution of higher learning in the colony of Upper Canada. </p>
+						</div>
+						<div class="clearfix"> </div>
+				  </div>
+				  <div class="slide" data-blurred="">
+						<div class="col-md-6 image">
+							<img src="images/1a.png" alt="Slider 1" />
+						</div>
+						<div class="col-md-6 content">
+							<h3>U of T <span>Scarborough</span></h3>
+							<p>The University of Toronto Scarborough (UTSC), based in the Scarborough district of Toronto, Ontario, Canada. It was established in 1964 as Scarborough College, a constituent college of the Faculty of Arts and Science. The college expanded into a mid-sized university following its designation as an autonomic division of the university in 1972.</p>
+						</div>
+						<div class="clearfix"> </div>
+				  </div>
+				  <div class="slide" data-blurred="">
+						<div class="col-md-6 image">
+							<img src="images/2a.png" alt="Slider 1" />
+						</div>
+						<div class="col-md-6 content">
+							<h3>Q<span>uiry</span></h3>
+							<p>Quiry is formed by 5 UTSC students on July 2018, purpose of giving student a platform for study. The website is build for only file communication, student or professor can upload study notes or past exams...etc. for study purpose.</p>
+						</div>
+						<div class="clearfix"> </div>
+				  </div>
+				  
+				  <a href="#" class="is-prev">&laquo;</a>
+				  <a href="#" class="is-next">&raquo;</a>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(document).ready( function() {
+			$("#immersive_slider").immersive_slider({
+				  container: ".main"
+			});
+		});
+
+	</script>
+	<!-- //banner -->
+
+				<div ng-include="'search.html'"></div>
+
+	<!-- banner-bottom -->
+	<div class="banner-bottom">
+		<div class="container">
+			<div class="w3-banner-bottom-heading">
+				<h3>What <span>We Support?</span></h3>
+			</div>
+			<div class="agileits-banner-bottom">
+				<div class="col-md-3 agileits-banner-bottom-grid">
+					<div class="services-grid1">
+						<div class="services-grid-right agile-services-grid-right">
+							<div class="services-grid-right-grid hvr-radial-out blue-grid">
+								<span class="glyphicon glyphicon-grain" aria-hidden="true"></span>
+							</div>
+						</div>
+						<div class="services-grid-left agile-services-grid-left">
+							<h4>Sharing</h4>
+							<p>We allow instructors and students upload documents that can help for academic study, which that can be include lecture notes, study notes, past exams, academic papers...ect., and we can also support txt, pdf, html files. In addition, instructor can also restrict he/she's uploaded course information to it's own class.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 agileits-banner-bottom-grid">
+					<div class="services-grid1">
+						<div class="services-grid-right agile-services-grid-right">
+							<div class="services-grid-right-grid hvr-radial-out orange-grid">
+								<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+							</div>
+						</div>
+						<div class="services-grid-left agile-services-grid-left">
+							<h4>Download</h4>
+							<p>We open our data space for EVERYONE(not include the restricted files), especially for the guest who's do not have an account to log in, they can also download documents that are open sources. </p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 agileits-banner-bottom-grid">
+					<div class="services-grid1">
+						<div class="services-grid-right agile-services-grid-right">
+							<div class="services-grid-right-grid hvr-radial-out green-grid">
+								<span class="glyphicon glyphicon-magnet" aria-hidden="true"></span>
+							</div>
+						</div>
+						<div class="services-grid-left agile-services-grid-left">
+							<h4>Searching</h4>
+							<p>EVERYONE can search using the search engine we provided. We use the fastest method for seperate different kind of search. Filter option is provided in our search engine.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 agileits-banner-bottom-grid">
+					<div class="services-grid1">
+						<div class="services-grid-right agile-services-grid-right">
+							<div class="services-grid-right-grid hvr-radial-out red-grid">
+								<span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
+							</div>
+						</div>
+						<div class="services-grid-left agile-services-grid-left">
+							<h4>Free</h4>
+							<p>All the sources in our site is consider "FREE"! No one need to pay any money. We stands on the student side, we wouldn't want any student to pay money to get the study note.</p>
+						</div>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+	<!-- footer -->
+	<div class="footer">
+		<div class="container">
+			<div class="agile-footer-grids">
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+	<!-- //footer -->
+	<script src="js/responsiveslides.min.js"></script>
+	<script type="text/javascript" src="js/move-top.js"></script>
+	<script type="text/javascript" src="js/easing.js"></script>
+	<!-- here stars scrolling icon -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			/*
+				var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear' 
+				};
+			*/
+								
+			$().UItoTop({ easingType: 'easeOutQuart' });
+								
+			});
+	</script>
+	<!-- //here ends scrolling icon -->
+	<script>
+	<!-- //$(function(){ $(".flipster").flipster({ style: 'carousel', start: 0 }); });-->
+	</script>
+	<!-- slider -->
+	<script type="text/javascript" src="js/jquery.immersive-slider.js"></script>
+	<!-- //slider -->
+</body>	
+</div>
+	<!-- AngularJS libraries -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-aria.js"></script>
+  	<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.10/angular-material.min.js"></script>
+
+	<!-- Bootstrap -- Latest compiled and minified JavaScript -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+
+	<!-- ng-tag dependency -->
+	<script src="http://mbenford.github.io/ngTagsInput/js/ng-tags-input.min.js"></script>
+
+	<script src="./route.js"></script>
+	<script src="./Controller/home.js"></script>
+	<script src="./Service/storage.js"></script>
+	<script src="./Controller/search.js"></script>
+</html>

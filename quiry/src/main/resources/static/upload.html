@@ -1,4 +1,5 @@
 <!doctype html>
+<meta charset="UTF-8">
 <html  ng-app="quiryApp">
 	<div ng-controller="uploadController">
 		<head>
@@ -17,59 +18,77 @@
 			<link rel = "stylesheet" href = "https://ajax.googleapis.com/ajax/libs/angular_material/1.1.10/angular-material.min.css">
 
 			<link rel="icon" href="./Resources/favicon.ico" type="image/x-icon"/>
-			<a href="./index.html"><img src="./Resources/logo.png" alt="Quiry Search Engine" style="width:100px;height:40px;"></img></a>
+			<div ng-include="'navigation.html'" ng-controller="homeController"></div>
 			<title>Upload</title>
+
 			<h1 class="header">Upload a Document</h1>
 		</head>
 		<body>
 		<form name="uploadForm" id="uploadForm" ng-show="userId != null">
+			<br/>
 			<div class="container border border-info rounded padded-light ng-cloak">
-
 				<div class="row">
-					<div class="col">
-						<label style="font-family: Calibri" for="contentType">Content Type:</label>
+					<div class="col-md-8">
+						<label style="width: 20%" for="contentType">Content Type:</label>
 						<label for="courseNoteType" class="radio-inline" style="font-weight:normal"><input id="courseNoteType" type="radio" name="courseNoteType" ng-model="contentType" ng-value="1"/>Course Notes</label>
 						<label for="pastExamType" class="radio-inline" style="font-weight:normal"><input id="pastExamType" type="radio" name="pastExamType" ng-model="contentType" ng-value="2"/>Past Exam</label>
 						<label for="journalType" class="radio-inline" style="font-weight:normal"><input id="journalType" type="radio" name="journalType" ng-model="contentType" ng-value="3"/>Journal</label>
 					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-md-8">
-						<label for="fileName">Title:</label>
-						<input type="text" style="width:550px" name="fileTitle" ng-model="fileTitle" placeholder="Please include a title for this document" required/>
-						<span class="error-message" ng-show="(uploadForm.fileTitle.$touched || submit == true) && registrationForm.Title.$invalid">Please include a title for this document</span>
-					</div>
-					<div class="col-sm-4" style="padding-left: 50px">
-						<label for="course">Course:</label>
-						<input type="text" ng-model="course"/>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col">
-						<div class="form-group">
-							<label for="description">Description:
-								<textarea rows="5" style="min-width: 240%; max-width: 300%" id="uploadDescription" placeholder="Please include a short description of your file" name="description" ng-model="description"></textarea>
-							</label>
-						</div>
-					</div>
-
-					<div class="col" style="text-align: right">
-						<br/>
-						<input type="file" name="file" file-model="file"/>
-						<br/>
-<!--
-						<label for="courseOnlyType" class="radio-inline" style="font-weight:normal"><input id="courseOnlyType" type="radio" name="courseOnlyType" ng-model="visibility" ng-value="1" required/>Course Only</label>
-						<label for="publicType" class="radio-inline" style="font-weight:normal"><input id="publicType" type="radio" name="journalType" ng-model="visibility" ng-value="2" />Public</label>
-						<br/>
--->
+					<div class="col-md-4">
+						<label style="width: 20%" for="course">Course:</label>
+						<input style="width: 75%" type="text" ng-model="course" required/>
 					</div>
 				</div>
 			</div>
 			<br/>
-			<div class="container centered-body">
-				<md-button class="md-raised md-primary" type="submit" ng-disabled="file == null || fileTitle == null" ng-click="uploadDocument(uploadForm)"> Upload </md-button>
+			<div class="container border border-info rounded padded-light ng-cloak">
+				<div class="row">
+					<div class="col-md-8">
+						<label for="fileName">Title:</label>
+						<input type="text" style="width: 100%" name="fileTitle" ng-model="fileTitle" placeholder="Please include a title for this document"/>
+						<span class="error-message" ng-show="(uploadForm.fileTitle.$touched || submit == true) && registrationForm.Title.$invalid">Please include a title for this document</span>
+					</div>
+					<div class="col-md-4">
+						<br/>
+						<input type="file" name="file" file-model="file"/>
+					</div>
+				</div>
+				<br/>
+				<div class="row">
+					<div class="col">
+						<div class="form-group">
+							<label for="description">Description:</label>
+							<textarea rows="5" style="width: 100%" id="uploadDescription" placeholder="Please include a short description of your file" name="description" ng-model="description"></textarea>
+						</div>
+					</div>
+				</div>
+				<div ng-hide="file == null" class="row">
+					<div class="col-md-12 text-center">
+						<md-button class="md-raised md-primary" type="submit" ng-click="uploadDocument(uploadForm)"> Upload </md-button>
+					</div>
+				</div>
 			</div>
+			<br/>
+			<div class="container border border-info rounded padded-light ng-cloak">
+				<div class="row">
+					<div class="col-md-8">
+						<label for="crawlUrl">URL:</label>
+						<input style="width: 100%" type="text" placeholder="Please enter a URL to crawl" name="crawlUrl" ng-model="crawlUrl"/>
+					</div>
+					<div class="col-md-4">
+						<br/>
+						<label><input type="checkbox" name="domainRestricted" ng-model="domainRestricted"> Restrict to same domain</label>
+					</div>
+				</div>
+				<br/>
+				<div ng-hide="!crawlUrl.length" class="row">
+					<div class="col-md-12 text-center">
+						<md-button class="md-raised md-primary" type="submit" ng-click="crawlWebsite(uploadForm)"> Crawl </md-button>
+					</div>
+				</div>
+			</div>
+			<br/>
+
 		</form>
 		<div ng-show="userId == null" class="centered-body">
 			You must be signed in to access this Feature.
@@ -106,4 +125,5 @@
 	<script src="./route.js"></script>
 	<script src="./Controller/upload.js"></script>
 	<script src="./Service/storage.js"></script>
+	<script src="./Controller/home.js"></script>
 </html>

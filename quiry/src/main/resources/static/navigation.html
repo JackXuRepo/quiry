@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html ng-app="quiryApp">
+	<div ng-controller="homeController">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<head>
+		</head>
+		<body class="navigation">
+			<div class="topnav" ng-show="userId" id="myTopnav">
+			  <a class="logo" href="#" ng-click="index()" class="active"><img src="./Resources/quiry.png" alt="Quiry Search Engine" style="width:100px;height:30px;"></img></a>
+			  <a href="#" ng-click="signOut()"  style="color:red"><i class="fas fa-sign-out-alt"></i>Sign out</a>
+			  <a href="#" ng-click="upload()" ng-show="activePage != 'upload'" style="color:green"><i class="fas fa-upload"></i>Upload</a>
+			  <a href="#" ng-click="user()" ng-show="activePage != 'user'" style="color:steelblue"><i class="fas fa-id-card"></i>{{ userId }}</a>
+			</div>
+			<div class="topnav" ng-show="!userId" id="myTopnav">
+			  <a class="logo" href="#" ng-click="index()" class="active"><img src="./Resources/quiry.png" alt="Quiry Search Engine" style="width:100px;height:30px;"></img></a>
+			  <a href="#"  ng-show="activePage != 'register'" ng-click="register()"><i class="fas fa-plus-square"></i>Register</a>
+			  <a href="#"  ng-show="activePage != 'login'" ng-click="signIn()"><i class="fas fa-sign-in-alt"></i>Sign in</a>
+			</div>
+		</body>
+	</div>
+</html>

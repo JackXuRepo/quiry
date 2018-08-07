@@ -1,0 +1,101 @@
+<!doctype html>
+<html ng-app="quiryApp">
+   <header>
+   </header>
+   <body>
+      <div ng-controller="searchController" class="domain">
+         <div class="container">
+            <div class="container">
+               <form class="search-form domain-search">
+                  <div class="two-fifth column first">
+                     <h2 style="color: white">search your <span>File Here:</span></h2>
+                  </div>
+                  <div class="full-fifth column first">
+                     <input type="text" class="text" name="Name" ng-model="searchText" placeholder="Enter the file name you want to search" required="">               
+                  </div>
+                  <div class="one-fifth column">
+                     <input type="submit" value="Search" ng-click="search()">
+                  </div>
+                  <div class="clearfix"> </div>
+               </form>
+            </div>
+            <div class="row">
+               <div class="col">
+                  <a href="#" ng-click="toggleAdvancedSearch()">{{ advancedSearchText }}</a>
+               </div>
+            </div>
+         </div>
+         <div ng-show="advancedSearchOn" class="show-element animate-show-hide">
+            <div class="container-fluid to-center">
+               <div class="row">
+                  <div class="col-sm-4">
+                     <label>Uploaded by</label><br/>
+                     <div class="btn-group">
+                        <label id="instructorSearch" class="button-green" ng-model="instructorSearch" ng-click="toggleButton('instructorSearch', instructorSearch)" uib-btn-checkbox>Instructor</label>
+                        <label id="studentSearch" class="button-green" ng-model="studentSearch" ng-click="toggleButton('studentSearch', studentSearch)"  uib-btn-checkbox>Student</label>
+                     </div>
+                  </div>
+                  <div class="col-sm-4">
+                     <label>Content Type</label><br/>
+                     <div class="btn-group">
+                        <label id="pastExams" class="button-green" ng-model="pastExams" ng-click="toggleButton('pastExams', pastExams)" uib-btn-checkbox>Past Exams</label>
+                        <label id="notes" class="button-green" ng-model="notes" ng-click="toggleButton('notes', notes)" uib-btn-checkbox>Notes</label>
+                        <label id="journals" class="button-green" ng-model="journals" ng-click="toggleButton('journals', journals)"  uib-btn-checkbox>Journals</label>
+                     </div>
+                  </div>
+                  <div class="col-sm-4">
+                     <label>File Type</label><br/>
+                     <div class="btn-group">
+                        <label id="pdfType" class="button-green" ng-model="pdfType" ng-click="toggleButton('pdfType', pdfType)" uib-btn-checkbox>PDF</label>
+                        <label id="htmlType" class="button-green" ng-model="htmlType" ng-click="toggleButton('htmlType', htmlType)"uib-btn-checkbox>HTML</label>
+                        <label id="txtType" class="button-green" ng-model="txtType" ng-click="toggleButton('txtType', txtType)" uib-btn-checkbox>TXT</label>
+                     </div>
+                  </div>
+               </div>
+               <br/>
+               <div class="row">
+                  <div class="one-fifth column">
+                     <label>Author Name:</label>
+                     <input type="text" class="text" ng-model="author" placeholder="Firstname Lastname"></input>
+                  </div>
+                  <div class="one-fifth column">
+                     <label>Date Uploaded:</label><br/>
+                     <span class="selection-box">
+                        <select class="domains valid" ng-model="dateUploaded" ng-options="y for y in timeOptions">
+                        </select>
+                     </span>
+                  </div>
+                  <div class="full-fifth column">
+                     <label>Courses</label><br/>
+                     <tags-input ng-model="coursesSelected" 
+                        add-on-paste="true"
+                        placeholder="Add a course code" 
+                        min-length="6"
+                        max-length="6"
+                        allowed-tags-pattern="^(?:[A-Z]{4}|[a-z]{4})[0-9]{2}$">
+                        <auto-complete source="loadOptions($query, './json/courses.json')"
+                           load-on-focus="true"
+                           load-on-empty="true"
+                           min-length="0"
+                           max-results-to-show="10">
+                        </auto-complete>
+                     </tags-input>
+                  </div>
+               </div>
+               <br/>
+               <div class="row">
+                  <div class="col">
+                     <br/>
+                     <button class="button-reset" style="width:320px;" ng-click="resetAdvancedSearch()">Reset Advanced Search Options</button>
+                     <br/>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <br/>
+      <div class="container">
+         <md-progress-linear md-mode="indeterminate" ng-disabled="!loadBar" ng-show="loadBar"></md-progress-linear>
+      </div>
+   </body>
+</html>

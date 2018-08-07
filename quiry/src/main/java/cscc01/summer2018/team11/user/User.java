@@ -16,6 +16,7 @@ public abstract class User {
     private String password;
     private int accessLv;
     private String userId;
+    private String verification;
 
     // access level:
     // admin = 3
@@ -23,16 +24,28 @@ public abstract class User {
     // student = 1
     // guest = 0
     public User(String userId, String email, String password,
-            String firstName, String lastName, int accessLv) {
+            String firstName, String lastName, int accessLv, String verification) {
         this.userId = userId;
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.accessLv = accessLv;
+        this.verification = verification;
     }
 
-    public String getFirstName() {
+
+	public String getVerification() {
+		return verification;
+	}
+
+
+	public void setVerification(String verification) {
+		this.verification = verification;
+	}
+
+
+	public String getFirstName() {
         return firstName;
     }
 

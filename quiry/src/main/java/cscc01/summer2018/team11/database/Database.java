@@ -38,7 +38,8 @@ public class Database {
                 + "lastName text NOT NULL,\n"
                 + "email text NOT NULL,\n"
                 + "password text NOT NULL,\n"
-                + "accesslvl int NOT NULL\n"
+                + "accesslvl int NOT NULL,\n"
+                + "verification text NOT NULL\n"
                 + ");";
 
         dbConnection.createStatement().execute(sql);

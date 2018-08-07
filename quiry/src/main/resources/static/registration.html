@@ -1,4 +1,5 @@
 <!doctype html>
+<meta charset="UTF-8">
 <html  ng-app="quiryApp">
 	<div ng-controller="registrationController">
 		<head>
@@ -17,8 +18,9 @@
 			<link rel = "stylesheet" href = "https://ajax.googleapis.com/ajax/libs/angular_material/1.1.10/angular-material.min.css">
 
 			<link rel="icon" href="./Resources/favicon.ico" type="image/x-icon"/>
-			<a href="./index.html"><img src="./Resources/logo.png" alt="Quiry Search Engine" style="width:100px;height:40px;"></img></a>
+			<div ng-include="'navigation.html'" ng-controller="homeController"></div>
 			<title>Sign Up</title>
+
 			<h1 class="header">Create an Account</h1>
 		</head>
 		<body>
@@ -71,8 +73,11 @@
 				</div>
 				<div class="row centered-body">
 					<div class="col">
-						<md-button class="md-raised md-primary" type="submit" ng-click="submitForm(registrationForm)">Submit</md-button>
+						<md-button class="md-raised md-primary" type="submit">Submit</md-button>
 					</div>
+				</div>
+				<div layout="row" layout-sm="column" layout-align="space-around" ng-hide="!activateLoading">
+				      <md-progress-circular md-mode="indeterminate" ng-disabled="!activateLoading"></md-progress-circular>
 				</div>
 			</div>
 			<br/>
@@ -98,6 +103,7 @@
 	<!-- ng-tag dependency -->
 	<script src="http://mbenford.github.io/ngTagsInput/js/ng-tags-input.min.js"></script>
 	<script src="./route.js"></script>
+	<script src="./Controller/home.js"></script>
 	<script src="./Controller/registration.js"></script>
 	<script src="./Service/storage.js"></script>
 </html>

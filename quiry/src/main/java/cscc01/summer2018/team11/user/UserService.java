@@ -1,6 +1,7 @@
 package cscc01.summer2018.team11.user;
 
 
+import java.security.SecureRandom;
 import java.sql.SQLException;
 import java.util.HashMap;
 
@@ -79,14 +80,15 @@ public class UserService {
         String email = userData.get("email");
         String password = userData.get("password");
         int accessLevel = Integer.parseInt(userData.get("accessLevel"));
+        String verification = userData.get("verification");
 
         switch(accessLevel) {
         case AccessLevel.STUDENT:
-            return new Student(userId, email, password, firstName, lastName);
+            return new Student(userId, email, password, firstName, lastName, verification);
         case AccessLevel.INSTRUCTOR:
-            return new Instructor(userId, email, password, firstName, lastName);
+            return new Instructor(userId, email, password, firstName, lastName, verification);
         case AccessLevel.ADMIN:
-            return new Admin(userId, email, password, firstName, lastName);
+            return new Admin(userId, email, password, firstName, lastName, verification);
         default:
             return null;
         }
@@ -109,22 +111,31 @@ public class UserService {
             ex.printStackTrace();
             return false;
         }
-        return userExist;
+        return !userExist;
     }
 
     public static User loginUser(HashMap<String, String> userData) {
         User currUser = getUser(userData.get("userId"));
-        if(currUser == null || !userData.get("password").equals(currUser.getPassword())) {
+        if (currUser == null || !userData.get("password").equals(currUser.getPassword())) {
             return null;
         }
 
         return currUser;
     }
 
+    public static String generateVerificationCode() {
+        String validChars = "01234567890qwertyuiopasdfghjklzxcvbnm";
+        SecureRandom rand = new SecureRandom();
+        StringBuilder sb = new StringBuilder();
+        int codeLength = 12;
+
+        for(int i = 0; i < codeLength; i++) {
+            sb.append(validChars.charAt(rand.nextInt(validChars.length() - 1)));
+        }
+        return sb.toString();
+    }
 
     public static HashMap<String, String> parseUser(User userData){
-        System.out.println(userData);
-
         HashMap<String, String> userMap = new HashMap<String, String>();
         userMap.put("userId", userData.getUserId());
         userMap.put("firstName", userData.getFirstName());
@@ -132,6 +143,7 @@ public class UserService {
         userMap.put("email", userData.getEmail());
         userMap.put("accessLevel", userData.getAccessLv()+"");
 
+        System.out.println(userMap);
         return userMap;
     }
 

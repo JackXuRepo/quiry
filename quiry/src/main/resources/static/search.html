@@ -1,9 +1,11 @@
 <!doctype html>
+<meta charset="UTF-8">
 <html ng-app="quiryApp">
    <header>
+
    </header>
    <body>
-   <div ng-controller="searchController" class="border border-light rounded padded-light">
+   <div ng-controller="searchController">
       <div class="container">
          <div class="row">
             <div class="col-lg-11">
@@ -11,31 +13,20 @@
                  <input id="search" name="search" type="text" class="form-control mr-sm-2" placeholder="Please enter a new search here" aria-label="Search" aria-describedby="basic-addon2" ng-model="searchText" ng-keydown="$event.keyCode === 13 && search()">
                  <div class="input-group-append">
                    <button class="btn btn-primary" type="button" ng-click="search()">Search</button>
+                   <a href="#" class="btn btn-secondary" ng-click="toggleAdvancedSearch()">{{ advancedSearchText }}</a>
                  </div>
                </div>
             </div>
          </div>
-         <div class="row">
-            <div class="col">
-               <a href="#" ng-click="toggleAdvancedSearch()">{{ advancedSearchText }}</a>
-            </div>
-         </div>
       </div>
       <div ng-show="advancedSearchOn" class="show-element animate-show-hide">
-         <div class="container">
+         <div class="container" style="background:rgba(255,255,255, 0.7);border-radius: 15px;">
             <div class="row">
                <div class="col-sm-4">
                   <label>Uploaded by</label><br/>
                   <div class="btn-group">
                      <label class="btn btn-success" ng-model="instructorSearch" uib-btn-checkbox>Instructor</label>
                      <label class="btn btn-success" ng-model="studentSearch" uib-btn-checkbox>Student</label>
-<!--
-   <div class="btn-group">
-        <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Left'">Left</label>
-        <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Middle'">Middle</label>
-        <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Right'">Right</label>
-    </div>
--->
                   </div>
                </div>
                <div class="col-sm-4">
@@ -73,9 +64,9 @@
             <div class="row">
                <div class="col">
                   <label>Courses</label><br/>
-                  <tags-input ng-model="coursesSelected" 
+                  <tags-input ng-model="coursesSelected"
                      add-on-paste="true"
-                     placeholder="Add a course code" 
+                     placeholder="Add a course code"
                      min-length="6"
                      max-length="6"
                      allowed-tags-pattern="^(?:[A-Z]{4}|[a-z]{4})[0-9]{2}$">
@@ -92,6 +83,7 @@
                <div class="col">
                   <br/>
                   <button class="btn" ng-click="resetAdvancedSearch()">Reset Advanced Search Options</button>
+                  <br/>
                   <br/>
                </div>
             </div>

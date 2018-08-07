@@ -1,0 +1,127 @@
+<!doctype html>
+<html ng-app="quiryApp">
+   <div ng-controller="resultsController">
+      <head>
+      </head>
+      <body>
+         <div ng-include src="'./search.html'"></div>
+         <div ng-cloak style="align-content: center">
+            <md-content>
+               <md-tabs md-dynamic-height md-border-bottom md-theme="tabs" md-theme-watch>
+                  <md-tab label="Results">
+                     <md-content class="md-padding" >
+                        <div class="container">
+                           <div class="row">
+                              <div class="one-fifth column">
+                                 <label for="maxSize">Results to Show:</label>
+                                 <input type="text" name="maxSize" ng-model="maxSize"></input>
+                              </div>
+                              <div class="one-fifth column">
+                                 <label>Sort by:</label><br/>
+                                 <span class="selection-box">
+                                 <select class="domains valid" ng-model="sortKey" ng-options="x for (x, y) in sortOptions">
+                                 </select>
+                                 </span>
+                              </div>
+                              <div class="one-fifth column">
+                                 <label>Sort order:</label><br/>
+                                 <span class="selection-box">
+                                 <select class="domains valid" ng-model="sortOrder" ng-options="x for (x, y) in sortOrderOptions">
+                                 </select>
+                                 </span>
+                              </div>
+                           </div>
+                           <div class="row">
+                              <div class="col result-text">
+                                 <label>&nbsp;&nbsp;{{ results.length }} results found.</label>
+                              </div>
+                           </div>
+                           <div class="agile-blog-grids" style="float: right;">
+                              <div class="col-md-8 agile-blog-grid-left">
+                                 <div class="row">
+                                    <div class="col centered-body">
+                                       <ul uib-pagination total-items="results.length" items-per-page="maxSize" ng-model="currentPage" ng-change="pageChanged()"></ul>
+                                    </div>
+                                    <br/>
+                                    <br/>
+                                 </div>
+                                 <div ng-repeat="result in results | orderBy:sortKey:sortOrder | limitTo: ((currentPage-1)*maxSize - results.length) | limitTo : maxSize">
+                                    <div class="agile-blog-grid">
+                                       <div class="blog-left-grids">
+                                          <div class="{{ getIconBackground(result.fileType) }}">
+                                             <i class="{{ getIcon(result.fileType) }}" aria-hidden="true"></i>
+                                          </div>
+                                          <div class="blog-left-right">
+                                             <div class="blog-left-right-top">
+                                                <h4>{{ result.title }}</h4>
+                                                <p>Uploaded By <b style="color:green">{{ result.author }}</b><i class="{{ isInstructor(result.authorType) }}"></i> &nbsp;&nbsp; on {{ result.uploadDate | date }}<br/>Content Type: <a href="#" style="color:green">{{ filterContentType(result.contentType) }}</a> &nbsp;&nbsp; Course: <a href="#" style="color:green">{{ result.course  | uppercase }}</a></p>
+                                             </div>
+                                             <div class="blog-left-right-bottom">
+                                                <p>{{ result.description }}</p>
+                                                <b style="color:green">Search Preview</b>
+                                                <p ng-bind-html="result.preview"></p>
+                                                <a href="#" ng-click="download(result.fileId)">Download</a>
+                                             </div>
+                                          </div>
+                                          <div class="clearfix"> </div>
+                                          <br/>
+                                          <br/>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="row">
+                                    <div class="col centered-body">
+                                       <ul uib-pagination total-items="results.length" items-per-page="maxSize" ng-model="currentPage" ng-change="pageChanged()"></ul>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="col-md-4 agile-blog-grid-right">
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+<!--                                 <div class="categories">
+									<h3>Search Result Analytics</h3>  
+								</div>    -->                                                            	
+                              	<div class="row">
+	                              <div class="col">
+	                                 <div id="piechartAccount1" style="width: 330px; height: 185px;"></div>
+	                              </div>
+	                              <div class="col">
+	                                 <div id="piechartFile1" style="width: 330px; height: 185px;"></div>
+	                              </div>
+	                              <div class="col">
+	                                 <div id="piechartContent1" style="width: 330px; height: 185px;"></div>
+	                              </div>
+	                           </div>
+                              </div>
+                           </div>
+                        </div>
+                     </md-content>
+                  </md-tab>
+                  <md-tab label="Analytics">
+                     <md-content class="md-padding">
+                        <div class="container-fluid">
+                           <div class="row">
+                              <div class="col">
+                                 <div id="piechartAccount" style="width: 530px; height: 285px;"></div>
+                              </div>
+                              <div class="col">
+                                 <div id="piechartFile" style="width: 530px; height: 285px;"></div>
+                              </div>
+                              <div class="col">
+                                 <div id="piechartContent" style="width: 530px; height: 285px;"></div>
+                              </div>
+                           </div>
+                        </div>
+                     </md-content>
+                  </md-tab>
+               </md-tabs>
+            </md-content>
+         </div>
+      </body>
+   </div>
+</html>

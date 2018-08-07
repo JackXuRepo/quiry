@@ -23,8 +23,7 @@
 		} ]);
 
 	function uploadController($scope, $window, StorageService, $http, $mdToast) {
-		// $scope is provided by angular so that the view can refer to
-		// the controller scope values
+
 		$scope.file;
 		$scope.description;
 		$scope.fileTitle;
@@ -33,10 +32,16 @@
 		$scope.course;
 		$scope.userId = StorageService.getValue("userId");
 		$scope.activateLoading = false;
+		$scope.crawlUrl;
+		$scope.domainRestricted = true;
 
 		// Called when user clicks on submit button
 		$scope.uploadDocument = function(form){
+			if (!$scope.course.length) {
+				return;
+			}
 			$scope.activateLoading = true;
+
 			var fd = new FormData();
 			fd.append('file', $scope.file);
 			fd.append('userId', $scope.userId);
@@ -53,12 +58,42 @@
 			})
 			.then(
 				function(response) {
-					$scope.showToast("File was uploaded successfully", "success");
+					$scope.showToast("File uploaded successfully", "success");
 				}
 			)
 			.catch(
 				function(response) {
 					$scope.showToast(response.data, "error");
+					$scope.activateLoading = false;
+				}
+			);
+		}
+
+		$scope.crawlWebsite = function(form){
+			if (!$scope.course.length) {
+				return;
+			}
+			$scope.activateLoading = true;
+
+			$http.get('/file/crawl', {
+				transformResponse: angular.identity,
+				params: {
+					url : $scope.crawlUrl,
+					userId : $scope.userId,
+					contentType : $scope.contentType,
+					course : $scope.course,
+					domainRestricted : $scope.domainRestricted
+				}
+			})
+			.then(
+				function(response) {
+					$scope.showToast("Crwaler started", "success");
+				}
+			)
+			.catch(
+				function(response) {
+					$scope.showToast("Crwaler failed", "error");
+					$scope.activateLoading = false;
 				}
 			);
 		}

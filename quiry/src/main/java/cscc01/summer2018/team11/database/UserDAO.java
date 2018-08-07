@@ -44,8 +44,8 @@ public class UserDAO {
 
     public void updateUser(User userData) throws SQLException {
         String sql = "INSERT OR REPLACE INTO User (userId, firstName, lastName,"
-                + " email, password, accesslvl)"
-                + " VALUES (?,?,?,?,?,?);";
+                + " email, password, accesslvl, verification)"
+                + " VALUES (?,?,?,?,?,?,?);";
         PreparedStatement stmt = c.prepareStatement(sql);
 
         int i = 1;
@@ -55,6 +55,7 @@ public class UserDAO {
         stmt.setString(i++, userData.getEmail());
         stmt.setString(i++, userData.getPassword());
         stmt.setInt(i++, userData.getAccessLv());
+        stmt.setString(i++, userData.getVerification());
         stmt.executeUpdate();
     }
 
@@ -76,14 +77,15 @@ public class UserDAO {
         String email = rs.getString(i++);
         String password = rs.getString(i++);
         int accessLevel = rs.getInt(i++);
+        String verification = rs.getString(i++);
 
         switch(accessLevel) {
           case AccessLevel.STUDENT:
-              return new Student(userId, email, password, firstName, lastName);
+              return new Student(userId, email, password, firstName, lastName, verification);
           case AccessLevel.INSTRUCTOR:
-              return new Instructor(userId, email, password, firstName, lastName);
+              return new Instructor(userId, email, password, firstName, lastName, verification);
           case AccessLevel.ADMIN:
-              return new Admin(userId, email, password, firstName, lastName);
+              return new Admin(userId, email, password, firstName, lastName, verification);
           default:
               return null;
         }
