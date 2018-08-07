@@ -126,10 +126,10 @@ public class UserService {
     public static String generateVerificationCode() {
         String validChars = "01234567890qwertyuiopasdfghjklzxcvbnm";
         SecureRandom rand = new SecureRandom();
-        StringBuilder sb =new StringBuilder();
-        int codeLength = 20;
+        StringBuilder sb = new StringBuilder();
+        int codeLength = 12;
 
-        for(int i=0; i < codeLength; i++) {
+        for(int i = 0; i < codeLength; i++) {
             sb.append(validChars.charAt(rand.nextInt(validChars.length() - 1)));
         }
         return sb.toString();

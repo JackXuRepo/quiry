@@ -17,6 +17,7 @@
 		    $scope.accountType = 1;
 		    $scope.passwordConf;
 		    $scope.submit;
+		    $scope.submitted = false;
 		    $scope.userExists = false;
 		    $scope.activateLoading = false;
 
@@ -25,30 +26,26 @@
 
 				$scope.activateLoading = true;
 
-				if(form.$valid && ($scope.password == $scope.passwordConf)){
-
+				console.log($scope.password == $scope.passwordConf);
+				if (form.$valid && ($scope.password == $scope.passwordConf) && !$scope.submitted) {
+					$scope.submitted = true;
 					$http.post('/user/register', JSON.stringify($scope.parseData()))
 				    .then(
 				      	function(response){
 				      		$scope.activateLoading = false;
 				      		var responseData = response.data;
-				      		$scope.showToast("Registration successful, Please ACTIVATE your Account via your U of T E-mail", "success");
-
-
+				      		$scope.showToast("Registration successful. Please ACTIVATE your Account via your U of T E-mail.", "success");
 				      	}
-
 				    )
 				    .catch(
 				    	function(response){
+				    		$scope.submitted = false;
 				    		$scope.activateLoading = false;
 				      		var responseData = response.data;
 				      		$scope.userExists = responseData.userExists;
 				    	}
 				     );
-
 				}
-				$scope.submit = true;
-
 			}
 
 			$scope.parseData = function(){
@@ -78,8 +75,6 @@
 					}
 				});
 			}
-
-
 
 		}
 })();

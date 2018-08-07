@@ -33,7 +33,7 @@
 	<input id="password" type="password" ng-keydown="$event.keyCode === 13 && loginUser()" ng-model="password" style="width: 240px"/>
         <br/>
 	<span id="statusMessage">{{ message }}</span>
-	<span id="resendEmail" ng-show="resend.length" ng-click="emailUser()" style="color:red"><u>Resend email?</u></span>
+	<span id="resendEmail" ng-show="resend.length" ng-click="emailUser()" style="color:blue"><u>Resend email?</u></span>
 	<br/>
 	<md-button class="md-raised md-primary" ng-click="loginUser()">Login</md-button><br/>
 	<a href="./registration.html">Don't have an account?<br/> Sign up Here</a>

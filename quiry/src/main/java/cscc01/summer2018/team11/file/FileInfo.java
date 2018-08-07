@@ -26,7 +26,7 @@ public class FileInfo {
     public static int generateId() {
         int n;
         do {
-            n = rand.nextInt(8999) + 1000;
+            n = rand.nextInt(89999) + 10000;
         } while ( FileService.existFile(n) );
         return n;
     }

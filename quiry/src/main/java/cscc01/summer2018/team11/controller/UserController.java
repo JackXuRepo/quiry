@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,14 +30,17 @@ public class UserController {
 	private MailService mailer;
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public ResponseEntity<HashMap<String, String>> registerUser(@RequestBody HashMap<String, String> body) {
+	public ResponseEntity<HashMap<String, String>> registerUser(
+			@RequestBody HashMap<String, String> body,
+			@RequestHeader("Host") String host)
+	{
 		body.put("verification", UserService.generateVerificationCode());
 		boolean userExists = !UserService.createUser(body);
 
 		if (!userExists) {
 			String userId = body.get("userId");
 			try {
-				mailer.sendActivationEmail(UserService.getUser(userId));
+				mailer.sendActivationEmail(host, UserService.getUser(userId));
 			} catch (MessagingException ex) {
 				// TODO Auto-generated catch block
 				ex.printStackTrace();
@@ -57,12 +61,12 @@ public class UserController {
 		// login user
 		if (userData == null) {
 			response.put("error", "incorrect");
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
 
 		// check activation
 		} else if (!userData.getVerification().equals("activated")) {
 			response.put("error", "unactivated");
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
 		}
 
 		return ResponseEntity.status(HttpStatus.OK).body(UserService.parseUser(userData));
@@ -110,18 +114,21 @@ public class UserController {
 		if (user != null && verification.equals(user.getVerification())) {
 			user.setVerification("activated");
 			UserService.updateUser(user);
-			return new ModelAndView("redirect:http://localhost:8080/activation-success.html");
+			return new ModelAndView("redirect:/activation-success.html");
 		}
-		return new ModelAndView("redirect:http://localhost:8080/activation-failure.html");
+		return new ModelAndView("redirect:/activation-failure.html");
 	}
 
-	@RequestMapping(value = "/email", method = RequestMethod.GET)
+	@RequestMapping(value = "/email", method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.OK)
-	public void emailUser(@RequestParam("userId") String userId) {
-		User user = UserService.getUser(userId);
+	public void emailUser(
+			@RequestBody HashMap<String, String> body,
+			@RequestHeader("Host") String host)
+	{
+		User user = UserService.getUser(body.get("userId"));
 		if (user != null) {
 			try {
-				mailer.sendActivationEmail(user);
+				mailer.sendActivationEmail(host, user);
 			} catch (MessagingException e) {
 				// ignore
 			}
