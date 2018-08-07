@@ -1,4 +1,5 @@
 <!doctype html>
+<meta charset="UTF-8">
 <html ng-app="quiryApp">
 	<div ng-controller="resultsController">
 	  <head>
@@ -68,7 +69,7 @@
 											<tr>
 												<td><i class="{{ getIcon(result.fileType) }}"></i></td>
 												<td>{{ result.title }}</td>
-												<td>{{ result.author }}<i class="{{ isInstructor(result.authorType) }}" style="background-color: green"></i></td>
+												<td>{{ result.author }} &nbsp <i class="{{ isInstructor(result.authorType) }}"></i></td>
 												<td>{{ filterContentType(result.contentType) }}</td>
 												<td>{{ result.course  | uppercase }}</td>
 												<td>{{ result.uploadDate | date }}</td>
@@ -96,7 +97,7 @@
 							</div>
 							<div class="row">
 								<div class="col centered-body">
-									<ul uib-pagination total-items="results.length" items-per-page="maxSize" ng-model="currentPage" ng-change="pageChanged()"></ul>
+									<ul uib-pagination total-items="results.length" items-per-page="maxSize" ng-model="currentPage"></ul>
 								</div>
 							</div>
 						</div>

@@ -276,7 +276,7 @@ ul.pagination > .active > a,
 ul.pagination > .active > a:hover
 {
     color: white;
-    background-color: blue;
+    background-color: #337bb7;
 }
 
 ul.pagination > .disabled > a,

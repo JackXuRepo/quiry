@@ -23,8 +23,7 @@
 		} ]);
 
 	function uploadController($scope, $window, StorageService, $http, $mdToast) {
-		// $scope is provided by angular so that the view can refer to
-		// the controller scope values
+
 		$scope.file;
 		$scope.description;
 		$scope.fileTitle;

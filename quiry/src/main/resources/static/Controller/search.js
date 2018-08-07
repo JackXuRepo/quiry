@@ -25,11 +25,11 @@
 
 
 			$scope.search = function(){
-				// Need to call back-end
+
 				$scope.loadBar = true;
-				console.log($scope.userId);
-				console.log(StorageService.getValue("userId"));
 				StorageService.removeValue("results");
+
+				// Mock get request
 				//console.log(parseCourseJson($scope.coursesSelected));
 
 				// $http.get("../json/mock.json")
@@ -52,23 +52,23 @@
 									htmlType: $scope.htmlType,
 									courses: parseCourseObject($scope.coursesSelected)
 				    			}};
-				console.log(paramConfig.params);
+
 				$http.get( "/search/advancedSearch", paramConfig)
 					.then(function(response){
-					 	console.log(response.data);
+
 					 	StorageService.setValue("results", response.data);
 					 	StorageService.setValue("searchText", $scope.searchText);
 					 	$window.location.href = "./results.html";
 					 })
 					.catch(function(response){
-						console.log(response.data);
+
 						$scope.loadBar = false;
-					 	//$window.location.href = "./results.html";
+
 					});
 			}
 
 			$scope.resetAdvancedSearch = function(){
-				console.log($scope.studentSearch);
+
 				$scope.dateUploaded = "Anytime";
 				$scope.author = "";
 				$scope.studentSearch = true;
@@ -130,7 +130,6 @@
 				for(courseBracket in courseObject){
 					courseArray.push(courseObject[courseBracket].text);
 				}
-				console.log(courseArray);
 				return courseArray;
 			}
 

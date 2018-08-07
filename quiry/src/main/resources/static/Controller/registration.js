@@ -6,8 +6,7 @@
 		.controller('registrationController', registrationController);
 
 		function registrationController($scope, $window, StorageService, $http, $mdToast){
-			// $scope is provided by angular so that the view can refer to
-			// the controller scope values
+
 			$scope.username;
 			$scope.password;
 		    $scope.message;
@@ -22,14 +21,12 @@
 		    $scope.activateLoading = false;
 
 
-		    // Called when user clicks on submit button
 			$scope.submitForm = function(form){
+
 				$scope.activateLoading = true;
-				console.log(form);
-				console.log(form.$valid);
-				console.log($scope.password == $scope.passwordConf);
-				if(form.$valid && ($scope.password == $scope.passwordConf) && !$scope.submit){
-					console.log(JSON.stringify($scope.parseData()));
+
+				if(form.$valid && ($scope.password == $scope.passwordConf)){
+
 					$http.post('/user/register', JSON.stringify($scope.parseData()))
 				    .then(
 				      	function(response){

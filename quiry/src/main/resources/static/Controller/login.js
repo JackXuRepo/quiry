@@ -6,8 +6,7 @@
 		.controller('loginController', LoginController);
 
 		function LoginController($scope, $window, StorageService, $http){
-			// $scope is provided by angular so that the view can refer to
-			// the controller scope values
+
 			$scope.username;
 			$scope.password;
 		    $scope.message;
@@ -16,9 +15,6 @@
 		    // Called when user clicks on login button
 			$scope.loginUser = function(){
 
-				// For debugging
-				console.log("Click Registered");
-				// To view the console, open ur browsers developer tools by pressing F12 (at least for chrome)
 
 				$http.post('/user/login', JSON.stringify($scope.parseData()))
 				.then(
@@ -34,7 +30,6 @@
 
 					StorageService.setValue("userId", $scope.username);
 					StorageService.setValue("userData", responseData);
-					console.log(StorageService.getValue("userId"));
 					$window.location.href = "./index.html";
 				})
 				.catch(

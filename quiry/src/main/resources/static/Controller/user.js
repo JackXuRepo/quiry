@@ -1,15 +1,9 @@
-// Find angular module module
-// This is the controller for the login page
-//                   controller name , function(dependency, ....)
 (function(){
 	angular.module("quiryApp")
 		.controller('userController', UserController);
 
 	function UserController($scope, $window, StorageService, $http){
-		// $scope is provided by angular so that the view can refer to
-		// the controller scope values
 
-		// to be consistent with other pages
 		$scope.userId = StorageService.getValue("userId");
 
 		$scope.editing = false;
@@ -71,17 +65,13 @@
           })
           .then(
             function(response) {
-              console.log(response);
-              console.log(response.headers('Content-Type'));
-              console.log(response.headers('File-Name'));
-
               var blob = new Blob([response.data], {type: response.headers('Content-Type')});
               saveAs(blob, response.headers('File-Name'));
             }
           )
           .catch(
             function(response) {
-              alert("error");
+              alert("There was an error with the download");
             }
           );
       }
@@ -143,7 +133,6 @@
 			$http.post('/user/modify', JSON.stringify($scope.parseData()))
 				.then(
 					function(response) {
-						console.log(response);
 						$scope.userData = response.data;
 						$scope.userId = $scope.userData.userId;
 
@@ -155,7 +144,6 @@
 				)
 				.catch(
 					function(response) {
-						console.log(response);
 						$scope.message = "Wrong Password?";
 					}
 				);
@@ -168,11 +156,7 @@
 
 
 		$scope.pageChanged = function(page) {
-			// document.getElementById("page"+ ($scope.currentPage - 1)).classList.remove("active");
 			$scope.currentPage = page;
-			// document.getElementById("page"+ ($scope.currentPage - 1)).classList.add("active");
-			console.log($scope.currentPage);
-	        console.log(Math.ceil($scope.results.length / $scope.maxSize));
 	      }
 
 		$scope.parseData = function(){
@@ -200,9 +184,7 @@
         contentTypeHeaders = ['Past Exams', 'Course Notes', 'Journals'];
         contentTypeNumbers = [0, 0, 0];
 
-        for(result in $scope.results){
-          console.log("FILE-TYPE" + result.fileType);
-          console.log("CONTENT-TYPE" + result.contentType);
+        for(result in $scope.results){      	
           fileTypeNumbers[$scope.results[result].fileType]++;
           contentTypeNumbers[$scope.results[result].contentType]++;
         }
@@ -242,11 +224,9 @@
 				params: { userId : $scope.userId }
 			})
 			.then(function(response){
-				console.log(response.data);
 				$scope.results = response.data;
 			 })
 			.catch(function(response){
-				console.log(response.data);
 			});
 		};
 		init();

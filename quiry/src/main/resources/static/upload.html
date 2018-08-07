@@ -1,4 +1,5 @@
 <!doctype html>
+<meta charset="UTF-8">
 <html  ng-app="quiryApp">
 	<div ng-controller="uploadController">
 		<head>
@@ -19,6 +20,7 @@
 			<link rel="icon" href="./Resources/favicon.ico" type="image/x-icon"/>
 			<div ng-include="'navigation.html'" ng-controller="homeController"></div>
 			<title>Upload</title>
+
 			<h1 class="header">Upload a Document</h1>
 		</head>
 		<body>
@@ -59,11 +61,6 @@
 							<textarea rows="5" style="width: 100%" id="uploadDescription" placeholder="Please include a short description of your file" name="description" ng-model="description"></textarea>
 						</div>
 					</div>
-<!--
-						<label for="courseOnlyType" class="radio-inline" style="font-weight:normal"><input id="courseOnlyType" type="radio" name="courseOnlyType" ng-model="visibility" ng-value="1" required/>Course Only</label>
-						<label for="publicType" class="radio-inline" style="font-weight:normal"><input id="publicType" type="radio" name="journalType" ng-model="visibility" ng-value="2" />Public</label>
-						<br/>
--->
 				</div>
 				<div ng-hide="file == null" class="row">
 					<div class="col-md-12 text-center">

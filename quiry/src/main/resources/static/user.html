@@ -1,4 +1,5 @@
 <!doctype html>
+<meta charset="UTF-8">
 <html  ng-app="quiryApp">
    <div ng-controller="userController">
    <head>
@@ -16,6 +17,7 @@
       <link rel = "stylesheet" href = "https://ajax.googleapis.com/ajax/libs/angular_material/1.1.10/angular-material.min.css">
       <link rel="stylesheet" href="./css/styles.css"/>
       <link rel="icon" href="./Resources/favicon.ico" type="image/x-icon"/>
+
       <title>User Profile</title>
 	  <div ng-include="'navigation.html'" ng-controller="homeController"></div>
    </head>
@@ -104,15 +106,9 @@
                            <th ng-click="sort('title')">Name
                               <span class="glyphicon sort-icon" ng-show="sortKey=='title'" ng-class="{'fas fa-sort-up':!reverse,'fas fa-sort-down':reverse}"></span>
                            </th>
-                           <!-- <th ng-click="sort('contentType')">Content Type
-                              <span class="glyphicon sort-icon" ng-show="sortKey=='contentType'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
-                           -->
                            <th ng-click="sort('course')">Course
                               <span class="glyphicon sort-icon" ng-show="sortKey=='course'" ng-class="{'fas fa-sort-up':!reverse,'fas fa-sort-down':reverse}"></span>
                            </th>
-                           <!-- <th ng-click="sort('uploadDate')">Upload Date
-                              <span class="glyphicon sort-icon" ng-show="sortKey=='uploadDate'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
-                           -->
                            <th></th>
                            <th></th>
                         </thead>
@@ -120,11 +116,7 @@
                            <tr>
                               <td><i class="{{ getIcon(result.fileType) }}"></i></td>
                               <td>{{ result.title }}</td>
-                              <!-- <td>{{ filterContentType(result.contentType) }}</td>
-                              -->
                               <td>{{ result.course  | uppercase }}</td>
-                              <!-- <td>{{ result.uploadDate | date }}</td>
-                              -->
                               <td><a href="#" ng-click="download(result.fileId)"><i class="fas fa-download"></i></a></td>
                               <td><a href="#" ng-click="remove(result.fileId, $index)"><i class="far fa-times-circle" style="color:red;"></i></a></td>
                            </tr>

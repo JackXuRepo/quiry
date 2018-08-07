@@ -1,4 +1,5 @@
 <!doctype html>
+<meta charset="UTF-8">
 <html  ng-app="quiryApp">
 	<div ng-controller="homeController">
 		<head>
@@ -19,20 +20,11 @@
 			<link rel="icon" href="./Resources/favicon.ico" type="image/x-icon"/>
 			<title>Home</title>
 			<div ng-include="'navigation.html'"></div>
+			<meta name="viewport" content="width=device-width, initial-scale=1">
 			
 			<img class="center" src="./Resources/logo.png" alt="Quiry Search Engine" style="width:750px;height:320px;"></img>
 		</head>
-		<!---
-		    <div uib-carousel interval="4000">
-      <div uib-slide ng-repeat="slide in slides" active="0">
-        <img ng-src="{{slide.image}}" style="margin:auto;">
-        <div class="carousel-caption">
-          <h4>Slide {{$index}}</h4>
-          <p>{{slide.title}}</p>
-        </div>
-      </div>
-    </div>
--->
+
 		<body class="home">
 			<div class="container-transparent">
 				<br/>
