@@ -30,6 +30,7 @@ The following documentation are written for each phase of the project. They will
 The Quiry project is developed using:
 
 Back-End Technologies:
+
 * [Java SE Development Kit 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) (Latest Update 181)
 * [Eclipse IDE for Java EE Developers](https://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/photonr) (Latest version Photon 4.8.0)
 * [Mockito](http://site.mockito.org) (Latest version 1.10.19)
@@ -44,7 +45,9 @@ Back-End Technologies:
 * [Crawler4J](https://github.com/yasserg/crawler4j) (Latest version 4.4.0)
 * [Apache PdfBox](https://pdfbox.apache.org) (Latest version 2.0.11)
 
+
 Front-End Technologies:
+
 * [Sublime Text](https://www.sublimetext.com) (Latest version 3)
 * [AngularJS](https://angularjs.org) (Latest version 1.6.9)
 * [Bootstrap CSS](https://getbootstrap.com) (Latest version 4.1.1)
