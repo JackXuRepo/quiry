@@ -8,7 +8,6 @@ import java.util.HashMap;
 import org.springframework.stereotype.Service;
 
 import cscc01.summer2018.team11.database.UserDAO;
-import cscc01.summer2018.team11.exception.UserExistsException;
 
 
 @Service
@@ -95,45 +94,46 @@ public class UserService {
         }
     }
 
-    public static void createUser(HashMap<String, String> userData) throws SQLException, UserExistsException {
+    public static boolean createUser(HashMap<String, String> userData) {
         User newUser = generateUser(userData);
         boolean userExist;
 
+        try {
+            UserDAO userDb = new UserDAO();
+            userExist = existUser(newUser.getUserId());
 
-        UserDAO userDb = new UserDAO();
-        userExist = existUser(newUser.getUserId());
+            if (!userExist) {
+                userDb.updateUser(newUser);
+            }
 
-        if (!userExist) {
-            userDb.updateUser(newUser);
+        } catch (SQLException ex) {
+            // TODO Auto-generated catch block
+            ex.printStackTrace();
+            return false;
         }
-        else {
-        	throw new UserExistsException();
-        }
-
+        return !userExist;
     }
 
     public static User loginUser(HashMap<String, String> userData) {
         User currUser = getUser(userData.get("userId"));
-        if (currUser == null || !userData.get("password").equals(currUser.getPassword()) || !currUser.getVerification().equals("activated")){
+        if (currUser == null || !userData.get("password").equals(currUser.getPassword())) {
             return null;
         }
 
         return currUser;
     }
-    
-    public static String generateVerificationCode() {
-    	String validChars = "01234567890qwertyuiopasdfghjklzxcvbnm";
-    	SecureRandom rand = new SecureRandom();
-    	StringBuilder sb =new StringBuilder(); 
-    	int codeLength = 20;
-    	
-    	for(int i=0; i < codeLength; i++) {
-    		sb.append(validChars.charAt(rand.nextInt(validChars.length() - 1)));
-    	}
-    	
-    	return sb.toString();
-    }
 
+    public static String generateVerificationCode() {
+        String validChars = "01234567890qwertyuiopasdfghjklzxcvbnm";
+        SecureRandom rand = new SecureRandom();
+        StringBuilder sb =new StringBuilder();
+        int codeLength = 20;
+
+        for(int i=0; i < codeLength; i++) {
+            sb.append(validChars.charAt(rand.nextInt(validChars.length() - 1)));
+        }
+        return sb.toString();
+    }
 
     public static HashMap<String, String> parseUser(User userData){
         HashMap<String, String> userMap = new HashMap<String, String>();

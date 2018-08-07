@@ -33,25 +33,34 @@ The Quiry project is developed using:
 * [Eclipse IDE for Java EE Developers](https://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/photonr) (Latest version Photon 4.8.0)
 * [Maven](https://maven.apache.org/download.cgi) (Latest version 3.5.4)
 
-### Java Build
+### Build
 To build the project in the [quiry](quiry/) directory, run `mvn compile`, you may clean the build files with `mvn clean`. The main function is in the class `App`.
 
 ```console
 foo@bar:CSC01TeamProjectRepo11\quiry$ mvn clean
 foo@bar:CSC01TeamProjectRepo11\quiry$ mvn compile
-foo@bar:CSC01TeamProjectRepo11\quiry$ mvn spring-boot:run
 ```
 
-Component level [test functions](quiry/src/test/java/cscc01/summer2018/team11) can be compiled separately and executed by specifying the class name.
+To populate the database with some predefined users and files, before running the program on a machine for the first time, you may execute some [test functions](quiry/src/test/java/cscc01/summer2018/team11).
 
 ```console
 foo@bar:CSC01TeamProjectRepo11\quiry$ mvn test-compile
-foo@bar:CSC01TeamProjectRepo11\quiry$ mvn exec:java -Dexec.mainClass="cscc01.summer2018.team11.Lucene" -Dexec.classpathScope="test"
+foo@bar:CSC01TeamProjectRepo11\quiry$ mvn exec:java@users
+foo@bar:CSC01TeamProjectRepo11\quiry$ mvn exec:java@files
 ```
 
-The [java](java/) directory contains sample test Java projects intended to test individual features before they are ready to be included in the main project.
+In addition, the [java](java/) directory contains sample test Java projects intended to test individual features before they are ready to be included in the main project.
 
 These coding [guidelines](http://cr.openjdk.java.net/~alundblad/styleguide/index-v6.html) will be enforced.
+
+### Run
+After building the project using Maven, the project web server can be launched with one command:
+
+```console
+foo@bar:CSC01TeamProjectRepo11\quiry$ mvn spring-boot:run
+```
+
+Now open your favorite browser and go to __http://localhost:8080__. You will land on the Quiry home page.
 
 ## Contributing
 Quick steps to contributing to this project:

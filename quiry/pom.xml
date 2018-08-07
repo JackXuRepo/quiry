@@ -171,14 +171,35 @@
 					<artifactId>exec-maven-plugin</artifactId>
 					<executions>
 						<execution>
+							<id>main</id>
 							<goals>
 								<goal>java</goal>
 							</goals>
+							<configuration>
+								<mainClass>cscc01.summer2018.team11.App</mainClass>
+							</configuration>
+						</execution>
+						<execution>
+							<id>users</id>
+							<goals>
+								<goal>java</goal>
+							</goals>
+							<configuration>
+								<mainClass>cscc01.summer2018.team11.MockUsers</mainClass>
+								<classpathScope>test</classpathScope>
+							</configuration>
+						</execution>
+						<execution>
+							<id>files</id>
+							<goals>
+								<goal>java</goal>
+							</goals>
+							<configuration>
+								<mainClass>cscc01.summer2018.team11.MockFiles</mainClass>
+								<classpathScope>test</classpathScope>
+							</configuration>
 						</execution>
 					</executions>
-					<configuration>
-						<mainClass>cscc01.summer2018.team11.App</mainClass>
-					</configuration>
 				</plugin>
 			</plugins>
 		</pluginManagement>

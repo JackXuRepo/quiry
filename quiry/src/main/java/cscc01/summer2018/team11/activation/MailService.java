@@ -12,9 +12,10 @@ import cscc01.summer2018.team11.user.User;
 
 @Service
 public class MailService {
+
 	@Autowired
 	private JavaMailSender javaMail;
-	
+
     public void sendActivationEmail(User user) throws MessagingException{
         MimeMessage message = javaMail.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
