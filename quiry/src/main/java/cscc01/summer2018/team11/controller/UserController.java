@@ -57,12 +57,12 @@ public class UserController {
 		// login user
 		if (userData == null) {
 			response.put("error", "incorrect");
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
 
 		// check activation
 		} else if (!userData.getVerification().equals("activated")) {
 			response.put("error", "unactivated");
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
 		}
 
 		return ResponseEntity.status(HttpStatus.OK).body(UserService.parseUser(userData));
@@ -115,10 +115,10 @@ public class UserController {
 		return new ModelAndView("redirect:http://localhost:8080/activation-failure.html");
 	}
 
-	@RequestMapping(value = "/email", method = RequestMethod.GET)
+	@RequestMapping(value = "/email", method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.OK)
-	public void emailUser(@RequestParam("userId") String userId) {
-		User user = UserService.getUser(userId);
+	public void emailUser(@RequestBody HashMap<String, String> body) {
+		User user = UserService.getUser(body.get("userId"));
 		if (user != null) {
 			try {
 				mailer.sendActivationEmail(user);
