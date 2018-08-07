@@ -16,18 +16,18 @@ public class MailService {
 	@Autowired
 	private JavaMailSender javaMail;
 
-    public void sendActivationEmail(User user) throws MessagingException{
+    public void sendActivationEmail(String host, User user) throws MessagingException{
         MimeMessage message = javaMail.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
 
-        String activationUrl="http://localhost:8080/user/activate?userId="+ user.getUserId() + "&verification=" + user.getVerification();
+        String activationUrl="http://" + host + "/user/activate?userId="+ user.getUserId() + "&verification=" + user.getVerification();
         String content="Hello "+ user.getFirstName() +",<br/><br/>Please use this link to activate your Quiry account:<br/>"
                 + "<a href='"+ activationUrl +"'>"+ activationUrl +"</a><br/><br/>Team Eleven";
 
         helper.setTo(user.getEmail());
         helper.setSubject("Quiry Account Activation");
         helper.setText(content, true);
-        
+
         javaMail.send(message);
     }
 
