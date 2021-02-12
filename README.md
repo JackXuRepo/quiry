@@ -1,6 +1,7 @@
 # CSCC01 Project Quiry
 --------------------
 A search engine for the UTSC community.
+|![alt text](https://i.imgur.com/Wzyn4KE.png)|
 
 ## Team Members
 * Kin He - <kin.he@mail.utoronto.ca> (heweijia)
